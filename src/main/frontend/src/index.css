@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Inter;
+}
+
+.title {
+  font-family: Epilogue, Inter;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+.active.title {
+  background-color: transparent;
+  color: #112d4e;
+}
+
+.sidebar {
+  transition: 0.1s ease-in-out;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/*TABS*/
+.tabs {
+  display: block;
+  padding: 1.2rem;
+  border-bottom: 2.5px solid transparent;
+  transition: 0.1s ease-in;
+}
+.tabs:hover {
+  color: #505050;
+  background-color: #fcfcfc;
+  border-bottom: 2.5px solid #112d4e;
+}
+
+.active-tabs {
+  border-bottom: 2.5px solid #112d4e;
+}
+.active-tabs:hover {
+  background-color: transparent;
+  border-radius: 0;
+}
+
+/* MODULES */
+.active-module {
+  background-color: #112d4e;
+  color: #f9f7f7;
+}
