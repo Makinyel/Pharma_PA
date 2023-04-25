@@ -1,6 +1,5 @@
-package com.example.pharma.domain.entities.Persona;
+package com.example.pharma.domain.entities.usuario;
 
-import com.example.pharma.domain.entities.Keys.KeyPersona;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,23 +10,21 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 
-// ESTA ANOTACION LA USE PARA INDICAR QUE ESTA CLASE TENDRA UNA KEY La CUAL ENTRADA
-// LOS DOS ATRIBUTOS DE QUE FORMAN LA LLAVE PRIMARIA
-@IdClass(KeyPersona.class)
-
 // ESTA ANOTACION LA USE PARA EVITAR EL ERROR DE SERIALIZACION AL OBTENER UNA PERSONA POR SU ID
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 
-public class Persona {
+public class Usuario {
     @Id
     private String id;
-    @Id
-    private String tipoId;
-    @Enumerated(EnumType.STRING)
-    private TipoPersona tipoPersona;
     private String nombre;
+    private String apellido;
+    @OneToOne
+    private Rol rol;
+    private String password;
     private String ubicacion;
     private String telefono;
     private String email;
-
+    @Enumerated(EnumType.STRING)
+    private TipoEstados estado;
+    private String id_rol;
 }

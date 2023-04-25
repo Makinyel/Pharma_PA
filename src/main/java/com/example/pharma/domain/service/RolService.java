@@ -1,6 +1,6 @@
 package com.example.pharma.domain.service;
 
-import com.example.pharma.domain.entities.Usuario.Rol;
+import com.example.pharma.domain.entities.usuario.Rol;
 import com.example.pharma.infrastructure.repository.RolRepository;
 import com.example.pharma.share.NotFoundException;
 import lombok.AllArgsConstructor;

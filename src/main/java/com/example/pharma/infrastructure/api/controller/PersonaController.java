@@ -1,6 +1,6 @@
 package com.example.pharma.infrastructure.api.controller;
 
-import com.example.pharma.domain.entities.Persona.Persona;
+import com.example.pharma.domain.entities.persona.Persona;
 import com.example.pharma.domain.service.PersonaService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

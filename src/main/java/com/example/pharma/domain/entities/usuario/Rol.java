@@ -1,4 +1,4 @@
-package com.example.pharma.domain.entities.Usuario;
+package com.example.pharma.domain.entities.usuario;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
@@ -16,7 +16,7 @@ import java.io.Serializable;
 @Data
 @Entity
 
-// ESTA ANOTACION LA USE PARA EVITAR EL ERROR DE SERIALIZACION AL OBTENER UNA PERSONA POR SU ID
+// ESTA ANOTACION LA USE PARA EVITAR EL ERROR DE SERIALIZACION AL OBTENER UNA ROl POR SU ID
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 
 public class Rol implements Serializable {

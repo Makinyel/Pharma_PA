@@ -1,7 +1,7 @@
 package com.example.pharma.domain.service;
 
-import com.example.pharma.domain.entities.Usuario.Rol;
-import com.example.pharma.domain.entities.Usuario.Usuario;
+import com.example.pharma.domain.entities.usuario.Rol;
+import com.example.pharma.domain.entities.usuario.Usuario;
 import com.example.pharma.infrastructure.repository.RolRepository;
 import com.example.pharma.infrastructure.repository.UsuarioRepository;
 import com.example.pharma.share.NotFoundException;
@@ -37,6 +37,7 @@ public class UsuarioService {
     }
 
     public void editUsuario(Usuario userDetalle){
+
         Usuario user = usuarioRepository.getById(userDetalle.getId());
 
         if (!Objects.isNull(user)) {
