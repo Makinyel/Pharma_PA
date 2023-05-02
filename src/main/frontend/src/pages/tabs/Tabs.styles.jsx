@@ -11,12 +11,15 @@ export const TabsTitle = styled.div`
     isNotAPhone &&
     `
     padding: 0 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1rem;
   `}
 `;
 
 export const TabsLinkContainer = styled.div`
   border-bottom: 1px solid #1f2937;
-  ${({ isNotAPhone }) => isNotAPhone && `padding-top: 3px;`}
+  ${({ isNotAPhone }) => isNotAPhone && `padding-top: 3px;`};
 `;
 
 export const TabsLink = styled(Link)`

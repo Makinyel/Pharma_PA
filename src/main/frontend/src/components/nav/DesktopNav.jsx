@@ -44,7 +44,7 @@ const DesktopNav = () => {
   useEffect(() => {
     dispatch(
       setActiveModuleStyles(
-        `flex gap-2 lg:w-full px-5 py-3 rounded-md transition ease-in-out delay-50 bg-dark text-light`
+        `flex gap-2 lg:w-full px-5 py-3 rounded-md transition ease-in-out delay-50 bg-[#112D4E] text-[#F9F7F7]`
       )
     );
   }, [currentModule]);
@@ -59,7 +59,7 @@ const DesktopNav = () => {
             className={
               currentModule == item.name
                 ? activeModuleStyles
-                : `flex gap-2 lg:w-full px-5 py-3 rounded-md text-[#000] transition ease-in-out delay-50 hover:bg-dark hover:text-light`
+                : `flex gap-2 lg:w-full px-5 py-3 rounded-md text-[#000] transition ease-in-out delay-50 hover:bg-[#112D4E] hover:text-[#F9F7F7]`
             }
             key={item.name}
             onClick={() => handleClick(item.name)}
