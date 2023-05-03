@@ -9,7 +9,6 @@ const SideBar = ({ children }) => {
   return (
     <div className={`h-screen ${isNotAPhone && "flex"}`}>
       {isNotAPhone ? <DesktopNav /> : <MobileNav />}
-      {/* <DesktopNav /> */}
       <main className="w-full overflow-auto">
         <Tabs />
         {children}

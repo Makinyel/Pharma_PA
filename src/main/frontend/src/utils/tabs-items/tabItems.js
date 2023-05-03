@@ -1,15 +1,10 @@
-export const tabs = {
-  gestion: ["medicamentos", "personas", "bodega", "secciones", "correos"],
-  cartera: ["cxc", "cxp", "abonos-cxc", "abonos-cxp", "informes"],
-  // Add more modules and tabs as needed
-};
-
 export const gestionTabsItems = [
-  "medicamentos",
-  "personas",
+  "producto",
+  "marca",
+  "tipo",
+  "presentación",
+  "concentración",
   "bodega",
-  "secciones",
-  "correos",
 ];
 
 export const carteraTabsItems = [
