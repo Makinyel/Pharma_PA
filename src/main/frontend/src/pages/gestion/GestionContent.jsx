@@ -4,11 +4,8 @@ import Button from "../../components/button/Button";
 import Input from "../../components/input/Input";
 
 import {
-  medicamentosFormInfo,
-  personasFormInfo,
-  bodegaFormInfo,
-  seccionesFormInfo,
-  correosFormInfo,
+  productosFormInfo,
+  marcaFormInfo,
 } from "../../utils/form-info/gestionFormInfo";
 
 import {
@@ -25,18 +22,14 @@ const GestionContent = ({ tab }) => {
   const isNotAPhone = useMediaQuery("(min-width: 1000px)");
 
   useEffect(() => {
-    if (tab === "medicamentos") {
-      setFormInfo(medicamentosFormInfo);
-    } else if (tab === "personas") {
-      setFormInfo(personasFormInfo);
-    } else if (tab === "bodega") {
-      setFormInfo(bodegaFormInfo);
-    } else if (tab === "secciones") {
-      setFormInfo(seccionesFormInfo);
-    } else if (tab === "correos") {
-      setFormInfo(correosFormInfo);
+    if (tab === "producto") {
+      setFormInfo(productosFormInfo);
+    } else if (tab === "marca") {
+      setFormInfo(marcaFormInfo);
+    } else {
+      setFormInfo([]);
     }
-  });
+  }, [tab]);
 
   return (
     <GestionContentWrapper>

@@ -1,13 +1,13 @@
-export const medicamentosFormInfo = [
+export const productosFormInfo = [
   {
     type: "text",
-    title: "Codigo",
+    title: "Nombre",
     description:
       "Este es el número único con el que se identificará el medicamento.",
   },
   {
-    type: "text",
-    title: "Nombre",
+    type: "select",
+    title: "Marca",
     description:
       "Este es el número único con el que se identificará el medicamento.",
   },
@@ -17,75 +17,30 @@ export const medicamentosFormInfo = [
     description:
       "Este es el número único con el que se identificará el medicamento.",
   },
-];
-
-export const personasFormInfo = [
   {
-    type: "text",
-    title: "Codigo",
-    description:
-      "Este es el número único con el que se identificará el medicamento.",
-  },
-  {
-    type: "text",
-    title: "Nombre",
-    description:
-      "Este es el número único con el que se identificará el medicamento.",
-  },
-  {
-    type: "text",
-    title: "Identificacion",
+    type: "select",
+    title: "Presentación",
     description:
       "Este es el número único con el que se identificará el medicamento.",
   },
   {
     type: "select",
-    title: "Tipo",
-    description:
-      "Este es el número único con el que se identificará el medicamento.",
-  },
-];
-
-export const bodegaFormInfo = [
-  {
-    type: "text",
-    title: "Codigo",
-    description:
-      "Este es el número único con el que se identificará el medicamento.",
-  },
-  {
-    type: "text",
-    title: "Nombre",
-    description:
-      "Este es el número único con el que se identificará el medicamento.",
-  },
-];
-
-export const seccionesFormInfo = [
-  {
-    type: "text",
-    title: "Codigo",
+    title: "Concentración",
     description:
       "Este es el número único con el que se identificará el medicamento.",
   },
   {
     type: "select",
-    title: "Tipo",
+    title: "Bodega",
     description:
       "Este es el número único con el que se identificará el medicamento.",
   },
 ];
 
-export const correosFormInfo = [
+export const marcaFormInfo = [
   {
     type: "text",
-    title: "Codigo",
-    description:
-      "Este es el número único con el que se identificará el medicamento.",
-  },
-  {
-    type: "text",
-    title: "Correo",
+    title: "Nombre",
     description:
       "Este es el número único con el que se identificará el medicamento.",
   },
