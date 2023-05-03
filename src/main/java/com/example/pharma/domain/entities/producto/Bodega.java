@@ -18,8 +18,7 @@ public class Bodega {
     @Id
     @Column(name = "id", unique = true)
     private String id;
-    private String razon_social;
-    private String ubicacion;
+    private String nombre;
+    private String direccion;
     private String telefono;
-    private String email;
 }

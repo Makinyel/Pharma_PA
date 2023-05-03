@@ -13,15 +13,16 @@ import java.util.List;
 public class MarcaController {
     private MarcaService marcaService;
 
-    @GetMapping
-    public List<Marca> getAll() {
-        return marcaService.getMarca();
-    }
-
-    @PostMapping
+    @PostMapping("/post")
     public Marca agregar(@RequestBody Marca marca) {
         marcaService.agregar(marca);
         return marca;
     }
+
+    @GetMapping("/getAll")
+    public List<Marca> getAll() {
+        return marcaService.getMarca();
+    }
+
 
 }
