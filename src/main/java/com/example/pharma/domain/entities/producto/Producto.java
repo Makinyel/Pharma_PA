@@ -22,6 +22,7 @@ public class Producto {
     private String id;
     private String nombre;
     private String descripcion;
+    private int    stock;
     private Double precioCosto;
     private Double precioVenta;
     private Double precioVentaDistribuidores;

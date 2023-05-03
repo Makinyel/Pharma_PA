@@ -1,5 +1,6 @@
 package com.example.pharma.infrastructure.api.controller.producto;
 
+import com.example.pharma.domain.entities.producto.Bodega;
 import com.example.pharma.domain.entities.producto.Producto;
 import com.example.pharma.domain.service.producto.ProductoService;
 import lombok.AllArgsConstructor;
@@ -31,4 +32,10 @@ public class ProductoController {
   public ResponseEntity<Producto> getProducto(@PathVariable String id) {
     return ResponseEntity.ok(productoService.getProducto(id));
   }
+  @GetMapping("/findByBodega/{idBodega}")
+  public ResponseEntity<List<Producto>> getAllProductosofBodega(@PathVariable String idBodega) {
+    return ResponseEntity.ok(productoService.findAllByBodega(idBodega));
+  }
+
 }
+
