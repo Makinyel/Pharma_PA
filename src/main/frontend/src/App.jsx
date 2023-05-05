@@ -10,7 +10,6 @@ import Register from "./pages/login/Register";
 
 const App = () => {
   const user = useSelector((state) => state.user);
-  console.log(user);
   return (
     <BrowserRouter>
       {user ? (

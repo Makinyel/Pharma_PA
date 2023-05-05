@@ -1,9 +1,8 @@
 export const gestionTabsItems = [
   "producto",
   "marca",
-  "tipo",
-  "presentación",
-  "concentración",
+  "presentacion",
+  "concentracion",
   "bodega",
 ];
 

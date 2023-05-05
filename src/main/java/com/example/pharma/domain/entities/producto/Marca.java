@@ -11,10 +11,9 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name = "maestro_marca")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Marca {
     @Id
-    @Column(name = "id", unique = true)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nombre;
 }

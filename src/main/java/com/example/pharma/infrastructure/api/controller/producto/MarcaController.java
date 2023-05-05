@@ -13,16 +13,25 @@ import java.util.List;
 public class MarcaController {
     private MarcaService marcaService;
 
-    @PostMapping("/post")
+    @PostMapping
     public Marca agregar(@RequestBody Marca marca) {
         marcaService.agregar(marca);
         return marca;
     }
 
-    @GetMapping("/getAll")
+    @GetMapping
     public List<Marca> getAll() {
         return marcaService.getMarca();
     }
 
+    @GetMapping("/id/{id}")
+    public Marca getMarcaById(@PathVariable("id") Long id) {
+        return marcaService.getMarcaById(id);
+    }
+
+    @GetMapping("nombre")
+    public Marca getMarcaByNombre(@RequestParam("name") String name) {
+        return marcaService.getMarcaByNombre(name);
+    }
 
 }

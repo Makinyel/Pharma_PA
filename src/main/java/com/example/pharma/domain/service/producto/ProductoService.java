@@ -1,13 +1,16 @@
 package com.example.pharma.domain.service.producto;
 
-import com.example.pharma.domain.entities.producto.Bodega;
-import com.example.pharma.domain.entities.producto.Producto;
-import com.example.pharma.infrastructure.repository.producto.ProductoRepository;
-import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.example.pharma.domain.entities.producto.Producto;
+import com.example.pharma.infrastructure.repository.producto.ProductoRepository;
+import com.example.pharma.share.NotFoundException;
+
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @AllArgsConstructor
 @Service
@@ -18,29 +21,24 @@ public class ProductoService {
     public Producto saveProducto(Producto producto) {
         return productoRepository.save(producto);
     }
+
     public List<Producto> getAllProducts() {
         return productoRepository.findAll();
     }
 
-    public Producto getProducto(String id) {
-        return productoRepository.getById(id);
+    public Producto getProducto(Long id) {
+        Optional<Producto> producto = productoRepository.findById(id);
+        return producto.orElseThrow(() -> new NotFoundException("Product with id: " + id + " not found"));
     }
-    public List<Producto> findAllByBodega(String idBodega) {
+
+    public List<Producto> findAllByBodega(Long idBodega) {
         return productoRepository.findAllByIdBodega(idBodega);
     }
 
-    //Con Este Metodo verificamos la cantidad de productos solicitados no pasen la cantidad de stocks
-    public boolean verifyStockProduct(String idProduct, Integer amount){
+    // * Returns true or false whether there's stock on a product */
+    public boolean verifyStockProduct(Long idProduct, Integer amount) {
         log.info("Verificando stock el producto...");
-        var productStockActual = productoRepository.getById(idProduct);
-
-        if(productStockActual.getStock() >= amount )
-            return true;
-        else
-            return false;
+        Optional<Producto> optionalProduct = productoRepository.findById(idProduct);
+        return optionalProduct.isPresent() && optionalProduct.get().getStock() >= amount;
     }
-
-
 }
-
-

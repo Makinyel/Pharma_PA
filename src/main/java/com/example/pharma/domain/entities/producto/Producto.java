@@ -1,8 +1,13 @@
 package com.example.pharma.domain.entities.producto;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinColumns;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,38 +19,25 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Table(name = "maestro_producto")
-
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Producto {
-    @Id
-    @Column(name = "id", unique = true)
-    private String id;
-    private String nombre;
-    private String descripcion;
-    private int    stock;
-    private Double precioCosto;
-    private Double precioVenta;
-    private Double precioVentaDistribuidores;
-    @ManyToOne
-    @JoinColumns({
-            @JoinColumn(name = "idMarca", referencedColumnName = "id"),
-    })
-    private Marca marca;
-    @ManyToOne
-    @JoinColumns({
-            @JoinColumn(name = "idPresentacion", referencedColumnName = "id"),
-    })
-    private Presentacion presentacion;
-    @ManyToOne
-    @JoinColumns({
-            @JoinColumn(name = "idBodega", referencedColumnName = "id"),
-    })
-    private Bodega bodega;
-    @ManyToOne
-    @JoinColumns({
-            @JoinColumn(name = "idConcentracion", referencedColumnName = "id"),
-    })
-    private Concentracion concentracion;
-
-
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
+        private String nombre;
+        private String descripcion;
+        private int stock;
+        private Double precioCosto;
+        private Double precioVenta;
+        @ManyToOne
+        @JoinColumn(name = "idMarca", referencedColumnName = "id")
+        private Marca marca;
+        @ManyToOne
+        @JoinColumn(name = "idPresentacion", referencedColumnName = "id")
+        private Presentacion presentacion;
+        @ManyToOne
+        @JoinColumn(name = "idBodega", referencedColumnName = "id")
+        private Bodega bodega;
+        @ManyToOne
+        @JoinColumn(name = "idConcentracion", referencedColumnName = "id")
+        private Concentracion concentracion;
 }

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const GestionContentWrapper = styled.div`
-  padding-bottom: 20px;
+  padding-bottom: 10rem;
 `;
 
 export const GestionContentHeader = styled.h2`
@@ -11,10 +11,31 @@ export const GestionContentHeader = styled.h2`
   padding: 1.25rem;
 `;
 
+export const InputRow = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin: -10px; /* Adjust margin to account for padding on Input components */
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
+
+export const InputWrapper = styled.div`
+  flex-basis: 50%;
+  padding: 10px;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    flex-basis: 100%;
+  }
+`;
+
 export const GestionContentFormWrapper = styled.div`
   margin: 0 1rem;
   border: 1px solid #b3c3d3;
   border-radius: 0.375rem;
+
   @media (min-width: 768px) {
     border: 1px solid lightblue;
     max-width: 70%;
