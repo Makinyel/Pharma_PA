@@ -17,12 +17,9 @@ public class StockService {
     private StockRepository stockRepository;
     private StockDao stockDao;
   public Stock create(Stock stockDetalle) {
-    var key = KeyStock.builder().id_producto(stockDetalle.getId_producto()).id_bodega(stockDetalle.getId_bodega()).build();
-    var Stock = stockRepository.getById(key);
-    if (Objects.isNull(Stock)){
-      return stockRepository.save(stockDetalle);
-    }
-    return sumarStock(stockDetalle);
+
+    return stockRepository.save(stockDetalle);
+
   }
   public List<Stock> getStock(Long idproducto){
     var stocks = stockDao.getStocks(idproducto);
@@ -38,7 +35,17 @@ public class StockService {
     return stocks;
   }
 
-  public Stock sumarStock(Stock stockDetalle){
+  public Stock updateStock(Stock stockDetalle) {
+    var key = KeyStock.builder().id_producto(stockDetalle.getId_producto())
+        .id_bodega(stockDetalle.getId_bodega()).build();
+    var Stock = stockRepository.getById(key);
+    if (Objects.isNull(Stock)){
+      return stockRepository.save(stockDetalle);
+    }
+    return sumarStock(stockDetalle);
+  }
+
+  private Stock sumarStock(Stock stockDetalle){
     var key = KeyStock.builder().id_producto(stockDetalle.getId_producto())
         .id_bodega(stockDetalle.getId_bodega()).build();
 
