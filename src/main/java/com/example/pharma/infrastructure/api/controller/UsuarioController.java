@@ -30,9 +30,9 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.getAllUsuarios());
     }
 
-    @PutMapping
-    public void editUsuario(@RequestBody Usuario user) {
-        usuarioService.editUsuario(user);
+    @PutMapping("{id}")
+    public void editUsuario(@PathVariable("id") Long id, @RequestBody Usuario user) {
+        usuarioService.editUsuario(id, user);
     }
 
     @DeleteMapping("{id}")

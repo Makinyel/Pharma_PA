@@ -1,7 +1,10 @@
 package com.example.pharma.domain.entities.usuario;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,9 +17,9 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nombre;
+    private String name;
     private String email;
-    private String direccion;
-    private String telefono;
-    private Rol rol;
+    private String address;
+    private String phone;
+    private Role role;
 }
