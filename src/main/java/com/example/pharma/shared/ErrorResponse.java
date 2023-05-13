@@ -1,4 +1,4 @@
-package com.example.pharma.share;
+package com.example.pharma.shared;
 
 import lombok.Builder;
 import lombok.Data;

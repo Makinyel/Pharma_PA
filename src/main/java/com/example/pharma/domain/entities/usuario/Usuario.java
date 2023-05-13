@@ -1,30 +1,25 @@
 package com.example.pharma.domain.entities.usuario;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+@Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-@Entity
-
-// ESTA ANOTACION LA USE PARA EVITAR EL ERROR DE SERIALIZACION AL OBTENER UNA PERSONA POR SU ID
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-
 public class Usuario {
     @Id
-    private String id;
-    private String nombre;
-    private String apellido;
-    @OneToOne
-    private Rol rol;
-    private String password;
-    private String ubicacion;
-    private String telefono;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
     private String email;
-    @Enumerated(EnumType.STRING)
-    private TipoEstados estado;
-    private String id_rol;
+    private String address;
+    private String phone;
+    private Role role;
 }

@@ -3,10 +3,11 @@ package com.example.pharma.domain.service;
 import com.example.pharma.domain.entities.Keys.KeyPersona;
 import com.example.pharma.domain.entities.persona.Persona;
 import com.example.pharma.infrastructure.repository.PersonaRepository;
-import com.example.pharma.share.NotFoundException;
+import com.example.pharma.shared.NotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Objects;
 @AllArgsConstructor

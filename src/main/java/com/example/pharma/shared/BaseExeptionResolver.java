@@ -1,4 +1,4 @@
-package com.example.pharma.share;
+package com.example.pharma.shared;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
