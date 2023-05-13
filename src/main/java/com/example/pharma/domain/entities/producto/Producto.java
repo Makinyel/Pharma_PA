@@ -1,5 +1,7 @@
 package com.example.pharma.domain.entities.producto;
 
+import com.example.pharma.domain.entities.Stock;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,13 +21,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Table(name = "maestro_producto")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Producto {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
         private String nombre;
         private String descripcion;
-        private int stock;
         private Double precioCosto;
         private Double precioVenta;
         @ManyToOne
@@ -35,9 +37,7 @@ public class Producto {
         @JoinColumn(name = "idPresentacion", referencedColumnName = "id")
         private Presentacion presentacion;
         @ManyToOne
-        @JoinColumn(name = "idBodega", referencedColumnName = "id")
-        private Bodega bodega;
-        @ManyToOne
         @JoinColumn(name = "idConcentracion", referencedColumnName = "id")
         private Concentracion concentracion;
+
 }

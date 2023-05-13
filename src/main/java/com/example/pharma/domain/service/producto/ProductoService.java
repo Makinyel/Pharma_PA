@@ -36,9 +36,10 @@ public class ProductoService {
     }
 
     // * Returns true or false whether there's stock on a product */
+    /*
     public boolean verifyStockProduct(Long idProduct, Integer amount) {
         log.info("Verificando stock el producto...");
         Optional<Producto> optionalProduct = productoRepository.findById(idProduct);
         return optionalProduct.isPresent() && optionalProduct.get().getStock() >= amount;
-    }
+    }*/
 }
