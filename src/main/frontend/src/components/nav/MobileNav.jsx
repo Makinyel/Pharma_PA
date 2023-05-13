@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signOutUser } from "../../auth/firebase";
-import { menuItems } from "../../utils/menuItems";
+import { menuItems } from "../../utils/menu-items/menuItems";
 import {
   toggleOff,
   toggleOn,

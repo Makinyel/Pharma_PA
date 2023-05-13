@@ -17,9 +17,9 @@ const App = () => {
           <Routes>
             <Route index path="/" element={<Dashboard />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/gestion/:tabItem" element={<Gestion />} />
-            <Route path="/cartera/:tabItem" element={<Cartera />} />
-            <Route path="/facturacion" element={<Facturacion />} />
+            <Route path="/productos/:tabItem" element={<Gestion />} />
+            <Route path="/movimientos/:tabItem" element={<Cartera />} />
+            <Route path="/terceros" element={<Facturacion />} />
           </Routes>
         </SideBar>
       ) : (
