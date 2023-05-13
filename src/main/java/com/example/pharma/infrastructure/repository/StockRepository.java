@@ -1,5 +1,6 @@
 package com.example.pharma.infrastructure.repository;
 
+import com.example.pharma.domain.entities.Keys.KeyStock;
 import com.example.pharma.domain.entities.Stock;
 import com.example.pharma.domain.entities.producto.Bodega;
 import com.example.pharma.domain.entities.producto.Producto;
@@ -10,6 +11,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface StockRepository extends JpaRepository<Stock, Long> {
+public interface StockRepository extends JpaRepository<Stock, KeyStock> {
 
 }

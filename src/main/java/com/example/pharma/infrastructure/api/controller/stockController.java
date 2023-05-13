@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 @RestController
 @RequestMapping(path = "/stock")
-public class Producto_bodegaController {
+public class stockController {
 
   private StockService productoBodegaService;
 
@@ -24,7 +24,6 @@ public class Producto_bodegaController {
   }
   @GetMapping("/{idProducto}")
   public List<Stock> getStockByidProducto(@PathVariable("idProducto") String idproducto) {
-    System.out.println("ESTA ENTRADO: " + idproducto);
     return productoBodegaService.getStock(Long.parseLong(idproducto));
   }
 

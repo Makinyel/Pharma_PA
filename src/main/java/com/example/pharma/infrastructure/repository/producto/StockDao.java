@@ -15,7 +15,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class StockDao {
 
-  private final String GET_ALL_STOCKS = "SELECT stock\n"
+  private final String GET_ALL_STOCKS =
+      "SELECT *"
       + "FROM stock st \n"
       + "INNER JOIN  maestro_producto mp ON st.id_producto = mp.id\n"
       + "where st.id_producto = :idProducto";
