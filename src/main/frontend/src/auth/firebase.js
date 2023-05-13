@@ -22,7 +22,7 @@ export const auth = getAuth(firebaseApp);
 export const firestore = getFirestore(firebaseApp);
 
 export const createAccount = async (userInformation) => {
-  const { displayName, email, password, role } = userInformation;
+  const { name, email, password, address, phone, role } = userInformation;
 
   const user = await createUserWithEmailAndPassword(auth, email, password)
     .then((res) => {
@@ -32,17 +32,17 @@ export const createAccount = async (userInformation) => {
 
   const documentReference = doc(firestore, `/users/${user.uid}`);
 
-  const userToSave = { displayName, email, role };
+  const userToSave = { name, email, address, phone, role };
 
   setDoc(documentReference, userToSave);
 
-  // await fetch(
-  //   "http://localhost:8080/auth/register",
-  //   {
-  //     method: "POST",
-  //     body: persona,
-  //   }
-  // );
+  await fetch("http://localhost:8080/users", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(userToSave),
+  });
 };
 
 export const signIn = async (email, password) => {

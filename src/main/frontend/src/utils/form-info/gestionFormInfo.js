@@ -41,11 +41,6 @@ export const productosFormInfo = [
     description:
       "Seleccione la concentración del medicamento, por ejemplo, 50 mg, 100 mg, 250 mg, etc.",
   },
-  {
-    type: "select",
-    title: "Bodega",
-    description: "Seleccione la bodega donde se almacena el medicamento.",
-  },
 ];
 
 export const presentacionFormInfo = [

@@ -8,29 +8,26 @@ import {
   setCurrentModule,
   setActiveModuleStyles,
 } from "../../state/state";
-import { menuItems } from "../../utils/menuItems";
+import { menuItems } from "../../utils/menu-items/menuItems";
 import { MdMenu as Toggle } from "react-icons/md";
-import {
-  NavContainer,
-  TitleContainer,
-  NavLinkContainer,
-  MyNavLink,
-} from "./Nav.styles";
+import { NavContainer } from "./Nav.styles";
 
 const DesktopNav = () => {
   const dispatch = useDispatch();
   const isOpen = useSelector((state) => state.isOpen);
   const currentModule = useSelector((state) => state.currentModule);
-  const currentGestionTab = useSelector((state) => state.currentGestionTab);
-  const currentCarteraTab = useSelector((state) => state.currentCarteraTab);
+  const currentProductosTab = useSelector((state) => state.currentProductosTab);
+  const currentMovimientosTab = useSelector(
+    (state) => state.currentMovimientosTab
+  );
   const activeModuleStyles = useSelector((state) => state.activeModuleStyles);
   const isNotAPhone = useMediaQuery("(min-width: 1000px)");
 
   const tabMapping = {
     dashboard: "",
-    gestion: `/${currentGestionTab}`,
-    cartera: `/${currentCarteraTab}`,
-    facturacion: "",
+    productos: `/${currentProductosTab}`,
+    movimientos: `/${currentMovimientosTab}`,
+    terceros: "",
     // add more modules and their corresponding tabs as needed
   };
 
