@@ -6,6 +6,8 @@ const defaultFormFields = {
   name: "",
   email: "",
   password: "",
+  address: "",
+  phone: "",
   role: "",
 };
 
@@ -71,6 +73,14 @@ const Register = () => {
               onChange={handleChange}
               name="password"
               value={password}
+            />
+            <input
+              className="bg-white rounded-md px-4 py-3"
+              type="text"
+              placeholder="Ubicacion"
+              onChange={handleChange}
+              name="ubicacion"
+              value={ubicacion}
             />
             <select
               className="bg-white rounded-md px-4 py-3 text-sm text-gray-400"

@@ -1,28 +1,14 @@
 package com.example.pharma.domain.entities.usuario;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+public enum Rol {
+    admin("ADMIN"),
+    gerenteCompra("GERCOM"),
+    gerenteVenta("GERVEN"),
+    analista("ANALIST");
 
-import java.io.Serializable;
+    String rol;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
-@Entity
-
-// ESTA ANOTACION LA USE PARA EVITAR EL ERROR DE SERIALIZACION AL OBTENER UNA ROl POR SU ID
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-
-public class Rol implements Serializable {
-    @Id
-    private String id;
-    @Enumerated(EnumType.STRING)
-    private UserRol tiporol;
-
+    Rol(String rol) {
+        this.rol = rol;
+    }
 }

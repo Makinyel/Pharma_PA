@@ -11,27 +11,32 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UsuarioController {
     private UsuarioService usuarioService;
-    @PostMapping("/Post")
-    public ResponseEntity<Usuario> saveUsuario(@RequestBody Usuario usuario){
+
+    @PostMapping
+    public ResponseEntity<Usuario> saveUsuario(@RequestBody Usuario usuario) {
         return new ResponseEntity<>(usuarioService.saveUsuario(usuario), HttpStatus.CREATED);
     }
-    @GetMapping("/get/{id}")
-    public ResponseEntity<Usuario> getUsuarioById(@PathVariable String id){
+
+    @GetMapping("{id}")
+    public ResponseEntity<Usuario> getUsuarioById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(usuarioService.getUsuarioById(id));
     }
-    @GetMapping("/getAll")
-    public ResponseEntity<List<Usuario>> getAll(){
+
+    @GetMapping
+    public ResponseEntity<List<Usuario>> getAll() {
         return ResponseEntity.ok(usuarioService.getAllUsuarios());
     }
-    @PutMapping("/edit")
-    public void editUsuario(@RequestBody Usuario user){
+
+    @PutMapping
+    public void editUsuario(@RequestBody Usuario user) {
         usuarioService.editUsuario(user);
     }
-    @DeleteMapping("/delete/{id}")
-    public void deleteUsuario(@PathVariable String id){
+
+    @DeleteMapping("{id}")
+    public void deleteUsuario(@PathVariable("id") Long id) {
         usuarioService.deleteUser(id);
     }
 }
