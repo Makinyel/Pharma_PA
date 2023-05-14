@@ -20,33 +20,17 @@ public class MarcaService {
     return marcaRepository.findAll();
   }
 
-  public Marca getMarcaById(Long id) {
+  public Marca getById(Long id) {
     Optional<Marca> marca = marcaRepository.findById(id);
     return marca.orElseThrow(() -> new NotFoundException("Marca with id: " + id + " not found"));
   }
 
-  public Marca getMarcaByNombre(String nombre) {
+  public Marca getByName(String nombre) {
     Optional<Marca> marca = marcaRepository.findByNombre(nombre);
     return marca.orElseThrow(() -> new NotFoundException("Marca with nombre: " + nombre + " not found"));
   }
 
-  public Marca agregar(Marca marca) {
+  public Marca save(Marca marca) {
     return marcaRepository.save(marca);
-  }
-
-  public void delete(Long id) {
-    marcaRepository.deleteById(id);
-  }
-
-  public void editMarca(Marca marca) {
-    var marcadetalles = marcaRepository.getById(marca.getId());
-
-    if (!Objects.isNull(marcadetalles)) {
-      marcadetalles.setNombre(marca.getNombre());
-      marcaRepository.save(marcadetalles);
-
-    } else {
-      new NotFoundException("Marca con el Id " + marca.getId() + " Not found");
-    }
   }
 }

@@ -4,11 +4,12 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.util.Date;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-
 public class Movimiento {
     @Id
     String id;
@@ -17,5 +18,4 @@ public class Movimiento {
     int cantidad;
     Double costoU;
     Double costototal;
-
 }

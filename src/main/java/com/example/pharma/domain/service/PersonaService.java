@@ -1,6 +1,6 @@
 package com.example.pharma.domain.service;
 
-import com.example.pharma.domain.entities.Keys.KeyPersona;
+import com.example.pharma.domain.entities.keys.KeyPersona;
 import com.example.pharma.domain.entities.persona.Persona;
 import com.example.pharma.infrastructure.repository.PersonaRepository;
 import com.example.pharma.shared.NotFoundException;

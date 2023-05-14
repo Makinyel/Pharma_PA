@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setCurrentGestionTab, setCurrentCarteraTab } from "../../state/state";
-import { Link, useNavigate } from "react-router-dom";
+import { setProductsTab, setTransactionsTab } from "../../state/state";
+import { Link } from "react-router-dom";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { signOutUser } from "../../auth/firebase";
 
 import {
-  gestionTabsItems,
-  carteraTabsItems,
+  productsTabs,
+  transactionsTabs,
 } from "../../utils/tabs-items/tabItems";
 
 import _ from "lodash";
@@ -28,10 +28,10 @@ const Tabs = () => {
   const [currentTab, setCurrentTab] = useState("");
 
   const toggleTab = (tab) => {
-    if (currentModule === "gestion")
-      dispatch(setCurrentGestionTab({ currentGestionTab: tab }));
-    if (currentModule === "cartera")
-      dispatch(setCurrentCarteraTab({ currentCarteraTab: tab }));
+    if (currentModule === "products")
+      dispatch(setProductsTab({ productsTab: tab }));
+    if (currentModule === "transactions")
+      dispatch(setTransactionsTab({ transactionsTab: tab }));
     setCurrentTab(tab);
   };
 
@@ -41,10 +41,10 @@ const Tabs = () => {
   };
 
   useEffect(() => {
-    if (currentModule === "gestion") {
-      setTabsItems(gestionTabsItems);
-    } else if (currentModule === "cartera") {
-      setTabsItems(carteraTabsItems);
+    if (currentModule === "products") {
+      setTabsItems(productsTabs);
+    } else if (currentModule === "transactions") {
+      setTabsItems(transactionsTabs);
     } else {
       setTabsItems([]);
     }

@@ -12,9 +12,10 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class ConcentracionService {
+
     private ConcentracionRepository concentracionRepository;
 
-    public Concentracion guardar(Concentracion concentracion) {
+    public Concentracion save(Concentracion concentracion) {
         return concentracionRepository.save(concentracion);
     }
 
@@ -22,7 +23,7 @@ public class ConcentracionService {
         return concentracionRepository.findAll();
     }
 
-    public Concentracion getConcentracionByName(String name) {
+    public Concentracion getByName(String name) {
         Optional<Concentracion> concentracion = concentracionRepository.findByNombre(name);
         return concentracion
                 .orElseThrow(() -> new NotFoundException("Concentracion with name: " + name + " was not found."));

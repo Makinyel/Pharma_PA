@@ -7,10 +7,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-
 public class Compra extends Movimiento {
     private String code;
     private String idbodegaDestino;
     private String idProveedor;
-
 }

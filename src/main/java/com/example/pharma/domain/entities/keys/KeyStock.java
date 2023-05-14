@@ -1,4 +1,4 @@
-package com.example.pharma.domain.entities.Keys;
+package com.example.pharma.domain.entities.keys;
 
 import com.example.pharma.domain.entities.producto.Bodega;
 import com.example.pharma.domain.entities.producto.Producto;
