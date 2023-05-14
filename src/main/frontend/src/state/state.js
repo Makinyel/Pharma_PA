@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   user: null,
   isOpen: false,
-  currentProductosTab: "producto",
-  currentMovimientosTab: "compra",
+  productsTab: "product",
+  transactionsTab: "buy",
   currentModule: "dashboard",
   activeModuleStyles: "",
 };
@@ -22,11 +22,11 @@ export const stateSlice = createSlice({
     toggleOff: (state) => {
       state.isOpen = false;
     },
-    setCurrentProductosTab: (state, action) => {
-      state.currentProductosTab = action.payload.currentProductosTab;
+    setProductsTab: (state, action) => {
+      state.productsTab = action.payload.productsTab;
     },
-    setCurrentMovimientosTab: (state, action) => {
-      state.currentMovimientosTab = action.payload.currentMovimientosTab;
+    setTransactionsTab: (state, action) => {
+      state.transactionsTab = action.payload.transactionsTab;
     },
     setCurrentModule: (state, action) => {
       state.currentModule = action.payload;
@@ -41,8 +41,8 @@ export const {
   setUser,
   toggleOn,
   toggleOff,
-  setCurrentProductosTab,
-  setCurrentMovimientosTab,
+  setProductsTab,
+  setTransactionsTab,
   setCurrentModule,
   setActiveModuleStyles,
 } = stateSlice.actions;

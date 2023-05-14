@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Table from "../../components/Table";
 
-const CarteraContent = ({ tab }) => {
+const TransactionsContent = ({ tab }) => {
   const currentCarteraTab = useSelector((state) => state.currentCarteraTab);
   const [endpoint, setEndpoint] = useState("");
 
@@ -23,4 +23,4 @@ const CarteraContent = ({ tab }) => {
   );
 };
 
-export default CarteraContent;
+export default TransactionsContent;

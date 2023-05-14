@@ -16,13 +16,13 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping(path = "/concentracion")
+@RequestMapping(path = "/concentration")
 public class ConcentracionController {
     private ConcentracionService concentracionService;
 
     @PostMapping
-    public Concentracion guardar(@RequestBody Concentracion concentracion) {
-        concentracionService.guardar(concentracion);
+    public Concentracion save(@RequestBody Concentracion concentracion) {
+        concentracionService.save(concentracion);
         return concentracion;
     }
 
@@ -32,7 +32,7 @@ public class ConcentracionController {
     }
 
     @GetMapping("/nombre")
-    public Concentracion getConcentracionByName(@RequestParam("name") String name) {
-        return concentracionService.getConcentracionByName(name);
+    public Concentracion getByName(@RequestParam("name") String name) {
+        return concentracionService.getByName(name);
     }
 }

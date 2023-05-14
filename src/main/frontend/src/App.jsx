@@ -2,9 +2,9 @@ import { useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SideBar from "./components/SideBar";
 import Dashboard from "./pages/Dashboard";
-import Facturacion from "./pages/Facturacion";
-import Cartera from "./pages/cartera/Cartera";
-import Gestion from "./pages/gestion/Gestion";
+import ThirdParty from "./pages/ThirdParty";
+import Transactions from "./pages/transactions/Transactions";
+import Products from "./pages/products/Products";
 import Login from "./pages/login/Login";
 import Register from "./pages/login/Register";
 
@@ -17,9 +17,9 @@ const App = () => {
           <Routes>
             <Route index path="/" element={<Dashboard />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/productos/:tabItem" element={<Gestion />} />
-            <Route path="/movimientos/:tabItem" element={<Cartera />} />
-            <Route path="/terceros" element={<Facturacion />} />
+            <Route path="/products/:tabItem" element={<Products />} />
+            <Route path="/transactions/:tabItem" element={<Transactions />} />
+            <Route path="/thirdparty" element={<ThirdParty />} />
           </Routes>
         </SideBar>
       ) : (

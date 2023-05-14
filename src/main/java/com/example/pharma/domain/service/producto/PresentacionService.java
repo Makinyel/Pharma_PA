@@ -12,20 +12,20 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class PresentacionService {
+
     private PresentacionRepository presentacionRepository;
 
-    // seleccionar todos los datos
-    public List<Presentacion> getPresentacion() {
+    public List<Presentacion> getAll() {
         return presentacionRepository.findAll();
     }
 
-    public Presentacion getPresentacionByName(String name) {
+    public Presentacion getByName(String name) {
         Optional<Presentacion> presentacion = presentacionRepository.findByNombre(name);
         return presentacion
                 .orElseThrow(() -> new NotFoundException("Presentacion with name: " + name + " was not found"));
     }
 
-    public Presentacion guardar(Presentacion presentacion) {
+    public Presentacion save(Presentacion presentacion) {
         return presentacionRepository.save(presentacion);
     }
 

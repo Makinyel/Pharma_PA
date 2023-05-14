@@ -1,6 +1,8 @@
 import { MdOutlineDashboard as DashboardIcon } from "react-icons/md";
-import { GiMedicines as ProductosIcon } from "react-icons/gi";
-import { GiSellCard as MovimientosIcon } from "react-icons/gi";
+import {
+  GiMedicines as ProductosIcon,
+  GiSellCard as MovimientosIcon,
+} from "react-icons/gi";
 import { BsPeopleFill as TercerosIcon } from "react-icons/bs";
 
 export const menuItems = [
@@ -11,17 +13,17 @@ export const menuItems = [
   },
   {
     icon: <ProductosIcon className="text-[1.5rem]" />,
-    label: "Productos",
-    name: "productos",
+    label: "Product",
+    name: "products",
   },
   {
     icon: <MovimientosIcon className="text-[1.5rem]" />,
-    label: "Movimientos",
-    name: "movimientos",
+    label: "Transactions",
+    name: "transactions",
   },
   {
     icon: <TercerosIcon className="text-[1.5rem]" />,
-    label: "Terceros",
-    name: "terceros",
+    label: "Thirds",
+    name: "thirdparty",
   },
 ];

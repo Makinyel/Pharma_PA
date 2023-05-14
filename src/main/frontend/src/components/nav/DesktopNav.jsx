@@ -16,18 +16,16 @@ const DesktopNav = () => {
   const dispatch = useDispatch();
   const isOpen = useSelector((state) => state.isOpen);
   const currentModule = useSelector((state) => state.currentModule);
-  const currentProductosTab = useSelector((state) => state.currentProductosTab);
-  const currentMovimientosTab = useSelector(
-    (state) => state.currentMovimientosTab
-  );
+  const productsTab = useSelector((state) => state.productsTab);
+  const transactionsTab = useSelector((state) => state.transactionsTab);
   const activeModuleStyles = useSelector((state) => state.activeModuleStyles);
   const isNotAPhone = useMediaQuery("(min-width: 1000px)");
 
   const tabMapping = {
     dashboard: "",
-    productos: `/${currentProductosTab}`,
-    movimientos: `/${currentMovimientosTab}`,
-    terceros: "",
+    products: `/${productsTab}`,
+    transactions: `/${transactionsTab}`,
+    thirdparty: "",
     // add more modules and their corresponding tabs as needed
   };
 

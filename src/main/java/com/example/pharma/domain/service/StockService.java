@@ -1,21 +1,23 @@
 package com.example.pharma.domain.service;
 
-import com.example.pharma.domain.entities.Keys.KeyStock;
 import com.example.pharma.domain.entities.Stock;
+import com.example.pharma.domain.entities.keys.KeyStock;
 import com.example.pharma.infrastructure.repository.StockRepository;
 import com.example.pharma.infrastructure.repository.producto.StockDao;
-import java.util.List;
-import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Objects;
 
 @AllArgsConstructor
 @Service
 @Slf4j
 public class StockService {
-    private StockRepository stockRepository;
-    private StockDao stockDao;
+  private StockRepository stockRepository;
+  private StockDao stockDao;
+
   public Stock create(Stock stockDetalle) {
     var key = KeyStock.builder().id_producto(stockDetalle.getId_producto()).id_bodega(stockDetalle.getId_bodega()).build();
     var Stock = stockRepository.getById(key);
@@ -47,6 +49,4 @@ public class StockService {
     stock.setStock(stockDetalle.getStock() + stock.getStock());
     return stockRepository.save(stock);
   }
-
-
 }

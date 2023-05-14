@@ -1,4 +1,4 @@
-package com.example.pharma.domain.entities.Keys;
+package com.example.pharma.domain.entities.keys;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

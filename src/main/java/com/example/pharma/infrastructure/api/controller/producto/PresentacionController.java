@@ -18,29 +18,28 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping(path = "/presentacion")
+@RequestMapping(path = "/preparation")
 public class PresentacionController {
 
   private PresentacionService presentacionService;
 
   @PostMapping
-  public Presentacion guardar(@RequestBody Presentacion presentacion) {
-    return presentacionService.guardar(presentacion);
+  public Presentacion save(@RequestBody Presentacion presentacion) {
+    return presentacionService.save(presentacion);
   }
 
   @GetMapping
   public List<Presentacion> getAll() {
-    return presentacionService.getPresentacion();
+    return presentacionService.getAll();
   }
 
   @GetMapping("nombre")
   public Presentacion getByName(@RequestParam("name") String name) {
-    return presentacionService.getPresentacionByName(name);
+    return presentacionService.getByName(name);
   }
 
   @DeleteMapping("{id}")
-  public void delete(@PathVariable("id") String id) {
-    Long idLong = Long.parseLong(id);
-    presentacionService.delete(idLong);
+  public void delete(@PathVariable("id") Long id) {
+    presentacionService.delete(id);
   }
 }

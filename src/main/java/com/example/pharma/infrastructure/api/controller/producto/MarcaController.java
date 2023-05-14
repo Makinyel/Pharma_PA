@@ -9,13 +9,13 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping(path = "/marca")
+@RequestMapping(path = "/brand")
 public class MarcaController {
     private MarcaService marcaService;
 
     @PostMapping
-    public Marca agregar(@RequestBody Marca marca) {
-        marcaService.agregar(marca);
+    public Marca save(@RequestBody Marca marca) {
+        marcaService.save(marca);
         return marca;
     }
 
@@ -25,13 +25,12 @@ public class MarcaController {
     }
 
     @GetMapping("/id/{id}")
-    public Marca getMarcaById(@PathVariable("id") Long id) {
-        return marcaService.getMarcaById(id);
+    public Marca getById(@PathVariable("id") Long id) {
+        return marcaService.getById(id);
     }
 
     @GetMapping("nombre")
-    public Marca getMarcaByNombre(@RequestParam("name") String name) {
-        return marcaService.getMarcaByNombre(name);
+    public Marca getByNombre(@RequestParam("name") String name) {
+        return marcaService.getByName(name);
     }
-
 }

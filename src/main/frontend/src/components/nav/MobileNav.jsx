@@ -18,17 +18,17 @@ const MobileNav = () => {
   const dispatch = useDispatch();
   const isOpen = useSelector((state) => state.isOpen);
   const currentModule = useSelector((state) => state.currentModule);
-  const currentGestionTab = useSelector((state) => state.currentGestionTab);
-  const currentCarteraTab = useSelector((state) => state.currentCarteraTab);
+  const productsTab = useSelector((state) => state.productsTab);
+  const transactionsTab = useSelector((state) => state.transactionsTab);
   const activeModuleStyles = useSelector((state) => state.activeModuleStyles);
   const isNotAPhone = useMediaQuery("(min-width: 1000px)");
   const user = useSelector((state) => state.user);
 
   const tabMapping = {
     dashboard: "",
-    gestion: `/${currentGestionTab}`,
-    cartera: `/${currentCarteraTab}`,
-    facturacion: "",
+    products: `/${productsTab}`,
+    transactions: `/${transactionsTab}`,
+    thirdparty: "",
     // add more modules and their corresponding tabs as needed
   };
 

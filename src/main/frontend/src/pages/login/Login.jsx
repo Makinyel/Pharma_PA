@@ -39,7 +39,7 @@ const Login = () => {
     <div className="h-screen w-full flex flex-col items-center justify-center gap-10 bg-[#DBE2EF]">
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-3xl pb-3">pharma.pa</h1>
-        <h2 className="text-lg">Create a new account</h2>
+        <h2 className="text-lg">Log into your account</h2>
       </div>
       <div className="flex flex-col items-center gap-[2rem] text-sm">
         <form className="w-full grid gap-3" onSubmit={handleSubmit}>

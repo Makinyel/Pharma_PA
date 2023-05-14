@@ -1,9 +1,9 @@
-export const productosTabItems = [
-  "producto",
-  "marca",
-  "presentacion",
-  "concentracion",
-  "bodega",
+export const productsTabs = [
+  "product",
+  "brand",
+  "preparation",
+  "concentration",
+  "warehouse",
 ];
 
-export const movimientosTabItems = ["compra", "venta", "traslado"];
+export const transactionsTabs = ["buy", "sell", "transfer"];

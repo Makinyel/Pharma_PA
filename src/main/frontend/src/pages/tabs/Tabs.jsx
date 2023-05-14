@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  setCurrentProductosTab,
-  setCurrentMovimientosTab,
-} from "../../state/state";
+import { setProductsTab, setTransactionsTab } from "../../state/state";
 import { Link } from "react-router-dom";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { signOutUser } from "../../auth/firebase";
 
 import {
-  productosTabItems,
-  movimientosTabItems,
+  productsTabs,
+  transactionsTabs,
 } from "../../utils/tabs-items/tabItems";
 
 import _ from "lodash";
@@ -31,10 +28,10 @@ const Tabs = () => {
   const [currentTab, setCurrentTab] = useState("");
 
   const toggleTab = (tab) => {
-    if (currentModule === "productos")
-      dispatch(setCurrentProductosTab({ currentProductosTab: tab }));
-    if (currentModule === "movimientos")
-      dispatch(setCurrentMovimientosTab({ currentMovimientosTab: tab }));
+    if (currentModule === "products")
+      dispatch(setProductsTab({ productsTab: tab }));
+    if (currentModule === "transactions")
+      dispatch(setTransactionsTab({ transactionsTab: tab }));
     setCurrentTab(tab);
   };
 
@@ -44,10 +41,10 @@ const Tabs = () => {
   };
 
   useEffect(() => {
-    if (currentModule === "productos") {
-      setTabsItems(productosTabItems);
-    } else if (currentModule === "movimientos") {
-      setTabsItems(movimientosTabItems);
+    if (currentModule === "products") {
+      setTabsItems(productsTabs);
+    } else if (currentModule === "transactions") {
+      setTabsItems(transactionsTabs);
     } else {
       setTabsItems([]);
     }
