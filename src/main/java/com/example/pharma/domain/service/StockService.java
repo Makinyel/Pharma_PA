@@ -14,24 +14,27 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class StockService {
-    private StockRepository stockRepository;
-    private StockDao stockDao;
+
+  private StockRepository stockRepository;
+  private StockDao stockDao;
+
   public Stock create(Stock stockDetalle) {
 
     return stockRepository.save(stockDetalle);
 
   }
-  public List<Stock> getStock(Long idproducto){
-    var stocks = stockDao.getStocks(idproducto);
-    return stocks;
+
+  public List<Stock> getStock(Long idproducto) {
+    return stockDao.getStocks(idproducto);
   }
-  public Integer getTotalStocks(Long idproducto){
+
+  public Integer getTotalStocks(Long idproducto) {
     var stocks = stockDao.getTotalStocksByidProducto(idproducto);
     return stocks;
   }
 
-  public Integer getTotalStocks(Long idproducto, Long idBodega){
-    var stocks = stockDao.getTotalStocksByidProductoIdBodega(idproducto,idBodega);
+  public Integer getTotalStocks(Long idproducto, Long idBodega) {
+    var stocks = stockDao.getTotalStocksByidProductoIdBodega(idproducto, idBodega);
     return stocks;
   }
 
@@ -39,21 +42,19 @@ public class StockService {
     var key = KeyStock.builder().id_producto(stockDetalle.getId_producto())
         .id_bodega(stockDetalle.getId_bodega()).build();
     var Stock = stockRepository.getById(key);
-    if (Objects.isNull(Stock)){
+    if (Objects.isNull(Stock)) {
       return stockRepository.save(stockDetalle);
     }
     return sumarStock(stockDetalle);
   }
 
-  private Stock sumarStock(Stock stockDetalle){
+  private Stock sumarStock(Stock stockDetalle) {
     var key = KeyStock.builder().id_producto(stockDetalle.getId_producto())
         .id_bodega(stockDetalle.getId_bodega()).build();
 
     var stock = stockRepository.getById(key);
 
-    stock.setStock(stockDetalle.getStock() + stock.getStock());
+    stock.setCantidad(stockDetalle.getCantidad() + stock.getCantidad());
     return stockRepository.save(stock);
   }
-
-
 }

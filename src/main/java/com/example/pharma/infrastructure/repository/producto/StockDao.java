@@ -49,7 +49,7 @@ public class StockDao {
 
     var totalstock = 0;
     listaStock.forEach(stock -> {
-      var total = stock.getStock() + totalstock;
+      var total = stock.getCantidad() + totalstock;
     });
     return listaStock;
   }
@@ -62,7 +62,7 @@ public class StockDao {
         BeanPropertyRowMapper<>(Stock.class));
     AtomicInteger totalStock = new AtomicInteger();
     listaStock.forEach(stock -> {
-      totalStock.addAndGet(stock.getStock());
+      totalStock.addAndGet(stock.getCantidad());
     });
     return totalStock.get();
   }
@@ -78,7 +78,7 @@ public class StockDao {
             BeanPropertyRowMapper<>(Stock.class));
     AtomicInteger totalStock = new AtomicInteger();
     listaStock.forEach(stock -> {
-      totalStock.addAndGet(stock.getStock());
+      totalStock.addAndGet(stock.getCantidad());
     });
     return totalStock.get();
   }
