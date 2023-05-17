@@ -1,6 +1,6 @@
-package com.example.pharma.domain.entities;
+package com.example.pharma.domain.entities.stock;
 
-import com.example.pharma.domain.entities.keys.KeyStock;
+import com.example.pharma.domain.entities.Keys.KeyStock;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

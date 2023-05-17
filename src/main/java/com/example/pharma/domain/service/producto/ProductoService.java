@@ -5,6 +5,7 @@ import com.example.pharma.domain.entities.producto.Marca;
 import com.example.pharma.domain.entities.producto.Presentacion;
 import com.example.pharma.domain.entities.producto.Producto;
 import com.example.pharma.infrastructure.api.request.ProductRequest;
+import com.example.pharma.infrastructure.repository.ProductoDao;
 import com.example.pharma.infrastructure.repository.producto.ProductoRepository;
 import com.example.pharma.shared.NotFoundException;
 import lombok.AllArgsConstructor;
@@ -19,6 +20,7 @@ import java.util.Optional;
 @Slf4j
 public class ProductoService {
     private final ProductoRepository productoRepository;
+    private final ProductoDao productoDao;
     private final MarcaService marcaService;
     private final PresentacionService presentacionService;
     private final ConcentracionService concentracionService;
@@ -57,5 +59,9 @@ public class ProductoService {
 
     public void delete(Long id) {
         productoRepository.deleteById(id);
+    }
+
+    public List<Producto> findAllByIdBodega(Long bodegaId){
+        return productoDao.findAllByIdBodega(bodegaId);
     }
 }

@@ -34,7 +34,7 @@ public class ProductoController {
 
   @GetMapping("/findByBodega/{idBodega}")
   public ResponseEntity<List<Producto>> getAllByWarehouse(@PathVariable Long idBodega) {
-    return ResponseEntity.ok(productoService.getAllByWarehouse(idBodega));
+    return ResponseEntity.ok(productoService.findAllByIdBodega(idBodega));
   }
 
   @DeleteMapping("{id}")
