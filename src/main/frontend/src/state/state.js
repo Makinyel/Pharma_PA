@@ -7,6 +7,7 @@ const initialState = {
   transactionsTab: "buy",
   currentModule: "dashboard",
   activeModuleStyles: "",
+  userRole: "",
 };
 
 export const stateSlice = createSlice({
@@ -34,6 +35,9 @@ export const stateSlice = createSlice({
     setActiveModuleStyles: (state, action) => {
       state.activeModuleStyles = action.payload;
     },
+    setUserRole: (state, action) => {
+      state.userRole = action.payload;
+    },
   },
 });
 
@@ -45,5 +49,6 @@ export const {
   setTransactionsTab,
   setCurrentModule,
   setActiveModuleStyles,
+  setUserRole,
 } = stateSlice.actions;
 export default stateSlice.reducer;

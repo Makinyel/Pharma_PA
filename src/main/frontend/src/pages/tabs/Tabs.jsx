@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { React, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setProductsTab, setTransactionsTab } from "../../state/state";
 import { Link } from "react-router-dom";
@@ -40,11 +40,29 @@ const Tabs = () => {
     window.location.href = "/";
   };
 
+  const setTabsForRoleGERENTE_COMPRA = () => {
+    setTabsItems([...transactionsTabs[0]]);
+  };
+
+  const setTabsForRoleGERENTE_VENTA = () => {
+    setTabsItems([...transactionsTabs[1]]);
+  };
+
+  const setTabsForOtherRoles = () => {
+    setTabsItems([...transactionsTabs[0], ...transactionsTabs[1]]);
+  };
+
   useEffect(() => {
     if (currentModule === "products") {
       setTabsItems(productsTabs);
     } else if (currentModule === "transactions") {
-      setTabsItems(transactionsTabs);
+      if (user.role === "GERENTE_COMPRA") {
+        setTabsForRoleGERENTE_COMPRA();
+      } else if (user.role === "GERENTE_VENTA") {
+        setTabsForRoleGERENTE_VENTA();
+      } else {
+        setTabsForOtherRoles();
+      }
     } else {
       setTabsItems([]);
     }
@@ -63,7 +81,7 @@ const Tabs = () => {
               className="hover:bg-[#112D4E] hover:text-white rounded-md transition-all py-1 px-2"
               onClick={handleSignOut}
             >
-              Cerrar sesión
+              Sign out
             </button>
           </div>
         </TabsTitle>

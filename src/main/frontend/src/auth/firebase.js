@@ -7,6 +7,7 @@ import {
 } from "firebase/auth";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 import { setUser } from "../state/state";
+import { endpoints } from "../utils/endpoints/endpoints";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD5hstV5px76g-ijHHx6m2ujDkTilkX-eM",
@@ -47,7 +48,7 @@ export const createAccount = async (userInformation) => {
 
 export const signIn = async (email, password) => {
   if (!email && !password) return;
-  const user = await signInWithEmailAndPassword(auth, email, password)
+  await signInWithEmailAndPassword(auth, email, password)
     .then((res) => {
       return res.user;
     })
@@ -63,6 +64,9 @@ export const signIn = async (email, password) => {
       }
       alert(alertMessage);
     });
+  const user = await fetch(endpoints.user.getByEmail(email)).then((res) =>
+    res.json()
+  );
   return user;
 };
 

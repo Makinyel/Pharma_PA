@@ -1,6 +1,12 @@
 const BASE_URL = "http://localhost:8080";
 
 export const endpoints = {
+  user: {
+    save: `${BASE_URL}/users`,
+    getAll: `${BASE_URL}/users`,
+    getUpdateDelete: (id) => `${BASE_URL}/users/${id}`,
+    getByEmail: (email) => `${BASE_URL}/users/email/${email}`,
+  },
   product: {
     save: `${BASE_URL}/product`,
     getAll: `${BASE_URL}/product`,

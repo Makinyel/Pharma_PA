@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+/* eslint-disable react/no-unescaped-entities */
+import { React, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { signIn } from "../../auth/firebase";
 import { setUser } from "../../state/state";
@@ -18,11 +19,9 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await signIn(email, password).then((res) => {
-      const { accessToken, displayName, email } = res;
-      dispatch(setUser({ user: { accessToken, displayName, email } }));
-      navigate("/");
-    });
+    const user = await signIn(email, password);
+    dispatch(setUser({ user }));
+    navigate("/");
     resetFormFields();
   };
 

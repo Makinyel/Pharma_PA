@@ -39,4 +39,9 @@ public class UsuarioController {
     public void deleteUsuario(@PathVariable("id") Long id) {
         usuarioService.deleteUser(id);
     }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<Usuario> findByEmail(@PathVariable("email") String email){
+        return ResponseEntity.ok(usuarioService.findByEmail(email));
+    }
 }

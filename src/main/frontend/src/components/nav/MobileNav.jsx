@@ -87,7 +87,7 @@ const MobileNav = () => {
               className="hover:bg-[#112D4E] hover:text-white rounded-md transition-all py-1 px-2"
               onClick={handleSignOut}
             >
-              Cerrar sesión
+              Sign out
             </button>
           </div>
         </NavLinkContainer>

@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { Container } from "./Input.styles.jsx";
+import { endpoints } from "../../utils/endpoints/endpoints.js";
 
 const Input = ({ title, description, type }) => {
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
     if (type === "select") {
-      fetch(`http://localhost:8080/${title.toLowerCase()}`)
+      const endpoint = endpoints[title.toLowerCase()].getAll;
+      fetch(endpoint)
         .then((response) => response.json())
         .then((data) => {
           setOptions(data);
