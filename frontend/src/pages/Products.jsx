@@ -1,7 +1,8 @@
-import { React, useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { useSelector } from "react-redux";
 
-import Button from "../../components/button/Button";
-import Input from "../../components/input/Input";
+import Button from "../components/button/Button";
+import Input from "../components/input/Input";
 
 import {
   productsFormInfo,
@@ -9,24 +10,25 @@ import {
   preparationFormInfo,
   warehouseFormInfo,
   concentrationFormInfo,
-} from "../../utils/form-info/productsFormInfo";
+} from "../utils/form-info/productsFormInfo";
 
 import {
-  GestionContentWrapper,
-  GestionContentHeader,
-  GestionContentFormWrapper,
-  GestionContentButtonWrapper,
+  Wrapper,
+  Header,
+  FormWrapper,
+  ButtonWrapper,
   InputRow,
   InputWrapper,
-} from "./ProductsContentStyles.jsx";
+} from "../styles/FormStyles";
 
 import { useMediaQuery } from "@mui/material";
-import { clearFormFields } from "../../utils/functions/formUtils";
-import { endpoints } from "../../utils/endpoints/endpoints";
+import { clearFormFields } from "../utils/functions/formUtils";
+import { endpoints } from "../utils/endpoints/endpoints";
 
 import _ from "lodash";
 
-const ProductsContent = ({ tab }) => {
+const Products = ({ tab }) => {
+  const productsTab = useSelector((state) => state.productsTab);
   const [formInfo, setFormInfo] = useState([]);
   const isNotAPhone = useMediaQuery("(min-width: 1000px)");
   const formRef = useRef(null);
@@ -40,8 +42,8 @@ const ProductsContent = ({ tab }) => {
   };
 
   useEffect(() => {
-    setFormInfo(formInfoMap[tab] || []);
-  }, [tab]);
+    setFormInfo(formInfoMap[productsTab] || []);
+  }, [productsTab]);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -60,7 +62,7 @@ const ProductsContent = ({ tab }) => {
       concentration: endpoints.concentration.save,
     };
 
-    const endpoint = tabEndpoints[tab];
+    const endpoint = tabEndpoints[productsTab];
 
     try {
       const response = await fetch(endpoint, {
@@ -80,21 +82,21 @@ const ProductsContent = ({ tab }) => {
       });
 
       if (response.ok) {
-        alert(`${_.upperFirst(tab)} has been successfully saved.`);
+        alert(`${_.upperFirst(productsTab)} has been successfully saved.`);
         clearFormFields(formRef);
       } else {
-        alert(`There was an error saving the ${tab}.`);
+        alert(`There was an error saving the ${productsTab}.`);
       }
     } catch (error) {
-      console.error("Error saving the " + tab, error);
+      console.error("Error saving the " + productsTab, error);
       alert("There was an error saving the product.");
     }
   };
 
   return (
-    <GestionContentWrapper>
-      <GestionContentHeader>Add a new {tab}</GestionContentHeader>
-      <GestionContentFormWrapper>
+    <Wrapper>
+      <Header>Add a new {productsTab}</Header>
+      <FormWrapper>
         <form ref={formRef} onSubmit={handleFormSubmit}>
           <InputRow>
             {formInfo.map(({ title, description, type }) => (
@@ -103,13 +105,13 @@ const ProductsContent = ({ tab }) => {
               </InputWrapper>
             ))}
           </InputRow>
-          <GestionContentButtonWrapper isNotAPhone={isNotAPhone}>
+          <ButtonWrapper isNotAPhone={isNotAPhone}>
             <Button type="submit" text="Save" />
-          </GestionContentButtonWrapper>
+          </ButtonWrapper>
         </form>
-      </GestionContentFormWrapper>
-    </GestionContentWrapper>
+      </FormWrapper>
+    </Wrapper>
   );
 };
 
-export default ProductsContent;
+export default Products;

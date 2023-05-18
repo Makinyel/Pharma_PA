@@ -4,28 +4,29 @@ import {
   buyFormInfo,
   sellFormInfo,
   transferFormInfo,
-} from "../../utils/form-info/transactionsFormInfo";
+} from "../utils/form-info/transactionsFormInfo";
 
-import Button from "../../components/button/Button";
-import Input from "../../components/input/Input";
+import Button from "../components/button/Button";
+import Input from "../components/input/Input";
 
 import {
-  GestionContentWrapper,
-  GestionContentHeader,
-  GestionContentFormWrapper,
-  GestionContentButtonWrapper,
+  Wrapper,
+  Header,
+  FormWrapper,
+  ButtonWrapper,
   InputRow,
   InputWrapper,
-} from "../products/ProductsContentStyles";
+} from "../styles/FormStyles";
 
 import { useMediaQuery } from "@mui/material";
-import { clearFormFields } from "../../utils/functions/formUtils";
-import { endpoints } from "../../utils/endpoints/endpoints";
+import { clearFormFields } from "../utils/functions/formUtils";
+import { endpoints } from "../utils/endpoints/endpoints";
 
 import _ from "lodash";
-import { thirdPartyFormInfo } from "../../utils/form-info/thirdPartyFormInfo";
+import { thirdPartyFormInfo } from "../utils/form-info/thirdPartyFormInfo";
 
-const ThirdPartyContent = ({ tab }) => {
+const ThirdParty = () => {
+  const thirdsTab = useSelector((state) => state.thirdsTab);
   const isNotAPhone = useMediaQuery("(min-width: 1000px)");
   const formRef = useRef(null);
 
@@ -38,7 +39,7 @@ const ThirdPartyContent = ({ tab }) => {
     const presentacionName = formData.get("preparation");
     const concentracionName = formData.get("concentration");
 
-    const endpoint = endpoints[tab.toLowerCase()].getAll;
+    const endpoint = endpoints[thirdsTab.toLowerCase()].getAll;
 
     //TODO CHECK THIS
     try {
@@ -60,13 +61,13 @@ const ThirdPartyContent = ({ tab }) => {
       });
 
       if (response.ok) {
-        alert(`${_.upperFirst(tab)} has been successfully saved.`);
+        alert(`${_.upperFirst(thirdsTab)} has been successfully saved.`);
         clearFormFields(formRef);
       } else {
-        alert(`There was an error saving the ${tab}.`);
+        alert(`There was an error saving the ${thirdsTab}.`);
       }
     } catch (error) {
-      console.error("Error saving the " + tab, error);
+      console.error("Error saving the " + thirdsTab, error);
       alert("There was an error saving the product.");
     }
   };
@@ -92,4 +93,4 @@ const ThirdPartyContent = ({ tab }) => {
   );
 };
 
-export default ThirdPartyContent;
+export default ThirdParty;

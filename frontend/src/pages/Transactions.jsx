@@ -4,27 +4,28 @@ import {
   buyFormInfo,
   sellFormInfo,
   transferFormInfo,
-} from "../../utils/form-info/transactionsFormInfo";
+} from "../utils/form-info/transactionsFormInfo";
 
-import Button from "../../components/button/Button";
-import Input from "../../components/input/Input";
+import Button from "../components/button/Button";
+import Input from "../components/input/Input";
 
 import {
-  GestionContentWrapper,
-  GestionContentHeader,
-  GestionContentFormWrapper,
-  GestionContentButtonWrapper,
+  Wrapper,
+  Header,
+  FormWrapper,
+  ButtonWrapper,
   InputRow,
   InputWrapper,
-} from "../products/ProductsContentStyles";
+} from "../styles/FormStyles";
 
 import { useMediaQuery } from "@mui/material";
-import { clearFormFields } from "../../utils/functions/formUtils";
-import { endpoints } from "../../utils/endpoints/endpoints";
+import { clearFormFields } from "../utils/functions/formUtils";
+import { endpoints } from "../utils/endpoints/endpoints";
 
 import _ from "lodash";
 
-const TransactionsContent = ({ tab }) => {
+const Transactions = () => {
+  const transactionsTab = useSelector((state) => state.transactionsTab);
   const [formInfo, setFormInfo] = useState([]);
   const isNotAPhone = useMediaQuery("(min-width: 1000px)");
   const formRef = useRef(null);
@@ -36,8 +37,8 @@ const TransactionsContent = ({ tab }) => {
   };
 
   useEffect(() => {
-    setFormInfo(formInfoMap[tab] || []);
-  }, [tab]);
+    setFormInfo(formInfoMap[transactionsTab] || []);
+  }, [transactionsTab]);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -49,7 +50,7 @@ const TransactionsContent = ({ tab }) => {
     const sourceWarehouseName = formData.get("warehouse");
     const destinationWarehouseName = formData.get("warehouse");
 
-    const endpoint = endpoints[tab.toLowerCase()].getAll;
+    let endpoint = endpoints[transactionsTab.toLowerCase()].getAll;
 
     //TODO CHECK THIS
     try {
@@ -69,19 +70,19 @@ const TransactionsContent = ({ tab }) => {
       });
 
       if (response.ok) {
-        alert(`${_.upperFirst(tab)} has been successfully made.`);
+        alert(`${_.upperFirst(transactionsTab)} has been successfully made.`);
         clearFormFields(formRef);
       }
     } catch (error) {
-      console.error("Error saving the " + tab, error);
-      alert(`There was an error processing the ${tab}.`);
+      console.error("Error saving the " + transactionsTab, error);
+      alert(`There was an error processing the ${transactionsTab}.`);
     }
   };
 
   return (
-    <GestionContentWrapper>
-      <GestionContentHeader>{_.upperFirst(tab)} a product</GestionContentHeader>
-      <GestionContentFormWrapper>
+    <Wrapper>
+      <Header>{_.upperFirst(transactionsTab)} a product</Header>
+      <FormWrapper>
         <form ref={formRef} onSubmit={handleFormSubmit}>
           <InputRow>
             {formInfo.map(({ title, description, type }, index) => (
@@ -90,13 +91,13 @@ const TransactionsContent = ({ tab }) => {
               </InputWrapper>
             ))}
           </InputRow>
-          <GestionContentButtonWrapper isNotAPhone={isNotAPhone}>
+          <ButtonWrapper isNotAPhone={isNotAPhone}>
             <Button type="submit" text="Save" />
-          </GestionContentButtonWrapper>
+          </ButtonWrapper>
         </form>
-      </GestionContentFormWrapper>
-    </GestionContentWrapper>
+      </FormWrapper>
+    </Wrapper>
   );
 };
 
-export default TransactionsContent;
+export default Transactions;

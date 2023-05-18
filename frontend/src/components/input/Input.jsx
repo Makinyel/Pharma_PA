@@ -8,10 +8,17 @@ const Input = ({ title, description, type }) => {
 
   useEffect(() => {
     if (type === "select") {
-      console.log(
-        endpoints[_.chain(title).toLower().replace(/\s/g, "").value()]
-      );
-      const endpoint = endpoints[title.toLowerCase()].getAll;
+      let endpoint;
+      switch (title) {
+        case "Source Warehouse":
+          endpoint = endpoints.warehouse.getAll;
+          break;
+        case "Destination Warehouse":
+          endpoint = endpoints.warehouse.getAll;
+          break;
+        default:
+          endpoint = endpoints[title.toLowerCase()].getAll;
+      }
       fetch(endpoint)
         .then((response) => response.json())
         .then((data) => {

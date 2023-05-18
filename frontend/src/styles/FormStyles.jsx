@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export const GestionContentWrapper = styled.div`
+export const Wrapper = styled.div`
   padding-bottom: 10rem;
 `;
 
-export const GestionContentHeader = styled.h2`
+export const Header = styled.h2`
   font-size: 1.5rem;
   line-height: 2rem;
   font-weight: 500;
@@ -31,7 +31,7 @@ export const InputWrapper = styled.div`
   }
 `;
 
-export const GestionContentFormWrapper = styled.div`
+export const FormWrapper = styled.div`
   margin: 0 1rem;
   border: 1px solid #b3c3d3;
   border-radius: 0.375rem;
@@ -43,7 +43,7 @@ export const GestionContentFormWrapper = styled.div`
   }
 `;
 
-export const GestionContentButtonWrapper = styled.div`
+export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;

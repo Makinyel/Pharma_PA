@@ -2,9 +2,9 @@ import { useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SideBar from "./components/SideBar";
 import Dashboard from "./pages/Dashboard";
-import ThirdParty from "./pages/thirdparty/ThirdParty";
-import Transactions from "./pages/transactions/Transactions";
-import Products from "./pages/products/Products";
+import ThirdParty from "./pages/ThirdParty";
+import Transactions from "./pages/Transactions";
+import Products from "./pages/Products";
 import Login from "./pages/login/Login";
 import Register from "./pages/login/Register";
 
