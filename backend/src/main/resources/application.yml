@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: pharma.PA
+  profiles:
+    active: local
+---
+spring:
+  profile: local
+  datasource:
+    url: jdbc:postgresql://181.143.211.54:3654/desarrollo
+    username: postgres
+    password: sume3654
+    test-on-borrow: true
+    validation-query: SELECT 1 FROM dual
+  jpa:
+    show-sql: true
+    hibernate:
+      format-sql: true
+      ddl-auto: update
