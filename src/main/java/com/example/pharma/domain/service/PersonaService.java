@@ -2,7 +2,9 @@ package com.example.pharma.domain.service;
 
 import com.example.pharma.domain.entities.keys.KeyPersona;
 import com.example.pharma.domain.entities.persona.Persona;
+import com.example.pharma.domain.entities.producto.Producto;
 import com.example.pharma.infrastructure.repository.PersonaRepository;
+import com.example.pharma.infrastructure.repository.ProductoDao;
 import com.example.pharma.shared.NotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +18,7 @@ import java.util.Objects;
 
 public class PersonaService {
     private PersonaRepository personaRepository;
+
 
     public Persona savePersona(Persona persona) {
         return personaRepository.save(persona);
@@ -60,4 +63,7 @@ public class PersonaService {
         var keyPerson = KeyPersona.builder().id(id).tipoId(tipoid).build();
         personaRepository.deleteById(keyPerson);
     }
+
+
+
 }

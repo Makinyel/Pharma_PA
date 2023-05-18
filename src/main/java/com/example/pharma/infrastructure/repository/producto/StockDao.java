@@ -1,7 +1,7 @@
 package com.example.pharma.infrastructure.repository.producto;
 
 
-import com.example.pharma.domain.entities.Stock;
+import com.example.pharma.domain.entities.stock.Stock;
 import com.example.pharma.infrastructure.repository.StockRepository;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -29,7 +29,7 @@ public class StockDao {
       + "where st.id_producto = :idProducto and st.id_bodega = :idBodega";
 
   private final String UPDATE_VALUE_STOCKS_BY_IDPRODUCT_AND_IDBODEGA =
-      "UPDATE st set st.stock\n"
+      "UPDATE st set st.cantidad\n"
           + "FROM stock st \n"
           + "INNER JOIN  maestro_producto mp ON st.id_producto = mp.id\n"
           + "INNER JOIN  maestro_bodega mb ON st.id_bodega = mb.id\n"
@@ -49,7 +49,7 @@ public class StockDao {
 
     var totalstock = 0;
     listaStock.forEach(stock -> {
-      var total = stock.getStock() + totalstock;
+      var total = stock.getCantidad() + totalstock;
     });
     return listaStock;
   }
@@ -62,7 +62,7 @@ public class StockDao {
         BeanPropertyRowMapper<>(Stock.class));
     AtomicInteger totalStock = new AtomicInteger();
     listaStock.forEach(stock -> {
-      totalStock.addAndGet(stock.getStock());
+      totalStock.addAndGet(stock.getCantidad());
     });
     return totalStock.get();
   }
@@ -78,7 +78,7 @@ public class StockDao {
             BeanPropertyRowMapper<>(Stock.class));
     AtomicInteger totalStock = new AtomicInteger();
     listaStock.forEach(stock -> {
-      totalStock.addAndGet(stock.getStock());
+      totalStock.addAndGet(stock.getCantidad());
     });
     return totalStock.get();
   }
