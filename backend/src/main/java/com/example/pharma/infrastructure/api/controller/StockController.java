@@ -25,6 +25,11 @@ public class StockController {
   public  ResponseEntity<List<Stock>> getAllStockByidProducto(@PathVariable("stockId") Long id) {
     return ResponseEntity.ok(stockService.getStock(id));
   }
+  @GetMapping("{idProduct}/{warehouseId}")
+  public  ResponseEntity <Stock> getByIdProductIdBodega(@PathVariable("idProduct") Long idProduct,
+      @PathVariable("warehouseId") Long warehouseId) {
+    return ResponseEntity.ok(stockService.getByIdProductIdBodega(idProduct,warehouseId));
+  }
 
   @GetMapping("/total/{productId}")
   public ResponseEntity<Integer> getTotalStocksByidProducto(@PathVariable("productId") Long id) {

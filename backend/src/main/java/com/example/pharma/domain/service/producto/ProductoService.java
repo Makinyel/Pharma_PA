@@ -5,7 +5,7 @@ import com.example.pharma.domain.entities.producto.Marca;
 import com.example.pharma.domain.entities.producto.Presentacion;
 import com.example.pharma.domain.entities.producto.Producto;
 import com.example.pharma.infrastructure.api.request.ProductRequest;
-import com.example.pharma.infrastructure.repository.ProductoDao;
+import com.example.pharma.infrastructure.repository.producto.ProductoDao;
 import com.example.pharma.infrastructure.repository.producto.ProductoRepository;
 import com.example.pharma.shared.NotFoundException;
 import lombok.AllArgsConstructor;
@@ -51,6 +51,14 @@ public class ProductoService {
     public Producto getById(Long id) {
         Optional<Producto> producto = productoRepository.findById(id);
         return producto.orElseThrow(() -> new NotFoundException("Product with id: " + id + " not found"));
+
+    }
+
+    public Producto findByName(String name) {
+        Optional<Producto> producto = productoRepository.findByNombre(name);
+        return producto
+            .orElseThrow(() -> new NotFoundException
+                ("Producto with name: " + name + " was not found."));
     }
 
     public List<Producto> getAllByWarehouse(Long idBodega) {

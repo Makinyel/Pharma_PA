@@ -38,6 +38,21 @@ public class StockService {
     return stockDao.getStocks(idproducto);
   }
 
+  public Stock getByIdProductIdBodega(Long idproduct, Long idBodega) {
+
+    var key = KeyStock.builder().id_bodega(idBodega).id_producto(idproduct).build();
+
+    if (Objects.isNull(key)) {
+      new NotFoundException("KeyStock not found");
+    }
+    var stock = stockRepository.getById(key);
+
+    if (stock == null) {
+      new NotFoundException("Stock not found");
+    }
+    return stock;
+  }
+
   public Integer getTotalStocks(Long idproducto) {
     var stocks = stockDao.getTotalStocksByidProducto(idproducto);
     return stocks;

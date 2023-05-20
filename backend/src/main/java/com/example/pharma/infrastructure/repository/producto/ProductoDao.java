@@ -1,4 +1,4 @@
-package com.example.pharma.infrastructure.repository;
+package com.example.pharma.infrastructure.repository.producto;
 
 
 import com.example.pharma.domain.entities.producto.Producto;

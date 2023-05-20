@@ -2,7 +2,7 @@ package com.example.pharma.domain.service;
 
 import com.example.pharma.domain.entities.keys.KeyStock;
 import com.example.pharma.domain.entities.stock.Stock;
-import com.example.pharma.domain.entities.stock.Traslado;
+import com.example.pharma.domain.entities.traslado.Traslado;
 import com.example.pharma.domain.entities.producto.Bodega;
 import com.example.pharma.domain.entities.producto.Producto;
 import com.example.pharma.domain.entities.usuario.Usuario;
@@ -48,7 +48,7 @@ public class TrasladoService {
     Optional<Stock> stockOptional = stockRepository.findById(keyStockOrigin);
     Optional<Stock> stockOptionalDestination = stockRepository.findById(keyStockDestination);
 
-    // Verificamos Si el Stock De Destino Exite
+    // Verificamos Sino el Stock De Destino Exite
     if (!stockOptionalDestination.isPresent()) {
 
       Stock stock = stockOptional.get();

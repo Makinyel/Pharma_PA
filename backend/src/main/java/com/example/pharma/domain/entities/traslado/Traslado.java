@@ -1,4 +1,4 @@
-package com.example.pharma.domain.entities.stock;
+package com.example.pharma.domain.entities.traslado;
 
 import com.example.pharma.domain.entities.producto.Bodega;
 import com.example.pharma.domain.entities.producto.Producto;

@@ -1,6 +1,6 @@
 package com.example.pharma.infrastructure.api.controller;
 
-import com.example.pharma.domain.entities.stock.Traslado;
+import com.example.pharma.domain.entities.traslado.Traslado;
 import com.example.pharma.domain.service.TrasladoService;
 import com.example.pharma.infrastructure.api.request.TrasladoRequest;
 import java.util.List;

@@ -29,4 +29,5 @@ public class Producto {
         @ManyToOne
         @JoinColumn(name = "idConcentracion", referencedColumnName = "id")
         private Concentracion concentracion;
+
 }
