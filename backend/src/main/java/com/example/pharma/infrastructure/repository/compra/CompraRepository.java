@@ -9,10 +9,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CompraRepository extends JpaRepository<Compra, Long> {
   @Query(nativeQuery = true, value = "update compra set iva = :iva, " +
-      "total =:total, totalWithIva = :totalWithIva, " +
-      "where code = :code")
+      "total =:total, total_with_iva = :totalWithIva where code = :code")
   @Modifying
-  public void editCompra(
+  void editCompra(
+      @Param("code") double code,
       @Param("total")  double total,
       @Param("totalWithIva")  double totalWithIva,
       @Param("iva") double iva);

@@ -1,17 +1,13 @@
 package com.example.pharma.domain.service.compra;
 
 import com.example.pharma.domain.entities.compra.Compra;
-import com.example.pharma.domain.entities.compra.CompraDetalle;
-import com.example.pharma.domain.entities.persona.Persona;
 import com.example.pharma.domain.entities.producto.Producto;
-import com.example.pharma.domain.service.PersonaService;
-import com.example.pharma.domain.service.UsuarioService;
+import com.example.pharma.domain.service.persona.PersonaService;
+import com.example.pharma.domain.service.usuario.UsuarioService;
 import com.example.pharma.domain.service.producto.ProductoService;
-import com.example.pharma.infrastructure.api.request.CompraRequest;
-import com.example.pharma.infrastructure.repository.PersonaRepository;
-import com.example.pharma.infrastructure.repository.UsuarioRepository;
+import com.example.pharma.infrastructure.api.request.compra.CompraRequest;
 import com.example.pharma.infrastructure.repository.compra.CompraRepository;
-import com.example.pharma.infrastructure.repository.producto.ProductoRepository;
+import jakarta.transaction.Transactional;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +18,6 @@ import java.util.List;
 @Slf4j
 public class CompraService {
     private CompraRepository compraRepository;
-    private CompraDetalleService compraDetalleService;
     private PersonaService personaService;
     private UsuarioService usuarioService;
     private ProductoService productoService;
@@ -44,7 +39,6 @@ public class CompraService {
 
         Compra compra = new Compra();
 
-        compra.setIva(compraRequest.getIva());
         compra.setFecha(LocalDate.now());
         compra.setCodeFactura(compraRequest.getCodeFactura());
         compra.setTotal(0);
@@ -58,11 +52,12 @@ public class CompraService {
 
         return compraRepository.save(compra);
     }
+    @Transactional
     public void editCompra(Compra compra){
         compraRepository.editCompra(
+            compra.getCode(),
             compra.getTotal(),
             compra.getTotalWithIva(),
             compra.getIva());
     }
-
 }

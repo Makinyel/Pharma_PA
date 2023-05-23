@@ -11,10 +11,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CompraDetalleRepository extends JpaRepository<CompraDetalle, Long> {
 
-  @Query(nativeQuery = true, value = "select * from  where id_compra = :id_compra")
-  List<CompraDetalle> findByIdCompra(@Param("id_compra") long idCompra);
-
-
 
   @Query(nativeQuery = true, value = "update compra_detalle set amount = :amount, " +
       "total =:total, id_BodegaDestino = :id_BodegaDestino, " + "id_producto = :id_producto "
