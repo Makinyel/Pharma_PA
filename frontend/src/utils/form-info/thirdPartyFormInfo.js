@@ -1,18 +1,18 @@
 export const thirdPartyFormInfo = [
   {
     type: "select",
-    title: "Type",
+    title: "Third party type",
     description: "Whether it is a client or provider.",
   },
   {
-    type: "select",
-    title: "Id",
-    description: "Identifier",
+    type: "text",
+    title: "Document",
+    description: "Personal identification number.",
   },
   {
     type: "select",
-    title: "Type",
-    description: "Type of id.",
+    title: "Document type",
+    description: "Type of document.",
   },
   {
     type: "text",

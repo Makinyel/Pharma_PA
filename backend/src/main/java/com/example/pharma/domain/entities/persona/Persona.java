@@ -1,26 +1,27 @@
 package com.example.pharma.domain.entities.persona;
 
-import com.example.pharma.domain.entities.keys.KeyPersona;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Entity
-@IdClass(KeyPersona.class)
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Persona {
-    @Id
-    private String id;
-    @Id
-    private String tipoId;
-    @Enumerated(EnumType.STRING)
-    private TipoPersona tipoPersona;
-    private String nombre;
-    private String ubicacion;
-    private String telefono;
-    private String email;
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  private String document;
+  private DocumentType documentType;
+  private TipoPersona personType;
+  private String name;
+  private String location;
+  private String phone;
+  private String email;
 }

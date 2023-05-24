@@ -1,33 +1,33 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
 import Button from "../components/button/Button";
 import Input from "../components/input/Input";
 
 import {
-  productsFormInfo,
   brandFormInfo,
-  preparationFormInfo,
-  warehouseFormInfo,
   concentrationFormInfo,
+  preparationFormInfo,
+  productsFormInfo,
+  warehouseFormInfo,
 } from "../utils/form-info/productsFormInfo";
 
 import {
-  Wrapper,
-  Header,
-  FormWrapper,
   ButtonWrapper,
+  FormWrapper,
+  Header,
   InputRow,
   InputWrapper,
+  Wrapper,
 } from "../styles/FormStyles";
 
 import { useMediaQuery } from "@mui/material";
-import { clearFormFields } from "../utils/functions/formUtils";
 import { endpoints } from "../utils/endpoints/endpoints";
+import { clearFormFields } from "../utils/functions/formUtils";
 
 import _ from "lodash";
 
-const Products = ({ tab }) => {
+const Products = () => {
   const productsTab = useSelector((state) => state.productsTab);
   const [formInfo, setFormInfo] = useState([]);
   const isNotAPhone = useMediaQuery("(min-width: 1000px)");
@@ -50,10 +50,6 @@ const Products = ({ tab }) => {
     const form = event.target;
     const formData = new FormData(form);
 
-    const marcaName = formData.get("brand");
-    const presentacionName = formData.get("preparation");
-    const concentracionName = formData.get("concentration");
-
     const tabEndpoints = {
       product: endpoints.product.save,
       brand: endpoints.brand.save,
@@ -62,35 +58,29 @@ const Products = ({ tab }) => {
       concentration: endpoints.concentration.save,
     };
 
-    const endpoint = tabEndpoints[productsTab];
-
-    try {
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          nombre: formData.get("name"),
-          descripcion: formData.get("description"),
-          precioCosto: parseFloat(formData.get("buying price")),
-          precioVenta: parseFloat(formData.get("selling price")),
-          marca: marcaName,
-          presentacion: presentacionName,
-          concentracion: concentracionName,
-        }),
-      });
-
-      if (response.ok) {
+    await fetch(tabEndpoints[productsTab], {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nombre: formData.get("name"),
+        descripcion: formData.get("description"),
+        precioCompra: parseFloat(formData.get("buying price")),
+        previoVenta: parseFloat(formData.get("selling price")),
+        marca: formData.get("brand"),
+        presentacion: formData.get("preparation"),
+        concentracion: formData.get("concentration"),
+      }),
+    })
+      .then(() => {
         alert(`${_.upperFirst(productsTab)} has been successfully saved.`);
         clearFormFields(formRef);
-      } else {
+      })
+      .catch((error) => {
+        console.error("Error saving the " + productsTab, error);
         alert(`There was an error saving the ${productsTab}.`);
-      }
-    } catch (error) {
-      console.error("Error saving the " + productsTab, error);
-      alert("There was an error saving the product.");
-    }
+      });
   };
 
   return (

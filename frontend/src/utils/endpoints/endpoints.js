@@ -8,9 +8,14 @@ export const endpoints = {
     getByEmail: (email) => `${BASE_URL}/users/email/${email}`,
   },
   provider: {
-    save: `${BASE_URL}/personas`,
-    getAll: `${BASE_URL}/personas`,
-    getUpdateDelete: (id, tipoId) => `${BASE_URL}/personas/${id}/${tipoId}`,
+    save: `${BASE_URL}/third-party`,
+    getAll: `${BASE_URL}/third-party`,
+    getUpdateDelete: (id, tipoId) => `${BASE_URL}/third-party/${id}`,
+  },
+  thirdParty: {
+    save: `${BASE_URL}/third-party`,
+    getAll: `${BASE_URL}/third-party`,
+    getUpdateDelete: (id) => `${BASE_URL}/third-party/${id}`,
   },
   client: {
     saveGetAll: `${BASE_URL}/personas`,
@@ -61,5 +66,14 @@ export const endpoints = {
     getAll: `${BASE_URL}/preparation`,
     getByName: (name) => `${BASE_URL}/preparation/nombre?name=${name}`,
     delete: (id) => `${BASE_URL}/preparation/${id}`,
+  },
+  buy: {
+    base: `${BASE_URL}/buy`,
+  },
+  sell: {
+    base: `${BASE_URL}/sell`,
+  },
+  transfer: {
+    base: `${BASE_URL}/transfer`,
   },
 };

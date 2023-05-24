@@ -1,32 +1,24 @@
-import { React, useEffect, useState, useRef } from "react";
-import { useSelector } from "react-redux";
-import {
-  buyFormInfo,
-  sellFormInfo,
-  transferFormInfo,
-} from "../utils/form-info/transactionsFormInfo";
+import { React, useRef } from "react";
 
 import Button from "../components/button/Button";
 import Input from "../components/input/Input";
 
+import { thirdPartyFormInfo as formInfo } from "../utils/form-info/thirdPartyFormInfo";
+
 import {
-  Wrapper,
-  Header,
-  FormWrapper,
   ButtonWrapper,
+  FormWrapper,
+  Header,
   InputRow,
   InputWrapper,
+  Wrapper,
 } from "../styles/FormStyles";
 
 import { useMediaQuery } from "@mui/material";
-import { clearFormFields } from "../utils/functions/formUtils";
 import { endpoints } from "../utils/endpoints/endpoints";
-
-import _ from "lodash";
-import { thirdPartyFormInfo } from "../utils/form-info/thirdPartyFormInfo";
+import { clearFormFields } from "../utils/functions/formUtils";
 
 const ThirdParty = () => {
-  const thirdsTab = useSelector((state) => state.thirdsTab);
   const isNotAPhone = useMediaQuery("(min-width: 1000px)");
   const formRef = useRef(null);
 
@@ -35,61 +27,49 @@ const ThirdParty = () => {
     const form = event.target;
     const formData = new FormData(form);
 
-    const marcaName = formData.get("brand");
-    const presentacionName = formData.get("preparation");
-    const concentracionName = formData.get("concentration");
-
-    const endpoint = endpoints[thirdsTab.toLowerCase()].getAll;
-
-    //TODO CHECK THIS
-    try {
-      fetch(endpoint);
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          nombre: formData.get("name"),
-          descripcion: formData.get("description"),
-          precioCosto: parseFloat(formData.get("buying price")),
-          precioVenta: parseFloat(formData.get("selling price")),
-          marca: marcaName,
-          presentacion: presentacionName,
-          concentracion: concentracionName,
-        }),
-      });
-
-      if (response.ok) {
-        alert(`${_.upperFirst(thirdsTab)} has been successfully saved.`);
+    await fetch(endpoints.thirdParty.save, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: formData.get("name"),
+        documentType: formData.get("document type"),
+        document: formData.get("document"),
+        personType: formData.get("third party type"),
+        location: formData.get("location"),
+        phone: formData.get("phone"),
+        email: formData.get("email"),
+      }),
+    })
+      .then(() => {
+        alert(`Third party has been successfully saved.`);
         clearFormFields(formRef);
-      } else {
-        alert(`There was an error saving the ${thirdsTab}.`);
-      }
-    } catch (error) {
-      console.error("Error saving the " + thirdsTab, error);
-      alert("There was an error saving the product.");
-    }
+      })
+      .catch((error) => {
+        console.error("Error saving the third party", error);
+        alert(`There was an error saving the third party.`);
+      });
   };
 
   return (
-    <GestionContentWrapper>
-      <GestionContentHeader>Add a third party</GestionContentHeader>
-      <GestionContentFormWrapper>
+    <Wrapper>
+      <Header>Add a third party</Header>
+      <FormWrapper>
         <form ref={formRef} onSubmit={handleFormSubmit}>
           <InputRow>
-            {thirdPartyFormInfo.map(({ title, description, type }, index) => (
-              <InputWrapper key={index}>
+            {formInfo.map(({ title, description, type }) => (
+              <InputWrapper key={title}>
                 <Input title={title} description={description} type={type} />
               </InputWrapper>
             ))}
           </InputRow>
-          <GestionContentButtonWrapper isNotAPhone={isNotAPhone}>
+          <ButtonWrapper isNotAPhone={isNotAPhone}>
             <Button type="submit" text="Save" />
-          </GestionContentButtonWrapper>
+          </ButtonWrapper>
         </form>
-      </GestionContentFormWrapper>
-    </GestionContentWrapper>
+      </FormWrapper>
+    </Wrapper>
   );
 };
 

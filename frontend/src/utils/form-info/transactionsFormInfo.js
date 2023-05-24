@@ -43,7 +43,6 @@ export const sellFormInfo = [
   },
 ];
 
-//TODO CHECK SOURCE AND DESTINATION
 export const transferFormInfo = [
   {
     type: "select",

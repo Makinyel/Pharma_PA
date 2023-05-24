@@ -2,39 +2,47 @@ package com.example.pharma.infrastructure.api.controller.persona;
 
 import com.example.pharma.domain.entities.persona.Persona;
 import com.example.pharma.domain.service.persona.PersonaService;
-import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping(path = "/personas")
+@RequestMapping(path = "/third-party")
 public class PersonaController {
-    private PersonaService personaService;
 
-    @PostMapping
-    public ResponseEntity<Persona> savePersona(@RequestBody Persona persona) {
-        return new ResponseEntity<>(personaService.savePersona(persona),HttpStatus.CREATED);
-    }
+  private PersonaService personaService;
 
-    @GetMapping("/{id}/{tipoid}")
-    public ResponseEntity<Persona> getPersonabyid(@PathVariable String id, @PathVariable String tipoid) {
-        return ResponseEntity.ok(personaService.getPersonByID(id,tipoid));
-    }
-    @GetMapping
-    public ResponseEntity<List<Persona>> getPersonAll(){
-        return ResponseEntity.ok(personaService.getAllPerson());
-    }
-    @PutMapping
-    public void editPerson(@RequestBody Persona persona){
-        personaService.editPerson(persona);
-    }
+  @PostMapping
+  public ResponseEntity<Persona> savePerson(@RequestBody Persona persona) {
+    return ResponseEntity.ok(personaService.savePersona(persona));
+  }
 
-    @DeleteMapping("/{id}/{tipoid}")
-    public void deletePerson(@PathVariable String id,@PathVariable String tipoid) {
-        personaService.deletePersona(id,tipoid);
-    }
+  @GetMapping("{id}")
+  public ResponseEntity<Persona> findPersonById(@PathVariable Long id) {
+    return ResponseEntity.ok(personaService.findPersonById(id));
+  }
+
+  @GetMapping
+  public ResponseEntity<List<Persona>> findAllPeople() {
+    return ResponseEntity.ok(personaService.findAllPeople());
+  }
+
+  @PutMapping
+  public void editPerson(@RequestBody Persona persona) {
+    personaService.editPerson(persona);
+  }
+
+  @DeleteMapping("{id}")
+  public void deletePerson(@PathVariable Long id) {
+    personaService.deletePerson(id);
+  }
 }

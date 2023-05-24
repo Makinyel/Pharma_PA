@@ -1,4 +1,4 @@
-import { React, useEffect, useState, useRef } from "react";
+import { React, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import {
   buyFormInfo,
@@ -10,22 +10,23 @@ import Button from "../components/button/Button";
 import Input from "../components/input/Input";
 
 import {
-  Wrapper,
-  Header,
-  FormWrapper,
   ButtonWrapper,
+  FormWrapper,
+  Header,
   InputRow,
   InputWrapper,
+  Wrapper,
 } from "../styles/FormStyles";
 
 import { useMediaQuery } from "@mui/material";
-import { clearFormFields } from "../utils/functions/formUtils";
 import { endpoints } from "../utils/endpoints/endpoints";
+import { clearFormFields } from "../utils/functions/formUtils";
 
 import _ from "lodash";
 
 const Transactions = () => {
   const transactionsTab = useSelector((state) => state.transactionsTab);
+  const user = useSelector((state) => state.user);
   const [formInfo, setFormInfo] = useState([]);
   const isNotAPhone = useMediaQuery("(min-width: 1000px)");
   const formRef = useRef(null);
@@ -44,39 +45,34 @@ const Transactions = () => {
     event.preventDefault();
     const form = event.target;
     const formData = new FormData(form);
-    const user = useSelector((state) => state.user);
 
-    const productName = formData.get("product");
-    const sourceWarehouseName = formData.get("warehouse");
-    const destinationWarehouseName = formData.get("warehouse");
+    const tabEndpoints = {
+      buy: endpoints.buy.base,
+      sell: endpoints.sell.base,
+      transfer: endpoints.transfer.base,
+    };
 
-    let endpoint = endpoints[transactionsTab.toLowerCase()].getAll;
-
-    //TODO CHECK THIS
-    try {
-      fetch(endpoint);
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          cantidad: parseInt(formData.get("quantity")),
-          producto: formData.get("product"),
-          bodegaOrigen: formData.get("buying price"),
-          bodegaDestino: formData.get("selling price"),
-          user: user.id,
-        }),
-      });
-
-      if (response.ok) {
+    await fetch(tabEndpoints[transactionsTab], {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        cantidad: parseInt(formData.get("quantity")),
+        producto: formData.get("product"),
+        bodegaOrigen: formData.get("source warehouse"),
+        bodegaDestino: formData.get("destination warehouse"),
+        user: user.id,
+      }),
+    })
+      .then(() => {
         alert(`${_.upperFirst(transactionsTab)} has been successfully made.`);
         clearFormFields(formRef);
-      }
-    } catch (error) {
-      console.error("Error saving the " + transactionsTab, error);
-      alert(`There was an error processing the ${transactionsTab}.`);
-    }
+      })
+      .catch((error) => {
+        console.error("Error saving the " + transactionsTab, error);
+        alert(`There was an error processing the ${transactionsTab}.`);
+      });
   };
 
   return (
