@@ -1,4 +1,4 @@
-package com.example.pharma.infrastructure.repository;
+package com.example.pharma.infrastructure.repository.persona;
 
 import com.example.pharma.domain.entities.persona.Persona;
 import java.util.Optional;

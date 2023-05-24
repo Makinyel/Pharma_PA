@@ -8,18 +8,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 @AllArgsConstructor
 @RestController
-@RequestMapping(path = "/compra")
+@RequestMapping(path = "/purchase")
 public class CompraController {
 
   private CompraService compraService;
 
   @PostMapping
-  public ResponseEntity<Compra> create(@RequestBody CompraRequest compraRequest) {
-    return new ResponseEntity<Compra>(compraService.save(compraRequest),HttpStatus.CREATED);
+  public ResponseEntity<Compra> create(
+      @RequestBody CompraRequest compraRequest,
+      @RequestHeader("user-email") String email) {
+    return ResponseEntity.ok(compraService.save(compraRequest, email));
   }
-
 }

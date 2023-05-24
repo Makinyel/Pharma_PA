@@ -1,8 +1,8 @@
-package com.example.pharma.infrastructure.repository.producto;
+package com.example.pharma.infrastructure.repository.stock;
 
 
 import com.example.pharma.domain.entities.stock.Stock;
-import com.example.pharma.infrastructure.repository.StockRepository;
+import com.example.pharma.infrastructure.repository.stock.StockRepository;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.springframework.beans.factory.annotation.Autowired;

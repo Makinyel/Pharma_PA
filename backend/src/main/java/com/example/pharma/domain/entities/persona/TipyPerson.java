@@ -1,12 +1,12 @@
 package com.example.pharma.domain.entities.persona;
 
-public enum TipoPersona {
+public enum TipyPerson {
     PROVIDER("PROVIDER"),
     CLIENT("CLIENT");
 
     String type;
 
-    TipoPersona(String type) {
+    TipyPerson(String type) {
         this.type = type;
     }
 }

@@ -1,7 +1,7 @@
 package com.example.pharma.domain.service.persona;
 
 import com.example.pharma.domain.entities.persona.Persona;
-import com.example.pharma.infrastructure.repository.PersonaRepository;
+import com.example.pharma.infrastructure.repository.persona.PersonaRepository;
 import com.example.pharma.shared.NotFoundException;
 import java.util.List;
 import lombok.AllArgsConstructor;

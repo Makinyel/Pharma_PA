@@ -4,7 +4,7 @@ import com.example.pharma.domain.entities.producto.Concentracion;
 import com.example.pharma.domain.entities.producto.Marca;
 import com.example.pharma.domain.entities.producto.Presentacion;
 import com.example.pharma.domain.entities.producto.Producto;
-import com.example.pharma.infrastructure.api.request.ProductRequest;
+import com.example.pharma.infrastructure.api.request.product.ProductRequest;
 import com.example.pharma.infrastructure.repository.producto.ProductoDao;
 import com.example.pharma.infrastructure.repository.producto.ProductoRepository;
 import com.example.pharma.shared.NotFoundException;

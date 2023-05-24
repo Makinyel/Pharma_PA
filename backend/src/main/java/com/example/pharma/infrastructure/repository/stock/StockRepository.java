@@ -1,4 +1,4 @@
-package com.example.pharma.infrastructure.repository;
+package com.example.pharma.infrastructure.repository.stock;
 
 import com.example.pharma.domain.entities.keys.KeyStock;
 import com.example.pharma.domain.entities.stock.Stock;

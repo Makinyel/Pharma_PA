@@ -2,7 +2,7 @@ package com.example.pharma.infrastructure.api.controller.traslado;
 
 import com.example.pharma.domain.entities.traslado.Traslado;
 import com.example.pharma.domain.service.traslado.TrasladoService;
-import com.example.pharma.infrastructure.api.request.TrasladoRequest;
+import com.example.pharma.infrastructure.api.request.traslado.TrasladoRequest;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

@@ -2,7 +2,7 @@ package com.example.pharma.infrastructure.api.controller.producto;
 
 import com.example.pharma.domain.entities.producto.Producto;
 import com.example.pharma.domain.service.producto.ProductoService;
-import com.example.pharma.infrastructure.api.request.ProductRequest;
+import com.example.pharma.infrastructure.api.request.product.ProductRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

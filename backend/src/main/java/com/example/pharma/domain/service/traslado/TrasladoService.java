@@ -10,9 +10,9 @@ import com.example.pharma.domain.service.usuario.UsuarioService;
 import com.example.pharma.domain.service.producto.BodegaService;
 import com.example.pharma.domain.service.producto.ProductoService;
 import com.example.pharma.domain.service.stock.StockService;
-import com.example.pharma.infrastructure.api.request.TrasladoRequest;
-import com.example.pharma.infrastructure.repository.StockRepository;
-import com.example.pharma.infrastructure.repository.TrasladoRepository;
+import com.example.pharma.infrastructure.api.request.traslado.TrasladoRequest;
+import com.example.pharma.infrastructure.repository.stock.StockRepository;
+import com.example.pharma.infrastructure.repository.traslado.TrasladoRepository;
 import com.example.pharma.shared.NotFoundException;
 import java.time.LocalDate;
 import java.util.List;
@@ -54,7 +54,7 @@ public class TrasladoService {
     if (!stockOptionalDestination.isPresent()) {
 
       Stock stock = stockOptional.get();
-      stockService.restarStock(stock, trasladoRequest.getCantidad());
+      stockService.restarStockMovimientos(stock, trasladoRequest.getCantidad());
 
       Stock stockDestination = Stock.builder()
           .id_producto(productoService.getById(Long.parseLong(trasladoRequest.getProducto())).getId())
@@ -62,14 +62,14 @@ public class TrasladoService {
           .cantidad(trasladoRequest.getCantidad())
           .build();
 
-      stockService.create(stockDestination);
+      //stockService.create(stockDestination);
 
     } else {
 
       Stock stock = stockOptional.get();
       Stock stockDestination = stockOptionalDestination.get();
 
-      stockService.restarStock(stock, trasladoRequest.getCantidad());
+      stockService.restarStockMovimientos(stock, trasladoRequest.getCantidad());
       stockService.sumarStockMovimientos(stockDestination, trasladoRequest.getCantidad());
     }
 

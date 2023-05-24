@@ -19,8 +19,8 @@ public class Persona {
   private Long id;
   private String document;
   private DocumentType documentType;
-  private TipoPersona personType;
-  private String name;
+  private TipyPerson personType;
+    private String name;
   private String location;
   private String phone;
   private String email;

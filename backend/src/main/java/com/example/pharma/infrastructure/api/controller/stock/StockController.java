@@ -16,10 +16,11 @@ public class StockController {
 
   private final StockService stockService;
 
+  /*
   @PostMapping
   public ResponseEntity<Stock> save(@RequestBody Stock stock) {
     return  new ResponseEntity<>(stockService.create(stock),  HttpStatus.CREATED);
-  }
+  }*/
 
   @GetMapping("{stockId}")
   public  ResponseEntity<List<Stock>> getAllStockByidProducto(@PathVariable("stockId") Long id) {

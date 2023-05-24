@@ -1,4 +1,4 @@
-package com.example.pharma.infrastructure.api.request;
+package com.example.pharma.infrastructure.api.request.traslado;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.example.pharma.infrastructure.repository;
+package com.example.pharma.infrastructure.repository.traslado;
 
 import com.example.pharma.domain.entities.traslado.Traslado;
 import org.springframework.data.jpa.repository.JpaRepository;

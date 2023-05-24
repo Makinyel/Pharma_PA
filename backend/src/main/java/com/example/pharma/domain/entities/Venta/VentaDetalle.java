@@ -1,8 +1,7 @@
-package com.example.pharma.domain.entities.traslado;
+package com.example.pharma.domain.entities.Venta;
 
 import com.example.pharma.domain.entities.producto.Bodega;
 import com.example.pharma.domain.entities.producto.Producto;
-import com.example.pharma.domain.entities.usuario.Usuario;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,8 +9,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import java.time.LocalDate;
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,28 +18,22 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @Entity
-@Table(name = "traslado")
-
-public class Traslado {
-
+@Table(name = "ventaDetalle")
+public class VentaDetalle {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long code;
-  private LocalDate fecha;
-  private int cantidad;
-
+  private Long id;
+  private Integer amount;
+  private double total;
+  @ManyToOne
+  @JoinColumn(name = "id_BodegaOrigen", referencedColumnName = "id")
+  private Bodega bodegaOrigen;
   @ManyToOne
   @JoinColumn(name = "id_producto", referencedColumnName = "id")
   private Producto producto;
-
   @ManyToOne
-  @JoinColumn(name = "id_bodegaOrigen", referencedColumnName = "id")
-  private Bodega bodegaOrigen;
-  @ManyToOne
-  @JoinColumn(name = "id_bodegaDestino", referencedColumnName = "id")
-  private Bodega bodegaDestino;
-  @ManyToOne
-  @JoinColumn(name = "id_user", referencedColumnName = "id")
-  private Usuario user;
+  @JoinColumn(name = "id_venta", referencedColumnName = "code")
+  private Venta venta;
 
 }
+

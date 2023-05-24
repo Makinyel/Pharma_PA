@@ -4,73 +4,63 @@ import com.example.pharma.domain.entities.compra.Compra;
 import com.example.pharma.domain.entities.compra.CompraDetalle;
 import com.example.pharma.domain.entities.producto.Bodega;
 import com.example.pharma.domain.entities.producto.Producto;
-import com.example.pharma.domain.service.stock.StockService;
+import com.example.pharma.domain.entities.stock.Stock;
 import com.example.pharma.domain.service.producto.BodegaService;
 import com.example.pharma.domain.service.producto.ProductoService;
+import com.example.pharma.domain.service.stock.StockService;
 import com.example.pharma.infrastructure.api.request.compra.CompraDetalleRequest;
 import com.example.pharma.infrastructure.repository.compra.CompraDetalleRepository;
-import com.example.pharma.shared.NotFoundException;
+import jakarta.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
 @AllArgsConstructor
 @Service
 public class CompraDetalleService {
+
   private CompraDetalleRepository compraDetalleRepository;
   private ProductoService productoService;
   private BodegaService bodegaService;
   private CompraService compraService;
   private StockService stockService;
-  public CompraDetalle create(CompraDetalle compraDetalle){
 
-    CompraDetalle detalle = new CompraDetalle();
+  public CompraDetalle create(CompraDetalle compraDetalle) {
 
-    detalle.setAmount(detalle.getAmount());
+    Producto producto = productoService.getById(compraDetalle.getProducto().getId());
+    Bodega bodega = bodegaService.getById(compraDetalle.getBodegaDestino().getId());
+    Compra compra = compraService.getById(compraDetalle.getCompra().getCode());
+    Double total = producto.getPrecioCosto() * compraDetalle.getAmount();
 
-    var producto = productoService.getById(compraDetalle.getProducto().getId());
-    var bodega = bodegaService.getById(compraDetalle.getBodegaDestino().getId());
-    var compra = compraService.getById(compraDetalle.getCompra().getCode());
+    compraDetalle.setProducto(producto);
+    compraDetalle.setBodegaDestino(bodega);
+    compraDetalle.setCompra(compra);
+    compraDetalle.setTotal(total);
 
-    if (Objects.isNull(producto)){
-      new NotFoundException("Producto not found");
-    }
-    if (Objects.isNull(bodega)){
-      new NotFoundException("Bodega not found");
-    }
-    if (Objects.isNull(compra)){
-      new NotFoundException("Compra not found");
-    }
+    Stock stock = Stock.builder()
+        .id_producto(producto.getId())
+        .id_bodega(bodega.getId())
+        .build();
 
-    var stock = stockService.getByIdProductIdBodega(producto.getId(),bodega.getId());
+    stockService.create(stock, compraDetalle.getAmount());
 
-    System.out.println("STOCK---> " + stock.toString());
-
-    if (Objects.isNull(stock)){
-      new NotFoundException("Stock not found");
-    }
-
-    stockService.sumarStockMovimientos(stock,compraDetalle.getAmount());
-
-    detalle.setAmount(compraDetalle.getAmount());
-    detalle.setProducto(producto);
-    detalle.setBodegaDestino(bodega);
-    detalle.setCompra(compra);
-
-    var total = producto.getPrecioCosto() * compraDetalle.getAmount();
-
-    detalle.setTotal(total);
-
-
-
-    return compraDetalleRepository.save(detalle);
+    return compraDetalleRepository.save(compraDetalle);
   }
 
-  public void comprarProducto(List<CompraDetalle> compraDetalleList){
-    System.out.println("Cantidad -->"+compraDetalleList.get(0).getAmount());
+  public List<CompraDetalle> getAll() {
+    return compraDetalleRepository.findAll();
+  }
+
+  public CompraDetalle getById(Long id) {
+    return compraDetalleRepository.getById(id);
+  }
+
+  public void comprarProducto(List<CompraDetalle> compraDetalleList) {
+    System.out.println("Cantidad -->" + compraDetalleList.get(0).getAmount());
     Compra invoiceUpdate = compraService.getById(compraDetalleList.get(0).getCompra().getCode());
-    compraDetalleList.stream().forEach(invoiceDetail -> buildpurchase(invoiceDetail,invoiceUpdate));
+    compraDetalleList.stream()
+        .forEach(invoiceDetail -> buildpurchase(invoiceDetail, invoiceUpdate));
     compraService.editCompra(invoiceUpdate);
   }
 
@@ -79,29 +69,23 @@ public class CompraDetalleService {
 
     create(compraDetalle);
 
-    var product = productoService.getById(compraDetalle.getProducto().getId());
+    Producto product = productoService.getById(compraDetalle.getProducto().getId());
 
-    var subtotalProduct = compraDetalle.getAmount() * product.getPrecioCosto();
+    Double subtotalProduct = compraDetalle.getAmount() * product.getPrecioCosto();
 
-    var total = compraUpdate.getTotal() + subtotalProduct;
-    var totalWithIva = compraUpdate.getTotalWithIva() + (subtotalProduct + (subtotalProduct * 0.19));
-    var ivaInvoice = totalWithIva - total;
+    Double total = compraUpdate.getTotal() + subtotalProduct;
+    Double totalWithIva =
+        compraUpdate.getTotalWithIva() + (subtotalProduct + (subtotalProduct * 0.19));
+    Double ivaInvoice = totalWithIva - total;
 
     compraUpdate.setTotal(total);
     compraUpdate.setTotalWithIva(totalWithIva);
     compraUpdate.setIva(ivaInvoice);
 
   }
-  public List<CompraDetalle> getAll(){
-    return compraDetalleRepository.findAll();
-  }
 
-
-  public CompraDetalle getById(Long id){
-    return compraDetalleRepository.getById(id);
-  }
-
-  public void edit(CompraDetalle compraDetalle){
+  @Transactional
+  public void edit(CompraDetalle compraDetalle) {
     compraDetalleRepository.editCompraDetalle(
         compraDetalle.getAmount(),
         compraDetalle.getBodegaDestino().getId(),
@@ -109,42 +93,34 @@ public class CompraDetalleService {
         compraDetalle.getProducto().getId()
     );
   }
-  public void delete(Long id){
+
+  public void delete(Long id) {
     compraDetalleRepository.deleteById(id);
   }
 
-  public void asignarIdCompras(List<CompraDetalle> list,Long id){
-    list.stream().forEach(compraDetalle -> aggCompra(compraDetalle,id));
-  }
+  // Con Estos Metodos Mappeamos de Request a Entity
 
-  private void aggCompra(CompraDetalle compraDetalle,Long id_compra){
-    var compra = compraService.getById(id_compra);
-    compraDetalle.setCompra(compra);
-  }
-
-
-
-  public List<CompraDetalle> mapper(List<CompraDetalleRequest> compraDetalleRequest){
+  public List<CompraDetalle> mapper(List<CompraDetalleRequest> compraDetalleRequest) {
 
     List<CompraDetalle> compraDetalleList = new ArrayList();
 
-
-    for ( CompraDetalleRequest responsible1 : compraDetalleRequest ) {
+    for (CompraDetalleRequest responsible1 : compraDetalleRequest) {
       compraDetalleList.add(build(responsible1));
     }
-    return  compraDetalleList;
+    return compraDetalleList;
   }
-  public CompraDetalle build(CompraDetalleRequest request){
-    if (request == null){
+
+  public CompraDetalle build(CompraDetalleRequest request) {
+    if (request == null) {
       return null;
     }
     CompraDetalle detalle = new CompraDetalle();
 
-    Bodega bodega = bodegaService.getByName(request.getBodegaDestino());
-    Producto producto = productoService.findByName(request.getProducto());
-    Compra compra = compraService.getById(request.getId_compra());
+    Bodega bodega = bodegaService.getByName(request.getDestinationWarehouseName());
+    Producto producto = productoService.findByName(request.getProductName());
+    Compra compra = compraService.getById(request.getPurchaseId());
 
-    detalle.setAmount(request.getAmount());
+    detalle.setAmount(request.getQuantity());
     detalle.setBodegaDestino(bodega);
     detalle.setProducto(producto);
     detalle.setCompra(compra);
@@ -153,7 +129,5 @@ public class CompraDetalleService {
 
     return detalle;
   }
-
-
 }
 
