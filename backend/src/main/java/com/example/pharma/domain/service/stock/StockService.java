@@ -2,10 +2,8 @@ package com.example.pharma.domain.service.stock;
 
 import com.example.pharma.domain.entities.keys.KeyStock;
 import com.example.pharma.domain.entities.stock.Stock;
-import com.example.pharma.infrastructure.repository.stock.StockDao;
 import com.example.pharma.infrastructure.repository.stock.StockRepository;
 import com.example.pharma.shared.NotFoundException;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import lombok.AllArgsConstructor;
@@ -18,7 +16,6 @@ import org.springframework.stereotype.Service;
 public class StockService {
 
   private final StockRepository stockRepository;
-  private final StockDao stockDao;
 
   public Stock create(Stock stockDetalle, int cantidad) {
 
@@ -41,9 +38,6 @@ public class StockService {
         orElseThrow(() -> new NotFoundException("No such stock"));
   }
 
-  public List<Stock> getStock(Long idproducto) {
-    return stockDao.getStocks(idproducto);
-  }
 
   public Stock getByIdProductIdBodega(Long idproduct, Long idBodega) {
 
@@ -56,13 +50,6 @@ public class StockService {
     return getById(key);
   }
 
-  public Integer getTotalStocks(Long productId) {
-    return stockDao.getTotalStocksByidProducto(productId);
-  }
-
-  public Integer getTotalStocks(Long idproducto, Long idBodega) {
-    return stockDao.getTotalStocksByidProductoIdBodega(idproducto, idBodega);
-  }
 
   public Stock sumarStockMovimientos(Stock stockDetalle, int cantidad) {
 
@@ -73,7 +60,8 @@ public class StockService {
 
   public Stock restarStockMovimientos(Stock stockDetalle, int cantidad) {
 
-    stockDetalle.setCantidad(stockDetalle.getCantidad() - cantidad);
+    stockDetalle.setCantidad(stockDetalle.getCantidad()
+        - cantidad);
 
     return stockRepository.save(stockDetalle);
   }

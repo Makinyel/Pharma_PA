@@ -4,7 +4,6 @@ import com.example.pharma.domain.entities.transfer.Transfer;
 import com.example.pharma.domain.entities.user.User;
 import com.example.pharma.domain.service.usuario.UsuarioService;
 import com.example.pharma.infrastructure.repository.transfer.TransferRepository;
-import com.example.pharma.shared.NotFoundException;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,8 +27,4 @@ public class TransferService {
     return transferRepository.save(transfer);
   }
 
-  public Transfer getById(Long id) {
-    return transferRepository.findById(id)
-        .orElseThrow(() -> new NotFoundException("Transfer not found"));
-  }
 }
