@@ -70,4 +70,11 @@ public class StockService {
 
     return stockRepository.save(stockDetalle);
   }
+
+  public Stock restarStockMovimientos(Stock stockDetalle, int cantidad) {
+
+    stockDetalle.setCantidad(stockDetalle.getCantidad() - cantidad);
+
+    return stockRepository.save(stockDetalle);
+  }
 }

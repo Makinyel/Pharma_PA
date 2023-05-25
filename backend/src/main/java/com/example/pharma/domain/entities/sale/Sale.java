@@ -1,4 +1,4 @@
-package com.example.pharma.domain.entities.venta;
+package com.example.pharma.domain.entities.sale;
 
 import com.example.pharma.domain.entities.persona.Persona;
 import com.example.pharma.domain.entities.user.User;
@@ -21,19 +21,19 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Table(name = "venta")
-public class Venta {
+public class Sale {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long code;
-  private LocalDate fecha;
+  private Long id;
+  private LocalDate date;
+  private double subtotal;
   private double total;
-  private double totalWithIva;
   private double iva;
   @ManyToOne
-  @JoinColumn(name = "idCliente", referencedColumnName = "id")
-  private Persona cliente;
+  @JoinColumn(name = "client_id", referencedColumnName = "id")
+  private Persona client;
   @ManyToOne
-  @JoinColumn(name = "idUsuario", referencedColumnName = "id")
+  @JoinColumn(name = "user_id", referencedColumnName = "id")
   private User user;
 }

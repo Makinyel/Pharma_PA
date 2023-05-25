@@ -1,7 +1,7 @@
-package com.example.pharma.domain.entities.venta;
+package com.example.pharma.domain.entities.sale;
 
-import com.example.pharma.domain.entities.product.Warehouse;
 import com.example.pharma.domain.entities.product.Product;
+import com.example.pharma.domain.entities.product.Warehouse;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,27 +13,29 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
 @Entity
-@Table(name = "ventaDetalle")
-public class VentaDetalle {
+@Table(name = "detalle_venta")
+public class SaleDetail {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private Integer amount;
+  private Integer quantity;
   private double total;
   @ManyToOne
-  @JoinColumn(name = "id_BodegaOrigen", referencedColumnName = "id")
+  @JoinColumn(name = "warehouseOrigen_id", referencedColumnName = "id")
   private Warehouse warehouseOrigen;
   @ManyToOne
-  @JoinColumn(name = "id_producto", referencedColumnName = "id")
+  @JoinColumn(name = "product_id", referencedColumnName = "id")
   private Product product;
   @ManyToOne
-  @JoinColumn(name = "id_venta", referencedColumnName = "code")
-  private Venta venta;
+  @JoinColumn(name = "sale_id", referencedColumnName = "id")
+  private Sale sale;
 
 }
 

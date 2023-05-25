@@ -64,13 +64,13 @@ public class PurchaseDetailService {
 
     double subtotalProduct = purchaseDetail.getQuantity() * product.getBuyingPrice();
 
-    double total = purchaseUpdate.getSubtotal() + subtotalProduct;
-    double totalWithIva =
+    double subtotal = purchaseUpdate.getSubtotal() + subtotalProduct;
+    double total =
         purchaseUpdate.getTotal() + (subtotalProduct + (subtotalProduct * 0.19));
-    double ivaInvoice = totalWithIva - total;
+    double ivaInvoice = total - subtotal;
 
-    purchaseUpdate.setSubtotal(total);
-    purchaseUpdate.setTotal(totalWithIva);
+    purchaseUpdate.setSubtotal(subtotal);
+    purchaseUpdate.setTotal(total);
     purchaseUpdate.setIva(ivaInvoice);
 
   }
