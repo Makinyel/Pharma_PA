@@ -1,8 +1,8 @@
 package com.example.pharma.infrastructure.api.controller.compra;
 
-import com.example.pharma.domain.entities.compra.Compra;
-import com.example.pharma.domain.service.compra.CompraService;
-import com.example.pharma.infrastructure.api.request.compra.CompraRequest;
+import com.example.pharma.domain.entities.purchase.Purchase;
+import com.example.pharma.domain.service.purchase.PurchaseService;
+import com.example.pharma.infrastructure.api.request.compra.PurchaseRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/buy")
 public class CompraController {
 
-  private CompraService compraService;
+  private PurchaseService purchaseService;
 
   @PostMapping
-  public ResponseEntity<Compra> create(
-      @RequestBody CompraRequest compraRequest,
+  public ResponseEntity<Purchase> create(
+      @RequestBody PurchaseRequest purchaseRequest,
       @RequestHeader("user-email") String email) {
-    return ResponseEntity.ok(compraService.save(compraRequest, email));
+    return ResponseEntity.ok(purchaseService.initPurchase(purchaseRequest, email));
   }
 }

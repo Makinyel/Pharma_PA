@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class CompraDetalleRequest {
+public class PurchaseDetailRequest {
 
   private Integer quantity;
   private String destinationWarehouseName;

@@ -1,7 +1,7 @@
 package com.example.pharma.infrastructure.api.controller.compra;
 
-import com.example.pharma.domain.service.compra.CompraDetalleService;
-import com.example.pharma.infrastructure.api.request.compra.CompraDetalleRequest;
+import com.example.pharma.domain.service.purchase.PurchaseDetailService;
+import com.example.pharma.infrastructure.api.request.compra.PurchaseDetailRequest;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/buy-details")
 public class CompraDetalleController {
 
-  private CompraDetalleService compraDetalleService;
+  private PurchaseDetailService purchaseDetailService;
 
   @PostMapping
-  public void create(@RequestBody List<CompraDetalleRequest> compraDetalleRequest) {
-    compraDetalleService.comprarProducto(compraDetalleService.mapper(compraDetalleRequest));
+  public void create(@RequestBody List<PurchaseDetailRequest> purchaseDetailRequest) {
+    purchaseDetailService.completePurchase(purchaseDetailService.mapper(purchaseDetailRequest));
   }
 }

@@ -1,4 +1,4 @@
-package com.example.pharma.domain.entities.compra;
+package com.example.pharma.domain.entities.purchase;
 
 import com.example.pharma.domain.entities.product.Warehouse;
 import com.example.pharma.domain.entities.product.Product;
@@ -19,21 +19,21 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @Entity
-@Table(name = "compraDetalle")
-public class CompraDetalle{
+@Table(name = "detalle_compra")
+public class PurchaseDetail {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private Integer amount;
+  private Integer quantity;
   private double total;
   @ManyToOne
-  @JoinColumn(name = "id_BodegaDestino", referencedColumnName = "id")
-  private Warehouse warehouseDestino;
+  @JoinColumn(name = "destination_warehouse_id", referencedColumnName = "id")
+  private Warehouse destinationWarehouse;
   @ManyToOne
-  @JoinColumn(name = "id_producto", referencedColumnName = "id")
+  @JoinColumn(name = "product_id", referencedColumnName = "id")
   private Product product;
   @ManyToOne
-  @JoinColumn(name = "id_compra", referencedColumnName = "code")
-  private Compra compra;
+  @JoinColumn(name = "purchase_id", referencedColumnName = "id")
+  private Purchase purchase;
 }
 

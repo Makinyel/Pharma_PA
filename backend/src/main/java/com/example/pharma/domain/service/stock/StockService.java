@@ -22,8 +22,8 @@ public class StockService {
 
   public Stock create(Stock stockDetalle, int cantidad) {
 
-    KeyStock key = KeyStock.builder().productId(stockDetalle.getId_producto())
-        .warehouseId(stockDetalle.getId_bodega()).build();
+    KeyStock key = KeyStock.builder().productId(stockDetalle.getProductId())
+        .warehouseId(stockDetalle.getWarehouseId()).build();
 
     Optional<Stock> stockOptional = stockRepository.findById(key);
 
@@ -50,38 +50,23 @@ public class StockService {
     KeyStock key = KeyStock.builder().warehouseId(idBodega).productId(idproduct).build();
 
     if (Objects.isNull(key)) {
-      new NotFoundException("KeyStock not found");
+      throw new NotFoundException("KeyStock not found");
     }
 
-    Stock stock = getById(key);
-
-    return stock;
+    return getById(key);
   }
 
-  public Integer getTotalStocks(Long idproducto) {
-    Integer stocks = stockDao.getTotalStocksByidProducto(idproducto);
-    return stocks;
+  public Integer getTotalStocks(Long productId) {
+    return stockDao.getTotalStocksByidProducto(productId);
   }
 
   public Integer getTotalStocks(Long idproducto, Long idBodega) {
-    Integer stocks = stockDao.getTotalStocksByidProductoIdBodega(idproducto, idBodega);
-    return stocks;
+    return stockDao.getTotalStocksByidProductoIdBodega(idproducto, idBodega);
   }
 
   public Stock sumarStockMovimientos(Stock stockDetalle, int cantidad) {
 
-    System.out.println("Esta Sumando: " + stockDetalle.getCantidad());
-
     stockDetalle.setCantidad(stockDetalle.getCantidad() + cantidad);
-
-    return stockRepository.save(stockDetalle);
-  }
-
-  public Stock restarStockMovimientos(Stock stockDetalle, int cantidad) {
-
-    System.out.println("Esta Restando: " + stockDetalle.getCantidad());
-
-    stockDetalle.setCantidad(stockDetalle.getCantidad() - cantidad);
 
     return stockRepository.save(stockDetalle);
   }
