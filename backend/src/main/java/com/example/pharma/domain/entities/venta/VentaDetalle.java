@@ -1,7 +1,7 @@
-package com.example.pharma.domain.entities.Venta;
+package com.example.pharma.domain.entities.venta;
 
-import com.example.pharma.domain.entities.producto.Bodega;
-import com.example.pharma.domain.entities.producto.Producto;
+import com.example.pharma.domain.entities.product.Warehouse;
+import com.example.pharma.domain.entities.product.Product;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,10 +27,10 @@ public class VentaDetalle {
   private double total;
   @ManyToOne
   @JoinColumn(name = "id_BodegaOrigen", referencedColumnName = "id")
-  private Bodega bodegaOrigen;
+  private Warehouse warehouseOrigen;
   @ManyToOne
   @JoinColumn(name = "id_producto", referencedColumnName = "id")
-  private Producto producto;
+  private Product product;
   @ManyToOne
   @JoinColumn(name = "id_venta", referencedColumnName = "code")
   private Venta venta;

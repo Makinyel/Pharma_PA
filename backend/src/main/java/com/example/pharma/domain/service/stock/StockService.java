@@ -22,8 +22,8 @@ public class StockService {
 
   public Stock create(Stock stockDetalle, int cantidad) {
 
-    KeyStock key = KeyStock.builder().id_producto(stockDetalle.getId_producto())
-        .id_bodega(stockDetalle.getId_bodega()).build();
+    KeyStock key = KeyStock.builder().productId(stockDetalle.getId_producto())
+        .warehouseId(stockDetalle.getId_bodega()).build();
 
     Optional<Stock> stockOptional = stockRepository.findById(key);
 
@@ -47,7 +47,7 @@ public class StockService {
 
   public Stock getByIdProductIdBodega(Long idproduct, Long idBodega) {
 
-    KeyStock key = KeyStock.builder().id_bodega(idBodega).id_producto(idproduct).build();
+    KeyStock key = KeyStock.builder().warehouseId(idBodega).productId(idproduct).build();
 
     if (Objects.isNull(key)) {
       new NotFoundException("KeyStock not found");

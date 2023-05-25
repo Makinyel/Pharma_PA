@@ -2,7 +2,7 @@ package com.example.pharma.domain.service.compra;
 
 import com.example.pharma.domain.entities.compra.Compra;
 import com.example.pharma.domain.entities.persona.Persona;
-import com.example.pharma.domain.entities.usuario.Usuario;
+import com.example.pharma.domain.entities.user.User;
 import com.example.pharma.domain.service.persona.PersonaService;
 import com.example.pharma.domain.service.usuario.UsuarioService;
 import com.example.pharma.infrastructure.api.request.compra.CompraRequest;
@@ -33,7 +33,7 @@ public class CompraService {
     compra.setTotal(0);
     compra.setTotalWithIva(0);
 
-    Usuario user = usuarioService.findByEmail(email);
+    User user = usuarioService.findByEmail(email);
     Persona person = personaService.findByName(compraRequest.getProviderName());
 
     compra.setUser(user);

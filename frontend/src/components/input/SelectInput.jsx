@@ -21,9 +21,9 @@ const SelectInput = ({ title, description }) => {
     options = fetchedOptions;
   } else {
     if (title === "Third party type") {
-      options = [{ nombre: "CLIENT" }, { nombre: "PROVIDER" }];
+      options = [{ name: "CLIENT" }, { name: "PROVIDER" }];
     } else if (title === "Document type") {
-      options = [{ nombre: "CEDULA" }, { nombre: "PASAPORTE" }];
+      options = [{ name: "CEDULA" }, { name: "PASAPORTE" }];
     }
   }
 
@@ -34,8 +34,8 @@ const SelectInput = ({ title, description }) => {
       <select name={title.toLowerCase()}>
         <option>Option to select...</option>
         {options.map((option) => (
-          <option key={option.id} value={option.nombre}>
-            {option.nombre}
+          <option key={option.id} value={option.name}>
+            {option.name}
           </option>
         ))}
       </select>

@@ -1,6 +1,5 @@
-package com.example.pharma.domain.entities.producto;
+package com.example.pharma.domain.entities.product;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,11 +9,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "maestro_concentracion")
-public class Concentracion {
+@Table(name = "maestro_bodega")
+public class Warehouse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nombre;
-    private String prefijo;
+    private String name;
+    private String address;
+    private String phone;
 }

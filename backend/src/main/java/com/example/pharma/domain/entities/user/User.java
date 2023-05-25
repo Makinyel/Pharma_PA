@@ -1,27 +1,27 @@
-package com.example.pharma.domain.entities.persona;
+package com.example.pharma.domain.entities.user;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-@Entity
-public class Persona {
+@Table(name = "users")
+public class User {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private String document;
-  private DocumentType documentType;
-  private TipyPerson personType;
   private String name;
-  private String location;
-  private String phone;
   private String email;
+  private String address;
+  private String phone;
+  private Role role;
 }

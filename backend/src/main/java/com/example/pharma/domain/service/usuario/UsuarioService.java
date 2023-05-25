@@ -1,6 +1,6 @@
 package com.example.pharma.domain.service.usuario;
 
-import com.example.pharma.domain.entities.usuario.Usuario;
+import com.example.pharma.domain.entities.user.User;
 import com.example.pharma.infrastructure.repository.usuario.UsuarioRepository;
 import com.example.pharma.shared.NotFoundException;
 import java.util.List;
@@ -15,25 +15,25 @@ public class UsuarioService {
 
   private UsuarioRepository userRepository;
 
-  public Usuario saveUsuario(Usuario usuario) {
-    return userRepository.save(usuario);
+  public User saveUsuario(User user) {
+    return userRepository.save(user);
   }
 
-  public Usuario getUsuarioById(Long id) {
+  public User getUsuarioById(Long id) {
     return userRepository
         .findById(id)
         .orElseThrow(() -> new NotFoundException(
-            "Usuario " + id + " does not exist"));
+            "User " + id + " does not exist"));
   }
 
-  public List<Usuario> getAllUsuarios() {
+  public List<User> getAllUsuarios() {
     return userRepository.findAll();
   }
 
-  public void editUsuario(Long id, Usuario user) {
-    Usuario existingUser = userRepository
+  public void editUsuario(Long id, User user) {
+    User existingUser = userRepository
         .findById(id)
-        .orElseThrow(() -> new NotFoundException("Usuario " + id + " does not exist"));
+        .orElseThrow(() -> new NotFoundException("User " + id + " does not exist"));
 
     existingUser.setId(user.getId());
     existingUser.setName(user.getName());
@@ -49,7 +49,7 @@ public class UsuarioService {
     userRepository.deleteById(id);
   }
 
-  public Usuario findByEmail(String email) {
+  public User findByEmail(String email) {
     return userRepository.findByEmail(email).orElseThrow(() ->
     new NotFoundException("User Not Found: " + email));
   }

@@ -1,7 +1,7 @@
 package com.example.pharma.domain.entities.compra;
 
 import com.example.pharma.domain.entities.persona.Persona;
-import com.example.pharma.domain.entities.usuario.Usuario;
+import com.example.pharma.domain.entities.user.User;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -35,5 +35,5 @@ public class Compra{
     private Persona provider;
     @ManyToOne
     @JoinColumn(name = "userId", referencedColumnName = "id")
-    private Usuario user;
+    private User user;
 }

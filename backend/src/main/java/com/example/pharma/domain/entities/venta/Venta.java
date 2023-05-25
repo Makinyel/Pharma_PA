@@ -1,13 +1,12 @@
-package com.example.pharma.domain.entities.Venta;
+package com.example.pharma.domain.entities.venta;
 
 import com.example.pharma.domain.entities.persona.Persona;
-import com.example.pharma.domain.entities.usuario.Usuario;
+import com.example.pharma.domain.entities.user.User;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinColumns;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
@@ -36,5 +35,5 @@ public class Venta {
   private Persona cliente;
   @ManyToOne
   @JoinColumn(name = "idUsuario", referencedColumnName = "id")
-  private Usuario usuario;
+  private User user;
 }

@@ -1,9 +1,10 @@
-package com.example.pharma.domain.entities.persona;
+package com.example.pharma.domain.entities.product;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,16 +13,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-public class Persona {
+@Table(name = "maestro_concentracion")
+public class Concentration {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private String document;
-  private DocumentType documentType;
-  private TipyPerson personType;
   private String name;
-  private String location;
-  private String phone;
-  private String email;
+  private String prefix;
 }

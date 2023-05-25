@@ -1,6 +1,6 @@
 package com.example.pharma.infrastructure.api.controller.usuario;
 
-import com.example.pharma.domain.entities.usuario.Usuario;
+import com.example.pharma.domain.entities.user.User;
 import com.example.pharma.domain.service.usuario.UsuarioService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,22 +16,22 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @PostMapping
-    public ResponseEntity<Usuario> saveUsuario(@RequestBody Usuario usuario) {
-        return new ResponseEntity<>(usuarioService.saveUsuario(usuario), HttpStatus.CREATED);
+    public ResponseEntity<User> saveUsuario(@RequestBody User user) {
+        return new ResponseEntity<>(usuarioService.saveUsuario(user), HttpStatus.CREATED);
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Usuario> getUsuarioById(@PathVariable("id") Long id) {
+    public ResponseEntity<User> getUsuarioById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(usuarioService.getUsuarioById(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<Usuario>> getAll() {
+    public ResponseEntity<List<User>> getAll() {
         return ResponseEntity.ok(usuarioService.getAllUsuarios());
     }
 
     @PutMapping("{id}")
-    public void editUsuario(@PathVariable("id") Long id, @RequestBody Usuario user) {
+    public void editUsuario(@PathVariable("id") Long id, @RequestBody User user) {
         usuarioService.editUsuario(id, user);
     }
 
@@ -41,7 +41,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/email/{email}")
-    public ResponseEntity<Usuario> findByEmail(@PathVariable("email") String email){
+    public ResponseEntity<User> findByEmail(@PathVariable("email") String email){
         return ResponseEntity.ok(usuarioService.findByEmail(email));
     }
 }

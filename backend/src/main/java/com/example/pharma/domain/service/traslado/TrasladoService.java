@@ -3,12 +3,12 @@ package com.example.pharma.domain.service.traslado;
 import com.example.pharma.domain.entities.keys.KeyStock;
 import com.example.pharma.domain.entities.stock.Stock;
 import com.example.pharma.domain.entities.traslado.Traslado;
-import com.example.pharma.domain.entities.producto.Bodega;
-import com.example.pharma.domain.entities.producto.Producto;
-import com.example.pharma.domain.entities.usuario.Usuario;
+import com.example.pharma.domain.entities.product.Warehouse;
+import com.example.pharma.domain.entities.product.Product;
+import com.example.pharma.domain.entities.user.User;
 import com.example.pharma.domain.service.usuario.UsuarioService;
-import com.example.pharma.domain.service.producto.BodegaService;
-import com.example.pharma.domain.service.producto.ProductoService;
+import com.example.pharma.domain.service.product.WarehouseService;
+import com.example.pharma.domain.service.product.ProductService;
 import com.example.pharma.domain.service.stock.StockService;
 import com.example.pharma.infrastructure.api.request.traslado.TrasladoRequest;
 import com.example.pharma.infrastructure.repository.stock.StockRepository;
@@ -29,22 +29,22 @@ public class TrasladoService {
   private final StockRepository stockRepository;
   private final StockService stockService;
   private final UsuarioService usuarioService;
-  private final BodegaService bodegaService;
-  private final ProductoService productoService;
+  private final WarehouseService warehouseService;
+  private final ProductService productService;
 
   public Traslado create(TrasladoRequest trasladoRequest) {
 
     // Obtenemos Bodegas
-    Bodega bodegaOrigen = bodegaService.getByName(trasladoRequest.getBodegaOrigen());
-    Bodega bodegaDestino = bodegaService.getByName(trasladoRequest.getBodegaDestino());
+    Warehouse warehouseOrigen = warehouseService.findByName(trasladoRequest.getBodegaOrigen());
+    Warehouse warehouseDestino = warehouseService.findByName(trasladoRequest.getBodegaDestino());
 
     // Construimos las Key de los Stock
     KeyStock keyStockOrigin = KeyStock.builder()
-        .id_producto(Long.parseLong(trasladoRequest.getProducto())).id_bodega(bodegaOrigen.getId()).build();
+        .productId(Long.parseLong(trasladoRequest.getProducto())).warehouseId(warehouseOrigen.getId()).build();
 
     KeyStock keyStockDestination = KeyStock.builder()
-        .id_producto(Long.parseLong(trasladoRequest.getProducto()))
-        .id_bodega(bodegaDestino.getId()).build();
+        .productId(Long.parseLong(trasladoRequest.getProducto()))
+        .warehouseId(warehouseDestino.getId()).build();
 
     // Obtenemos Los Stocks
     Optional<Stock> stockOptional = stockRepository.findById(keyStockOrigin);
@@ -57,8 +57,8 @@ public class TrasladoService {
       stockService.restarStockMovimientos(stock, trasladoRequest.getCantidad());
 
       Stock stockDestination = Stock.builder()
-          .id_producto(productoService.getById(Long.parseLong(trasladoRequest.getProducto())).getId())
-          .id_bodega((bodegaService.getByName(trasladoRequest.getBodegaDestino()).getId()))
+          .id_producto(productService.findById(Long.parseLong(trasladoRequest.getProducto())).getId())
+          .id_bodega((warehouseService.findByName(trasladoRequest.getBodegaDestino()).getId()))
           .cantidad(trasladoRequest.getCantidad())
           .build();
 
@@ -77,13 +77,13 @@ public class TrasladoService {
     traslado.setFecha(LocalDate.now());
     traslado.setCantidad(trasladoRequest.getCantidad());
 
-    Producto producto = productoService.getById(Long.parseLong(trasladoRequest.getProducto()));
-    Usuario usuario = usuarioService.getUsuarioById(Long.parseLong(trasladoRequest.getUser()));
+    Product product = productService.findById(Long.parseLong(trasladoRequest.getProducto()));
+    User user = usuarioService.getUsuarioById(Long.parseLong(trasladoRequest.getUser()));
 
-    traslado.setProducto(producto);
-    traslado.setBodegaOrigen(bodegaOrigen);
-    traslado.setBodegaDestino(bodegaDestino);
-    traslado.setUser(usuario);
+    traslado.setProduct(product);
+    traslado.setWarehouseOrigen(warehouseOrigen);
+    traslado.setWarehouseDestino(warehouseDestino);
+    traslado.setUser(user);
 
     return trasladoRepository.save(traslado);
   }

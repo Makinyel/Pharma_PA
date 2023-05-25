@@ -64,13 +64,13 @@ const Products = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        nombre: formData.get("name"),
-        descripcion: formData.get("description"),
-        precioCompra: parseFloat(formData.get("buying price")),
-        previoVenta: parseFloat(formData.get("selling price")),
-        marca: formData.get("brand"),
-        presentacion: formData.get("preparation"),
-        concentracion: formData.get("concentration"),
+        name: formData.get("name"),
+        description: formData.get("description"),
+        buyingPrice: parseFloat(formData.get("buying price")),
+        sellingPrice: parseFloat(formData.get("selling price")),
+        brand: formData.get("brand"),
+        presentation: formData.get("preparation"),
+        concentration: formData.get("concentration"),
       }),
     })
       .then(() => {

@@ -1,6 +1,6 @@
 package com.example.pharma.infrastructure.repository.Venta;
 
-import com.example.pharma.domain.entities.Venta.Venta;
+import com.example.pharma.domain.entities.venta.Venta;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

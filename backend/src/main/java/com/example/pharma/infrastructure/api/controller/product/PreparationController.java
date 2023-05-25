@@ -1,7 +1,9 @@
-package com.example.pharma.infrastructure.api.controller.producto;
+package com.example.pharma.infrastructure.api.controller.product;
 
+import com.example.pharma.domain.entities.product.Preparation;
+import com.example.pharma.domain.service.product.PreparationService;
 import java.util.List;
-
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,35 +13,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.pharma.domain.entities.producto.Presentacion;
-import com.example.pharma.domain.service.producto.PresentacionService;
-
-import lombok.AllArgsConstructor;
-
 @AllArgsConstructor
 @RestController
 @RequestMapping(path = "/preparation")
-public class PresentacionController {
+public class PreparationController {
 
-  private PresentacionService presentacionService;
+  private PreparationService preparationService;
 
   @PostMapping
-  public Presentacion save(@RequestBody Presentacion presentacion) {
-    return presentacionService.save(presentacion);
+  public Preparation save(@RequestBody Preparation preparation) {
+    return preparationService.save(preparation);
   }
 
   @GetMapping
-  public List<Presentacion> getAll() {
-    return presentacionService.getAll();
+  public List<Preparation> findAll() {
+    return preparationService.findAll();
   }
 
-  @GetMapping("nombre")
-  public Presentacion getByName(@RequestParam("name") String name) {
-    return presentacionService.getByName(name);
+  @GetMapping("name")
+  public Preparation findByName(@RequestParam("name") String name) {
+    return preparationService.findByName(name);
   }
 
   @DeleteMapping("{id}")
   public void delete(@PathVariable("id") Long id) {
-    presentacionService.delete(id);
+    preparationService.delete(id);
   }
 }

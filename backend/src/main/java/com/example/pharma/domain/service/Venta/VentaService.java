@@ -1,9 +1,8 @@
 package com.example.pharma.domain.service.Venta;
 
-import com.example.pharma.domain.entities.Venta.Venta;
+import com.example.pharma.domain.entities.venta.Venta;
 import com.example.pharma.infrastructure.repository.Venta.VentaRepository;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

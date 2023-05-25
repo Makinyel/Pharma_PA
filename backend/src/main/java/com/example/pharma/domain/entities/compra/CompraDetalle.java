@@ -1,7 +1,7 @@
 package com.example.pharma.domain.entities.compra;
 
-import com.example.pharma.domain.entities.producto.Bodega;
-import com.example.pharma.domain.entities.producto.Producto;
+import com.example.pharma.domain.entities.product.Warehouse;
+import com.example.pharma.domain.entities.product.Product;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,7 +13,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.IdGeneratorType;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,10 +28,10 @@ public class CompraDetalle{
   private double total;
   @ManyToOne
   @JoinColumn(name = "id_BodegaDestino", referencedColumnName = "id")
-  private Bodega bodegaDestino;
+  private Warehouse warehouseDestino;
   @ManyToOne
   @JoinColumn(name = "id_producto", referencedColumnName = "id")
-  private Producto producto;
+  private Product product;
   @ManyToOne
   @JoinColumn(name = "id_compra", referencedColumnName = "code")
   private Compra compra;
