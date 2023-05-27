@@ -75,10 +75,10 @@ public class TransferDetailService {
     TransferDetail transferDetail = new TransferDetail();
 
     Warehouse origenWarehouse = warehouseService.findByName(
-        request.getOrigenwarehouseName());
+        request.getSourceWarehouse());
 
     Warehouse destinationWarehouse = warehouseService.findByName(
-        request.getDestinationWarehouseName());
+        request.getDestinationWarehouse());
 
     Product product = productService.findByName(request.getProductName());
 

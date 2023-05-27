@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class SaleDetailRequest {
 
   private Integer quantity;
-  private String origenwarehouseName;
+  private String sourceWarehouseName;
   private String productName;
   private Long saleId;
 }

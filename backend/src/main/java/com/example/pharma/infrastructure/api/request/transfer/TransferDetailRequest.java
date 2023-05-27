@@ -7,8 +7,8 @@ import lombok.Data;
 @AllArgsConstructor
 public class TransferDetailRequest {
 
-  private int quantity;
+  private Integer quantity;
   private String productName;
-  private String origenwarehouseName;
-  private String destinationWarehouseName;
+  private String sourceWarehouse;
+  private String destinationWarehouse;
 }

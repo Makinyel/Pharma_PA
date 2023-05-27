@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping(path = "/transfer-detail")
+@RequestMapping(path = "/transfer-details")
 public class TransferDetailController {
 
   private final TransferDetailService transferDetailService;
@@ -19,7 +19,6 @@ public class TransferDetailController {
   @PostMapping
   public void create(
       @RequestBody List<TransferDetailRequest> transferDetailRequestList) {
-    transferDetailService.completeTransfer
-        (transferDetailService.mapper(transferDetailRequestList));
+    transferDetailService.completeTransfer(transferDetailService.mapper(transferDetailRequestList));
   }
 }

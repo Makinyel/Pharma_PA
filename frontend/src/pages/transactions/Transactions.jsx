@@ -66,7 +66,7 @@ const Transactions = () => {
     setStepCount(1);
   }, [transactionsTab, module]);
 
-  const handleFormSubmit = async (event) => {
+  const initTransaction = async (event) => {
     event.preventDefault();
     const form = event.target;
     const formData = new FormData(form);
@@ -99,13 +99,14 @@ const Transactions = () => {
 
     const savedTransactionInit = await response.json();
 
-    alert(`${_.upperFirst(transactionsTab)} has been successfully made.`);
+    alert(`${_.upperFirst(transactionsTab)} has been successfully initiated.`);
 
     dispatch(toggleTransactionInitiated());
     setStepCount(stepCount + 1);
     dispatch(setTransaction({ transaction: savedTransactionInit }));
     setDetailsFormInfo(detailsFormInfoMap[transactionsTab]);
     clearFormFields(formRef);
+    console.log(detailsFormInfo);
   };
 
   const addDetails = async (event) => {
@@ -126,6 +127,12 @@ const Transactions = () => {
         quantity: formData.get("quantity"),
         destinationWarehouseName: formData.get("destination warehouse"),
         productName: formData.get("product name"),
+      },
+      transfer: {
+        quantity: formData.get("quantity"),
+        productName: formData.get("product name"),
+        sourceWarehouse: formData.get("source warehouse"),
+        destinationWarehouse: formData.get("destination warehouse"),
       },
       sale: {
         saleId: transaction?.id,
@@ -148,6 +155,7 @@ const Transactions = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "user-email": user.email,
       },
       body: JSON.stringify(transactionDetails),
     });
@@ -155,23 +163,17 @@ const Transactions = () => {
     if (!response.ok) {
       alert(`There was an error processing the ${transactionsTab}`);
       return;
+    } else {
+      alert(`${_.upperFirst(transactionsTab)} has completed!`);
+      dispatch(toggleTransactionInitiated());
+      dispatch(setTransactionDetails([]));
+      dispatch(setTransactionDetailsProducts([]));
+      setStepCount(1);
+      setFormInfo(formInfoMap[transactionsTab]);
+      clearFormFields(formRef);
     }
 
     const savedTransactionDetail = await response.json();
-    console.log(savedTransactionDetail);
-
-    if (!savedTransactionDetail.ok) {
-      alert(`There was something wrong completing the transaction`);
-      return;
-    }
-
-    alert(`${_.upperFirst(transactionsTab)} has completed!`);
-    dispatch(toggleTransactionInitiated());
-    dispatch(setTransactionDetails([]));
-    dispatch(setTransactionDetailsProducts([]));
-    setStepCount(1);
-    setFormInfo(formInfoMap[transactionsTab]);
-    clearFormFields(formRef);
   };
 
   return (
@@ -182,7 +184,7 @@ const Transactions = () => {
         <FormWrapper>
           <form
             ref={formRef}
-            onSubmit={transactionInitiated ? addDetails : handleFormSubmit}
+            onSubmit={transactionInitiated ? addDetails : initTransaction}
           >
             {transactionInitiated ? (
               <InputRow>
@@ -212,7 +214,7 @@ const Transactions = () => {
             <ButtonWrapper isNotAPhone={isNotAPhone}>
               <Button
                 type="submit"
-                text={transactionInitiated ? "Add detail" : "Save"}
+                text={transactionInitiated ? "Add detail" : "Initiate"}
               />
               {transactionInitiated && (
                 <Button

@@ -89,7 +89,7 @@ public class SaleDetailService {
     }
     SaleDetail saleDetail = new SaleDetail();
 
-    Warehouse warehouse = warehouseService.findByName(request.getOrigenwarehouseName());
+    Warehouse warehouse = warehouseService.findByName(request.getSourceWarehouseName());
     Product product = productService.findByName(request.getProductName());
     Sale sale = saleService.getById(request.getSaleId());
 

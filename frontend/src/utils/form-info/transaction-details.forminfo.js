@@ -33,3 +33,26 @@ export const saleDetailsFormInfo = [
     description: "Quantity of product you want to sell.",
   },
 ];
+
+export const transferDetailsFormInfo = [
+  {
+    type: "text",
+    title: "Quantity",
+    description: "Quantity of product you want to sell.",
+  },
+  {
+    type: "select",
+    title: "Product name",
+    description: "Quantity of product you want to sell.",
+  },
+  {
+    type: "select",
+    title: "Source warehouse",
+    description: "Warehouse the products will come from.",
+  },
+  {
+    type: "select",
+    title: "Destination warehouse",
+    description: "Warehouse the products will save to`.",
+  },
+];
