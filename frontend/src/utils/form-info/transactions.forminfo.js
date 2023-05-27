@@ -19,25 +19,4 @@ export const initSaleFormInfo = [
   },
 ];
 
-export const transferFormInfo = [
-  {
-    type: "date",
-    title: "Product",
-    description: "Product to transfer",
-  },
-  {
-    type: "text",
-    title: "Quantity",
-    description: "Quantity to transfer",
-  },
-  {
-    type: "select",
-    title: "Source Warehouse",
-    description: "Source warehouse",
-  },
-  {
-    type: "select",
-    title: "Destination Warehouse",
-    description: "Destination warehouse",
-  },
-];
+export const transferFormInfo = [];

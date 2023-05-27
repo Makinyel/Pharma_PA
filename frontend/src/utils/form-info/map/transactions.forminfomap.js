@@ -7,6 +7,7 @@ import {
 import {
   purchaseDetailsFormInfo,
   saleDetailsFormInfo,
+  transferDetailsFormInfo,
 } from "../transaction-details.forminfo";
 
 export const formInfoMap = {
@@ -17,5 +18,6 @@ export const formInfoMap = {
 
 export const detailsFormInfoMap = {
   purchase: purchaseDetailsFormInfo,
+  transfer: transferDetailsFormInfo,
   sale: saleDetailsFormInfo,
 };
