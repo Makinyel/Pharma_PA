@@ -2,6 +2,7 @@ package com.example.pharma.infrastructure.api.controller.product;
 
 import com.example.pharma.domain.entities.product.Product;
 import com.example.pharma.domain.service.product.ProductService;
+import com.example.pharma.infrastructure.api.mapper.ProductResponseMapper;
 import com.example.pharma.infrastructure.api.request.product.ProductRequest;
 import com.example.pharma.infrastructure.api.response.ProductResponse;
 import java.util.List;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductController {
 
   private ProductService productService;
+  private ProductResponseMapper responseMapper;
 
   @PostMapping
   public ResponseEntity<Product> save(@RequestBody ProductRequest productRequest) {
@@ -35,8 +37,13 @@ public class ProductController {
   }
 
   @GetMapping("/detail")
-  public ResponseEntity<Product> findByName(@RequestParam("name") String name) {
-    return ResponseEntity.ok(productService.findByName(name));
+  public ResponseEntity<ProductResponse> findByName(@RequestParam("name") String name) {
+    return ResponseEntity.ok(responseMapper.toResponse(productService.findByName(name)));
+  }
+
+  @GetMapping("{id}")
+  public ResponseEntity<Product> findByName(@PathVariable("id") Long id) {
+    return ResponseEntity.ok(productService.findById(id));
   }
 
   @DeleteMapping("{id}")
