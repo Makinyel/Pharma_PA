@@ -9,7 +9,6 @@ const Table = ({ tableData }) => {
         MuiTableCell: {
           styleOverrides: {
             root: {
-              padding: "10px",
               backgroundColor: "white",
             },
           },
@@ -19,8 +18,8 @@ const Table = ({ tableData }) => {
 
   const options = {
     selectableRows: "none",
-    download: false,
-    print: false,
+    download: true,
+    print: true,
     viewColumns: true,
     responsive: "standard",
     onTableChange: () => {},
@@ -41,8 +40,8 @@ const Table = ({ tableData }) => {
         name: key,
         label: capitalizedLabel,
         options: {
-          filter: false,
-          sort: false,
+          filter: true,
+          sort: true,
           customBodyRender: (data) => {
             if (typeof data === "object") {
               return JSON.stringify(data);

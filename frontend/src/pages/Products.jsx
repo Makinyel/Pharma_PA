@@ -51,6 +51,29 @@ const Products = () => {
     const form = event.target;
     const formData = new FormData(form);
 
+    const requestBodyMap = {
+      product: {
+        name: formData.get("name"),
+        description: formData.get("description"),
+        buyingPrice: parseFloat(formData.get("buying price")),
+        sellingPrice: parseFloat(formData.get("selling price")),
+        brand: formData.get("brand"),
+        presentation: formData.get("preparation"),
+        concentration: formData.get("concentration"),
+      },
+      brand: { name: formData.get("name") },
+      preparation: { name: formData.get("name") },
+      warehouse: {
+        name: formData.get("name"),
+        address: formData.get("address"),
+        phone: formData.get("phone"),
+      },
+      concentration: {
+        name: formData.get("name"),
+        prefix: formData.get("prefix"),
+      },
+    };
+
     const tabEndpoints = {
       product: endpoints.product.save,
       brand: endpoints.brand.save,
@@ -64,15 +87,7 @@ const Products = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        name: formData.get("name"),
-        description: formData.get("description"),
-        buyingPrice: parseFloat(formData.get("buying price")),
-        sellingPrice: parseFloat(formData.get("selling price")),
-        brand: formData.get("brand"),
-        presentation: formData.get("preparation"),
-        concentration: formData.get("concentration"),
-      }),
+      body: JSON.stringify(requestBodyMap[productsTab]),
     });
 
     if (!response.ok) {

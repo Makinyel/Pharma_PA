@@ -18,6 +18,12 @@ export const Header = styled.h2`
   padding: 1.25rem;
 `;
 
+export const Subheader = styled.h3`
+  font-size: 1.3rem;
+  line-height: 2rem;
+  padding: 1.25rem;
+`;
+
 export const Subtitle = styled.h3`
   color: #0f0f0f;
   font-size: 1.15rem;
