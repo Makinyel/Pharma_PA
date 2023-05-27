@@ -29,13 +29,13 @@ public class SaleDetailService {
 
     Product product = productService.findById(saleDetail.getProduct().getId());
     Warehouse warehouse = warehouseService.findByName(
-        saleDetail.getWarehouseOrigen().getName());
+        saleDetail.getSourceWarehouse().getName());
     Sale sale = saleService.getById(saleDetail.getSale().getId());
 
     double total = product.getSellingPrice() * saleDetail.getQuantity();
 
     saleDetail.setProduct(product);
-    saleDetail.setWarehouseOrigen(warehouse);
+    saleDetail.setSourceWarehouse(warehouse);
     saleDetail.setSale(sale);
     saleDetail.setTotal(total);
 
@@ -94,7 +94,7 @@ public class SaleDetailService {
     Sale sale = saleService.getById(request.getSaleId());
 
     saleDetail.setQuantity(request.getQuantity());
-    saleDetail.setWarehouseOrigen(warehouse);
+    saleDetail.setSourceWarehouse(warehouse);
     saleDetail.setProduct(product);
     saleDetail.setSale(sale);
 

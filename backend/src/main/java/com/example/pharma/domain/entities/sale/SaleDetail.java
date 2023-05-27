@@ -28,14 +28,12 @@ public class SaleDetail {
   private Integer quantity;
   private double total;
   @ManyToOne
-  @JoinColumn(name = "warehouseOrigen_id", referencedColumnName = "id")
-  private Warehouse warehouseOrigen;
+  @JoinColumn(name = "source_warehouse_id", referencedColumnName = "id")
+  private Warehouse sourceWarehouse;
   @ManyToOne
   @JoinColumn(name = "product_id", referencedColumnName = "id")
   private Product product;
   @ManyToOne
   @JoinColumn(name = "sale_id", referencedColumnName = "id")
   private Sale sale;
-
 }
-

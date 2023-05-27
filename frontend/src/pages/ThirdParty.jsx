@@ -3,7 +3,7 @@ import { React, useRef } from "react";
 import Button from "../components/button/Button";
 import Input from "../components/input/Input";
 
-import { thirdPartyFormInfo as formInfo } from "../utils/form-info/thirdPartyFormInfo";
+import { thirdPartyForminfo as formInfo } from "../utils/form-info/third-party.forminfo.js";
 
 import {
   ButtonWrapper,

@@ -9,6 +9,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SaleRequest {
 
-  String clientName;
-
+  private String clientName;
 }

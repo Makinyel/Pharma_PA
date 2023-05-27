@@ -28,15 +28,15 @@ public class TransferDetailService {
     Product product = transferDetail.getProduct();
 
     Warehouse origenWarehouse = warehouseService.findById(
-        transferDetail.getWarehouseOrigen().getId());
+        transferDetail.getSourceWarehouseId().getId());
 
     Warehouse destinationWarehouse = warehouseService.findById(
-        transferDetail.getWarehouseDestination().getId());
+        transferDetail.getDestinationWarehouseId().getId());
 
     transferDetail.setQuantity(transferDetail.getQuantity());
     transferDetail.setProduct(product);
-    transferDetail.setWarehouseOrigen(origenWarehouse);
-    transferDetail.setWarehouseDestination(destinationWarehouse);
+    transferDetail.setSourceWarehouseId(origenWarehouse);
+    transferDetail.setDestinationWarehouseId(destinationWarehouse);
 
     Stock stockOrigen = stockService.getByIdProductIdBodega(product.getId(),
         origenWarehouse.getId());
@@ -83,8 +83,8 @@ public class TransferDetailService {
     Product product = productService.findByName(request.getProductName());
 
     transferDetail.setQuantity(request.getQuantity());
-    transferDetail.setWarehouseOrigen(origenWarehouse);
-    transferDetail.setWarehouseDestination(destinationWarehouse);
+    transferDetail.setSourceWarehouseId(origenWarehouse);
+    transferDetail.setDestinationWarehouseId(destinationWarehouse);
     transferDetail.setProduct(product);
 
     return transferDetail;

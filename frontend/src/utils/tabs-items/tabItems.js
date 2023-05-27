@@ -6,4 +6,4 @@ export const productsTabs = [
   "warehouse",
 ];
 
-export const transactionsTabs = [["buy", "transfer"], ["sell"]];
+export const transactionsTabs = [["purchase", "transfer"], ["sale"]];

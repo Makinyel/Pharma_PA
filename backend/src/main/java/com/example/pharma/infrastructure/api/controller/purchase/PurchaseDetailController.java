@@ -1,4 +1,4 @@
-package com.example.pharma.infrastructure.api.controller.compra;
+package com.example.pharma.infrastructure.api.controller.purchase;
 
 import com.example.pharma.domain.service.purchase.PurchaseDetailService;
 import com.example.pharma.infrastructure.api.request.compra.PurchaseDetailRequest;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 @RestController
 @RequestMapping(path = "/buy-details")
-public class CompraDetalleController {
+public class PurchaseDetailController {
 
   private PurchaseDetailService purchaseDetailService;
 

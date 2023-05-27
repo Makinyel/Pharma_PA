@@ -1,4 +1,4 @@
-export const thirdPartyFormInfo = [
+export const thirdPartyForminfo = [
   {
     type: "select",
     title: "Third party type",

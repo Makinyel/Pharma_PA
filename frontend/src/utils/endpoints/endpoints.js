@@ -18,13 +18,19 @@ export const endpoints = {
     getUpdateDelete: (id) => `${BASE_URL}/third-party/${id}`,
   },
   client: {
-    saveGetAll: `${BASE_URL}/third-party`,
+    getAll: `${BASE_URL}/third-party`,
     getUpdateDelete: (id) => `${BASE_URL}/third-party/${id}`,
   },
   product: {
     save: `${BASE_URL}/product`,
     getAll: `${BASE_URL}/product`,
-    getById: (id) => `${BASE_URL}/product/detail?id=${id}`,
+    getByName: (name) => `${BASE_URL}/product/detail?name=${name}`,
+    delete: (id) => `${BASE_URL}/${id}`,
+  },
+  productname: {
+    save: `${BASE_URL}/product`,
+    getAll: `${BASE_URL}/product`,
+    getByName: (name) => `${BASE_URL}/product/detail?name=${name}`,
     delete: (id) => `${BASE_URL}/${id}`,
   },
   sourcewarehouse: {
@@ -68,10 +74,19 @@ export const endpoints = {
   buy: {
     base: `${BASE_URL}/buy`,
   },
-  sell: {
-    base: `${BASE_URL}/sell`,
+  purchaseDetails: {
+    base: `${BASE_URL}/buy-details`,
+  },
+  sale: {
+    base: `${BASE_URL}/sale`,
+  },
+  saleDetails: {
+    base: `${BASE_URL}/sale-details`,
   },
   transfer: {
     base: `${BASE_URL}/transfer`,
+  },
+  transferDetails: {
+    base: `${BASE_URL}/transfer-details`,
   },
 };

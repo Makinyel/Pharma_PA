@@ -1,4 +1,4 @@
-export const productsFormInfo = [
+export const productsForminfo = [
   {
     type: "text",
     title: "Name",

@@ -5,10 +5,11 @@ import _ from "lodash";
 
 const SelectInput = ({ title, description }) => {
   let options = [];
+  const lowercaseTitle = endpoints[_.lowerCase(title).replace(/\s+/g, "")];
+  const [fetchedOptions, setFetchedOptions] = useState([]);
 
-  if (endpoints[_.lowerCase(title).replace(/\s+/g, "")]) {
-    const endpoint = endpoints[_.lowerCase(title).replace(/\s+/g, "")].getAll;
-    const [fetchedOptions, setFetchedOptions] = useState([]);
+  if (lowercaseTitle) {
+    const endpoint = lowercaseTitle.getAll;
 
     useEffect(() => {
       const fetchData = async () => {

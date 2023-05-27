@@ -1,18 +1,7 @@
-import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import {
-  cxcTableColumns,
-  cxpTableColumns,
-} from "../utils/table-info/cartera/cartera-table-info";
 import MUIDataTable from "mui-datatables";
-import axios from "axios";
 
-const Table = ({ title, endpoint }) => {
-  const [data, setData] = useState([]);
-  const [columns, setColumns] = useState([]);
-  const currentCarteraTab = useSelector((state) => state.currentCarteraTab);
-
+const Table = ({ tableData }) => {
   const getMuiTheme = () =>
     createTheme({
       shadows: Array(25).fill("none"),
@@ -28,22 +17,46 @@ const Table = ({ title, endpoint }) => {
       },
     });
 
-  const getData = async () => {
-    await axios.get(endpoint).then((res) => {
-      const data = res.data;
-      setData(data);
-    });
+  const options = {
+    selectableRows: "none",
+    download: false,
+    print: false,
+    viewColumns: true,
+    responsive: "standard",
+    onTableChange: () => {},
+    columns: [0, 3], // Indices of the columns to be selected by default
   };
 
-  useEffect(() => {
-    getData();
-    if (currentCarteraTab === "cxp") setColumns(cxpTableColumns);
-    if (currentCarteraTab === "cxc") setColumns(cxcTableColumns);
-  }, [endpoint, currentCarteraTab]);
+  const generateColumns = (data) => {
+    if (!data || data.length === 0) {
+      return [];
+    }
+
+    const keys = Object.keys(data[0]);
+
+    const columns = keys.map((key) => ({
+      name: key,
+      label: key,
+      options: {
+        filter: false,
+        sort: false,
+        customBodyRender: (data) => {
+          if (typeof data === "object") {
+            return JSON.stringify(data);
+          }
+          return data;
+        },
+      },
+    }));
+
+    return columns;
+  };
+
+  const columns = generateColumns(tableData);
 
   return (
     <ThemeProvider theme={getMuiTheme()}>
-      <MUIDataTable columns={columns} data={data} />
+      <MUIDataTable columns={columns} data={tableData} options={options} />
     </ThemeProvider>
   );
 };

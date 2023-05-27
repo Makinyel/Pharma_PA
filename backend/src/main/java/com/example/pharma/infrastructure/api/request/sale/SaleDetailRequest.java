@@ -13,5 +13,4 @@ public class SaleDetailRequest {
   private String origenwarehouseName;
   private String productName;
   private Long saleId;
-
 }

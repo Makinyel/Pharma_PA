@@ -7,13 +7,11 @@ spring:
 spring:
   profile: local
   datasource:
-    url: jdbc:postgresql://181.143.211.54:3654/desarrollo
+    url: jdbc:postgresql://localhost:5432/pharmapa
     username: postgres
-    password: sume3654
-    test-on-borrow: true
-    validation-query: SELECT 1 FROM dual
+    password: 1234
+    driver-class-name: org.postgresql.Driver
   jpa:
     show-sql: true
     hibernate:
-      format-sql: true
       ddl-auto: update

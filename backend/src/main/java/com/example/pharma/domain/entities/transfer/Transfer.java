@@ -20,7 +20,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Table(name = "traslado")
-
 public class Transfer {
 
   @Id
@@ -30,5 +29,4 @@ public class Transfer {
   @ManyToOne
   @JoinColumn(name = "user_id", referencedColumnName = "id")
   private User user;
-
 }

@@ -19,24 +19,23 @@ import lombok.NoArgsConstructor;
 @Entity
 @Builder
 @Data
-@Table(name = "datalle_traslado")
+@Table(name = "detalle_traslado")
 public class TransferDetail {
-
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-
   private int quantity;
   @ManyToOne
   @JoinColumn(name = "product_id", referencedColumnName = "id")
   private Product product;
-
   @ManyToOne
-  @JoinColumn(name = "origen_warehouse_Id", referencedColumnName = "id")
-  private Warehouse warehouseOrigen;
+  @JoinColumn(name = "source_warehouse_Id", referencedColumnName = "id")
+  private Warehouse sourceWarehouseId;
   @ManyToOne
   @JoinColumn(name = "destination_warehouse_Id", referencedColumnName = "id")
-  private Warehouse warehouseDestination;
-
+  private Warehouse destinationWarehouseId;
+  @ManyToOne
+  @JoinColumn(name = "transfer_id", referencedColumnName = "id")
+  private Transfer transferId;
 }

@@ -3,6 +3,7 @@ package com.example.pharma.infrastructure.api.controller.product;
 import com.example.pharma.domain.entities.product.Product;
 import com.example.pharma.domain.service.product.ProductService;
 import com.example.pharma.infrastructure.api.request.product.ProductRequest;
+import com.example.pharma.infrastructure.api.response.ProductResponse;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -34,8 +35,8 @@ public class ProductController {
   }
 
   @GetMapping("/detail")
-  public ResponseEntity<Product> findById(@RequestParam Long id) {
-    return ResponseEntity.ok(productService.findById(id));
+  public ResponseEntity<Product> findByName(@RequestParam("name") String name) {
+    return ResponseEntity.ok(productService.findByName(name));
   }
 
   @DeleteMapping("{id}")

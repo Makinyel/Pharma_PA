@@ -1,7 +1,7 @@
 package com.example.pharma.domain.entities.purchase;
 
-import com.example.pharma.domain.entities.product.Warehouse;
 import com.example.pharma.domain.entities.product.Product;
+import com.example.pharma.domain.entities.product.Warehouse;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,6 +21,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "detalle_compra")
 public class PurchaseDetail {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;

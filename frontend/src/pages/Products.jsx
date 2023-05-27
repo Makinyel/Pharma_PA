@@ -8,9 +8,9 @@ import {
   brandFormInfo,
   concentrationFormInfo,
   preparationFormInfo,
-  productsFormInfo,
+  productsForminfo,
   warehouseFormInfo,
-} from "../utils/form-info/productsFormInfo";
+} from "../utils/form-info/products.forminfo.js";
 
 import {
   ButtonWrapper,
@@ -34,7 +34,7 @@ const Products = () => {
   const formRef = useRef(null);
 
   const formInfoMap = {
-    product: productsFormInfo,
+    product: productsForminfo,
     brand: brandFormInfo,
     preparation: preparationFormInfo,
     warehouse: warehouseFormInfo,
