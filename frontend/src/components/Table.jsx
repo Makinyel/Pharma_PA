@@ -34,20 +34,24 @@ const Table = ({ tableData }) => {
 
     const keys = Object.keys(data[0]);
 
-    const columns = keys.map((key) => ({
-      name: key,
-      label: key,
-      options: {
-        filter: false,
-        sort: false,
-        customBodyRender: (data) => {
-          if (typeof data === "object") {
-            return JSON.stringify(data);
-          }
-          return data;
+    const columns = keys.map((key) => {
+      const capitalizedLabel = key.charAt(0).toUpperCase() + key.slice(1);
+
+      return {
+        name: key,
+        label: capitalizedLabel,
+        options: {
+          filter: false,
+          sort: false,
+          customBodyRender: (data) => {
+            if (typeof data === "object") {
+              return JSON.stringify(data);
+            }
+            return data;
+          },
         },
-      },
-    }));
+      };
+    });
 
     return columns;
   };

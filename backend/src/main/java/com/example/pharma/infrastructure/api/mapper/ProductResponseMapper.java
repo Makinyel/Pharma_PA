@@ -9,9 +9,10 @@ import org.mapstruct.Mapping;
 @Mapper
 public interface ProductResponseMapper {
 
-  @Mapping(target = "brandName", source = "brand.name")
-  @Mapping(target = "preparationName", source = "preparation.name")
-  @Mapping(target = "concentrationName", source = "concentration.name")
+  @Mapping(target = "brand", source = "brand.name")
+  @Mapping(target = "preparation", source = "preparation.name")
+  @Mapping(target = "concentration", source = "concentration.name")
+  @Mapping(target = "prefix", source = "concentration.prefix")
   ProductResponse toResponse(Product product);
 
   List<ProductResponse> toResponse(List<Product> products);

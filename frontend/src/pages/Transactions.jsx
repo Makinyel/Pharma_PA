@@ -1,14 +1,16 @@
 import { React, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  formInfoMap,
-  detailsFormInfoMap,
-} from "../../utils/form-info/map/transactions.forminfomap";
+import { toast } from "sonner";
 
-import Button from "../../components/button/Button";
-import Input from "../../components/input/Input";
-import Table from "../../components/Table.jsx";
+import {
+  detailsFormInfoMap,
+  formInfoMap,
+} from "../utils/form-info/map/transactions.forminfomap";
+
+import Button from "../components/button/Button";
+import Input from "../components/input/Input";
+import Table from "../components/Table.jsx";
 
 import {
   ButtonWrapper,
@@ -19,15 +21,15 @@ import {
   InputWrapper,
   Subtitle,
   Wrapper,
-} from "../../styles/FormStyles";
+} from "../styles/FormStyles";
 
 import { useMediaQuery } from "@mui/material";
-import { endpoints } from "../../utils/endpoints/endpoints";
+import { endpoints } from "../utils/endpoints/endpoints";
 import {
   detailsEndpoints,
   tabEndpoints,
-} from "../../utils/endpoints/transaction.endpoints";
-import { clearFormFields } from "../../utils/functions/formUtils";
+} from "../utils/endpoints/transaction.endpoints";
+import { clearFormFields } from "../utils/functions/formUtils";
 
 import _ from "lodash";
 import {
@@ -36,7 +38,7 @@ import {
   setTransactionDetailsProducts,
   toggleTransactionInitiated,
   untoggleTransactionInitiated,
-} from "../../state/state.js";
+} from "../state/state.js";
 
 const Transactions = () => {
   const dispatch = useDispatch();
@@ -93,20 +95,27 @@ const Transactions = () => {
     });
 
     if (!response.ok) {
-      alert(`There was an error processing the ${transactionsTab}`);
+      toast.error(`There was an error processing the ${transactionsTab}`);
       return;
     }
 
     const savedTransactionInit = await response.json();
 
-    alert(`${_.upperFirst(transactionsTab)} has been successfully initiated.`);
+    toast.promise(() => Promise.resolve(savedTransactionInit), {
+      loading: "Loading...",
+      success: (data) => {
+        return `${_.upperFirst(
+          transactionsTab
+        )} has been successfully initiated.`;
+      },
+      error: "Error",
+    });
 
     dispatch(toggleTransactionInitiated());
     setStepCount(stepCount + 1);
     dispatch(setTransaction({ transaction: savedTransactionInit }));
     setDetailsFormInfo(detailsFormInfoMap[transactionsTab]);
     clearFormFields(formRef);
-    console.log(detailsFormInfo);
   };
 
   const addDetails = async (event) => {
@@ -114,7 +123,7 @@ const Transactions = () => {
     const form = event.target;
     const formData = new FormData(form);
 
-    //save product to table
+    // Save product to table
     const product = await fetch(
       endpoints.product.getByName(formData.get("product name"))
     );
@@ -137,17 +146,20 @@ const Transactions = () => {
       sale: {
         saleId: transaction?.id,
         quantity: formData.get("quantity"),
-        origenwarehouseName: formData.get("source warehouse"),
+        sourceWarehouseName: formData.get("source warehouse"),
         productName: formData.get("product name"),
       },
     };
 
-    //1. add detail to list of details
+    // Add detail to list of details
     dispatch(setTransactionDetails([requestDetailsMap[transactionsTab]]));
 
-    alert(`${_.upperFirst(transactionsTab)} detail has been added.`);
+    toast.success(`${_.upperFirst(transactionsTab)} detail has been added.`);
+
     clearFormFields(formRef);
   };
+
+  const printReceipt = (transaction) => {};
 
   const completeTransaction = async () => {
     //2. POST list of details
@@ -161,19 +173,24 @@ const Transactions = () => {
     });
 
     if (!response.ok) {
-      alert(`There was an error processing the ${transactionsTab}`);
+      toast.error(`There was an error processing the ${transactionsTab}`);
       return;
     } else {
-      alert(`${_.upperFirst(transactionsTab)} has completed!`);
+      toast.success(
+        `${_.upperFirst(transactionsTab)} has been completed successfully!`
+      );
       dispatch(toggleTransactionInitiated());
       dispatch(setTransactionDetails([]));
       dispatch(setTransactionDetailsProducts([]));
       setStepCount(1);
       setFormInfo(formInfoMap[transactionsTab]);
       clearFormFields(formRef);
-    }
 
-    const savedTransactionDetail = await response.json();
+      //FACTURA
+      // toast.custom((t) => (
+      //   <button onClick={printReceipt(response)}>Print your receipt!</button>
+      // ));
+    }
   };
 
   return (
@@ -219,7 +236,7 @@ const Transactions = () => {
               {transactionInitiated && (
                 <Button
                   type="button"
-                  text="Complete purchase"
+                  text={`Complete ${transactionsTab}`}
                   onClick={completeTransaction}
                 />
               )}

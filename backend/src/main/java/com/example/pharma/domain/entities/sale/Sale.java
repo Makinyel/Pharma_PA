@@ -27,9 +27,9 @@ public class Sale {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private LocalDate date;
-  private double subtotal;
-  private double total;
-  private double iva;
+  private Double subtotal;
+  private Double total;
+  private Double iva;
   @ManyToOne
   @JoinColumn(name = "client_id", referencedColumnName = "id")
   private Persona client;

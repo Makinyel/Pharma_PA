@@ -11,7 +11,7 @@ public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
   @Query(nativeQuery = true, value = "update compra set iva = :iva, " +
       "total =:total, subtotal = :subtotal where id = :id")
   @Modifying
-  void updatePurchase(
+  Purchase updatePurchase(
       @Param("id") double id,
       @Param("subtotal")  double subtotal,
       @Param("total")  double total,

@@ -22,18 +22,19 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "compra")
 public class Purchase {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private LocalDate date;
-    private String invoiceCode;
-    private double subtotal;
-    private double total;
-    private double iva;
-    @ManyToOne
-    @JoinColumn(name = "provider_Id", referencedColumnName = "id")
-    private Persona provider;
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  private LocalDate date;
+  private String invoiceCode;
+  private Double subtotal;
+  private Double total;
+  private Double iva;
+  @ManyToOne
+  @JoinColumn(name = "provider_Id", referencedColumnName = "id")
+  private Persona provider;
+  @ManyToOne
+  @JoinColumn(name = "user_id", referencedColumnName = "id")
+  private User user;
 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import { toast } from "sonner";
 
 import Button from "../components/button/Button";
 import Input from "../components/input/Input";
@@ -58,7 +59,7 @@ const Products = () => {
       concentration: endpoints.concentration.save,
     };
 
-    await fetch(tabEndpoints[productsTab], {
+    const response = await fetch(tabEndpoints[productsTab], {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -72,15 +73,24 @@ const Products = () => {
         presentation: formData.get("preparation"),
         concentration: formData.get("concentration"),
       }),
-    })
-      .then(() => {
-        alert(`${_.upperFirst(productsTab)} has been successfully saved.`);
-        clearFormFields(formRef);
-      })
-      .catch((error) => {
-        console.error("Error saving the " + productsTab, error);
-        alert(`There was an error saving the ${productsTab}.`);
-      });
+    });
+
+    if (!response.ok) {
+      toast.error(`There was an error saving the ${productsTab}.`);
+      return;
+    }
+
+    const saved = await response.json();
+
+    toast.promise(() => Promise.resolve(saved), {
+      loading: "Loading...",
+      success: (data) => {
+        return `${_.upperFirst(productsTab)} has been successfully saved.`;
+      },
+      error: `There was an error saving the ${productsTab}.`,
+    });
+
+    clearFormFields(formRef);
   };
 
   return (

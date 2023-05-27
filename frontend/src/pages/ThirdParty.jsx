@@ -1,4 +1,5 @@
 import { React, useRef } from "react";
+import { toast } from "sonner";
 
 import Button from "../components/button/Button";
 import Input from "../components/input/Input";
@@ -27,7 +28,7 @@ const ThirdParty = () => {
     const form = event.target;
     const formData = new FormData(form);
 
-    await fetch(endpoints.thirdParty.save, {
+    const response = await fetch(endpoints.thirdParty.save, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -41,15 +42,22 @@ const ThirdParty = () => {
         phone: formData.get("phone"),
         email: formData.get("email"),
       }),
-    })
-      .then(() => {
-        alert(`Third party has been successfully saved.`);
-        clearFormFields(formRef);
-      })
-      .catch((error) => {
-        console.error("Error saving the third party", error);
-        alert(`There was an error saving the third party.`);
-      });
+    });
+
+    if (!response.ok) {
+      toast.error("There was an error saving the third party.");
+      return;
+    }
+
+    const saved = response.json();
+
+    toast.promise(() => Promise.resolve(saved), {
+      loading: "Loading...",
+      success: (data) => {
+        return `Third party has been successfully saved.`;
+      },
+      error: `There was an error saving the third party.`,
+    });
   };
 
   return (

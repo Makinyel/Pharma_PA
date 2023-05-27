@@ -9,7 +9,9 @@ import com.example.pharma.domain.service.product.ProductService;
 import com.example.pharma.domain.service.product.WarehouseService;
 import com.example.pharma.domain.service.stock.StockService;
 import com.example.pharma.infrastructure.api.request.compra.PurchaseDetailRequest;
+import com.example.pharma.infrastructure.api.response.PurchaseResponse;
 import com.example.pharma.infrastructure.repository.compra.PurchaseDetailRepository;
+import feign.ResponseMapper;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -19,11 +21,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class PurchaseDetailService {
 
-  private PurchaseDetailRepository purchaseDetailRepository;
-  private ProductService productService;
-  private WarehouseService warehouseService;
-  private PurchaseService purchaseService;
-  private StockService stockService;
+  private final PurchaseDetailRepository purchaseDetailRepository;
+  private final ProductService productService;
+  private final WarehouseService warehouseService;
+  private final PurchaseService purchaseService;
+  private final StockService stockService;
 
   public PurchaseDetail create(PurchaseDetail purchaseDetail) {
 
@@ -48,11 +50,12 @@ public class PurchaseDetailService {
     return purchaseDetailRepository.save(purchaseDetail);
   }
 
-  public void completePurchase(List<PurchaseDetail> purchaseDetailList) {
+  public Purchase completePurchase(List<PurchaseDetail> purchaseDetailList) {
     Purchase invoiceUpdate = purchaseService.getById(
         purchaseDetailList.get(0).getPurchase().getId());
     purchaseDetailList.forEach(invoiceDetail -> buildPurchase(invoiceDetail, invoiceUpdate));
-    purchaseService.updatePurchase(invoiceUpdate);
+
+    return purchaseService.updatePurchase(invoiceUpdate);
   }
 
 

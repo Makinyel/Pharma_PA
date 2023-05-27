@@ -26,7 +26,7 @@ public class SaleDetail {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private Integer quantity;
-  private double total;
+  private Double total;
   @ManyToOne
   @JoinColumn(name = "source_warehouse_id", referencedColumnName = "id")
   private Warehouse sourceWarehouse;

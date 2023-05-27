@@ -53,6 +53,6 @@ export const transferDetailsFormInfo = [
   {
     type: "select",
     title: "Destination warehouse",
-    description: "Warehouse the products will save to`.",
+    description: "Warehouse the products will save to.",
   },
 ];

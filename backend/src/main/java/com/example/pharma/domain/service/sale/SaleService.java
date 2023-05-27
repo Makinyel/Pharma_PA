@@ -26,9 +26,9 @@ public class SaleService {
 
     Sale sale = new Sale();
 
-    sale.setIva(0);
-    sale.setSubtotal(0);
-    sale.setTotal(0);
+    sale.setIva(0.0);
+    sale.setSubtotal(0.0);
+    sale.setTotal(0.0);
     sale.setDate(LocalDate.now());
 
     User user = usuarioService.findByEmail(email);
@@ -47,11 +47,9 @@ public class SaleService {
   }
 
   @Transactional
-  public void updateSale(Sale saleDetails) {
-    saleRepository.updateSale(
-        saleDetails.getId(),
-        saleDetails.getSubtotal(),
-        saleDetails.getTotal(),
-        saleDetails.getIva());
+  public Sale updateSale(Sale saleDetails) {
+    saleRepository.findById(saleDetails.getId())
+        .orElseThrow(() -> new NotFoundException("Sale not found"));
+    return saleRepository.save(saleDetails);
   }
 }

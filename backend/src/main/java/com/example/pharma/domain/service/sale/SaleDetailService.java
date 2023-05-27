@@ -47,14 +47,14 @@ public class SaleDetailService {
 
   }
 
-  public void completeSale(List<SaleDetail> saleDetailList) {
+  public Sale completeSale(List<SaleDetail> saleDetailList) {
     Sale saleUpdate = saleService.getById(
         saleDetailList.get(0).getSale().getId());
-    saleDetailList.forEach(saleDetail -> builSale(saleDetail, saleUpdate));
-    saleService.updateSale(saleUpdate);
+    saleDetailList.forEach(saleDetail -> buildSale(saleDetail, saleUpdate));
+    return saleService.updateSale(saleUpdate);
   }
 
-  private void builSale(SaleDetail saleDetail, Sale saleUpdate) {
+  private void buildSale(SaleDetail saleDetail, Sale saleUpdate) {
 
     create(saleDetail);
 

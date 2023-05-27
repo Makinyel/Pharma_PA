@@ -10,7 +10,8 @@ public class ProductResponse {
   private String description;
   private Double buyingPrice;
   private Double sellingPrice;
-  private String brandName;
-  private String preparationName;
-  private String concentrationName;
+  private String brand;
+  private String preparation;
+  private String concentration;
+  private String prefix;
 }

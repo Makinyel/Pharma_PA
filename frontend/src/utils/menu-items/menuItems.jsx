@@ -17,13 +17,13 @@ export const menuItems = [
     name: "products",
   },
   {
-    icon: <MovimientosIcon className="text-[1.5rem]" />,
-    label: "Transactions",
-    name: "transactions",
-  },
-  {
     icon: <TercerosIcon className="text-[1.5rem]" />,
     label: "Thirds",
     name: "thirdparty",
+  },
+  {
+    icon: <MovimientosIcon className="text-[1.5rem]" />,
+    label: "Transactions",
+    name: "transactions",
   },
 ];

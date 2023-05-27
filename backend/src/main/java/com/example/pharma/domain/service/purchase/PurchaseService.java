@@ -29,8 +29,9 @@ public class PurchaseService {
 
     purchase.setDate(LocalDate.now());
     purchase.setInvoiceCode(purchaseRequest.getInvoiceCode());
-    purchase.setSubtotal(0);
-    purchase.setTotal(0);
+    purchase.setSubtotal(0.0);
+    purchase.setTotal(0.0);
+    purchase.setIva(0.0);
 
     User user = usuarioService.findByEmail(email);
     Persona person = personaService.findByName(purchaseRequest.getProviderName());
@@ -47,11 +48,9 @@ public class PurchaseService {
   }
 
   @Transactional
-  public void updatePurchase(Purchase purchase) {
-    purchaseRepository.updatePurchase(
-        purchase.getId(),
-        purchase.getSubtotal(),
-        purchase.getTotal(),
-        purchase.getIva());
+  public Purchase updatePurchase(Purchase purchase) {
+    purchaseRepository.findById(purchase.getId())
+        .orElseThrow(() -> new NotFoundException("Purchase not found"));
+    return purchaseRepository.save(purchase);
   }
 }
