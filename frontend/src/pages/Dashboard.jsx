@@ -14,7 +14,7 @@ const Dashboard = () => {
       .then((data) => setAllProducts(data));
   };
   const getAllPersonasData = async () => {
-    await fetch(endpoints.client.getAll)
+    await fetch(endpoints.thirdParty.getAll)
       .then((res) => res.json())
       .then((data) => setAllThirdParty(data));
   };
@@ -38,7 +38,7 @@ const Dashboard = () => {
           </div>
         </section>
         <section>
-          <Subheader>See your providers</Subheader>
+          <Subheader>See your third parties</Subheader>
           <div className="mx-10">
             <Table tableData={allThirdParty} />
           </div>

@@ -54,7 +54,7 @@ export const FormWrapper = styled.div`
   margin: 0 1rem;
   border: 1px solid #b3c3d3;
   border-radius: 0.375rem;
-  flex-basis: 50%;
+  //  flex-basis: 50%;
 
   @media (min-width: 768px) {
     border: 1px solid lightblue;

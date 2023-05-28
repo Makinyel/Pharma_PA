@@ -9,7 +9,7 @@ export const endpoints = {
   },
   provider: {
     save: `${BASE_URL}/third-party`,
-    getAll: `${BASE_URL}/third-party`,
+    getAll: `${BASE_URL}/third-party/providers`,
     getUpdateDelete: (id) => `${BASE_URL}/third-party/${id}`,
   },
   thirdParty: {
@@ -18,7 +18,8 @@ export const endpoints = {
     getUpdateDelete: (id) => `${BASE_URL}/third-party/${id}`,
   },
   client: {
-    getAll: `${BASE_URL}/third-party`,
+    getAll: `${BASE_URL}/third-party/clients`,
+    save: `${BASE_URL}/third-party`,
     getUpdateDelete: (id) => `${BASE_URL}/third-party/${id}`,
   },
   product: {

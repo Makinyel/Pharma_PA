@@ -54,4 +54,12 @@ public class PersonaService {
   public void deletePerson(Long id) {
     personaRepository.deleteById(id);
   }
+
+  public List<Persona> findClients() {
+    return personaRepository.findClients();
+  }
+
+  public List<Persona> findProviders() {
+    return personaRepository.findProviders();
+  }
 }

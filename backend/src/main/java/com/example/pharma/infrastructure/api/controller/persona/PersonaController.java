@@ -31,6 +31,16 @@ public class PersonaController {
     return ResponseEntity.ok(personaService.findPersonById(id));
   }
 
+  @GetMapping("clients")
+  public ResponseEntity<List<Persona>> findClients(){
+    return ResponseEntity.ok(personaService.findClients());
+  }
+
+  @GetMapping("providers")
+  public ResponseEntity<List<Persona>> findProviders(){
+    return ResponseEntity.ok(personaService.findProviders());
+  }
+
   @GetMapping
   public ResponseEntity<List<Persona>> findAllPeople() {
     return ResponseEntity.ok(personaService.findAllPeople());
