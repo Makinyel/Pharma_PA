@@ -4,7 +4,8 @@ public enum DocumentType {
 
   TI("TI"),
   CEDULA("CEDULA"),
-  PASAPORTE("PASAPORTE");
+  PASAPORTE("PASAPORTE"),
+  NIT("NIT");
 
   final String type;
 

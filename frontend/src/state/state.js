@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   user: null,
-  isOpen: false,
+  isOpen: true,
   transaction: {},
   transactionDetails: [],
   transactionDetailsProducts: [],

@@ -140,6 +140,7 @@ const Transactions = () => {
         productName: formData.get("product name"),
       },
       transfer: {
+        transferId: transaction?.id,
         quantity: formData.get("quantity"),
         productName: formData.get("product name"),
         sourceWarehouse: formData.get("source warehouse"),

@@ -24,7 +24,7 @@ const SelectInput = ({ title, description }) => {
     if (title === "Third party type") {
       options = [{ name: "CLIENT" }, { name: "PROVIDER" }];
     } else if (title === "Document type") {
-      options = [{ name: "CEDULA" }, { name: "PASAPORTE" }];
+      options = [{ name: "CEDULA" }, { name: "PASAPORTE" }, { name: "NIT" }];
     }
   }
 
