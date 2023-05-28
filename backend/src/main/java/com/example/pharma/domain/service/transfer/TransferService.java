@@ -5,6 +5,7 @@ import com.example.pharma.domain.entities.user.User;
 import com.example.pharma.domain.service.usuario.UsuarioService;
 import com.example.pharma.infrastructure.repository.transfer.TransferRepository;
 import java.time.LocalDate;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -27,4 +28,11 @@ public class TransferService {
     return transferRepository.save(transfer);
   }
 
+  public List<Transfer> findAll() {
+    return transferRepository.findAll();
+  }
+
+  public Transfer findLast() {
+    return transferRepository.findTopByOrderByIdDesc();
+  }
 }

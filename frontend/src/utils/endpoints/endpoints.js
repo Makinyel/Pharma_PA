@@ -73,20 +73,26 @@ export const endpoints = {
   },
   buy: {
     base: `${BASE_URL}/buy`,
+    last: `${BASE_URL}/buy/last`,
   },
   purchaseDetails: {
     base: `${BASE_URL}/buy-details`,
+    last: `${BASE_URL}/buy/last`,
   },
   sale: {
     base: `${BASE_URL}/sale`,
+    last: `${BASE_URL}/sale/last`,
   },
   saleDetails: {
     base: `${BASE_URL}/sale-details`,
+    last: `${BASE_URL}/sale-details/last`,
   },
   transfer: {
     base: `${BASE_URL}/transfer`,
+    last: `${BASE_URL}/transfer/last`,
   },
   transferDetails: {
     base: `${BASE_URL}/transfer-details`,
+    last: `${BASE_URL}/transfer-details/last`,
   },
 };

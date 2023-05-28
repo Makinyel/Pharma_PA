@@ -51,6 +51,6 @@ public class UsuarioService {
 
   public User findByEmail(String email) {
     return userRepository.findByEmail(email).orElseThrow(() ->
-    new NotFoundException("User Not Found: " + email));
+        new NotFoundException("User Not Found: " + email));
   }
 }

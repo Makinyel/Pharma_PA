@@ -38,7 +38,8 @@ public class PersonaService {
     String document = persona.getDocument();
     Persona existingPerson = personaRepository
         .findByDocument(document)
-        .orElseThrow(() -> new NotFoundException("Third party id: " + document + " does not exist"));
+        .orElseThrow(
+            () -> new NotFoundException("Third party id: " + document + " does not exist"));
 
     existingPerson.setName(persona.getName());
     existingPerson.setDocumentType(persona.getDocumentType());

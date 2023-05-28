@@ -8,6 +8,7 @@ import Transactions from "./pages/Transactions";
 import Products from "./pages/Products";
 import Login from "./pages/login/Login";
 import Register from "./pages/login/Register";
+import Receipt from "./components/Receipt";
 
 const App = () => {
   const user = useSelector((state) => state.user);
@@ -23,6 +24,7 @@ const App = () => {
               <Route path="/products/:tabItem" element={<Products />} />
               <Route path="/transactions/:tabItem" element={<Transactions />} />
               <Route path="/thirdparty" element={<ThirdParty />} />
+              <Route path="/receipt" element={<Receipt />} />
             </Routes>
           </SideBar>
         ) : (

@@ -1,13 +1,13 @@
 package com.example.pharma.domain.entities.user;
 
 public enum Role {
-    ADMIN("ADMIN"),
-    GERENTE_COMPRA("GERENTE_COMPRA"),
-    GERENTE_VENTA("GERENTE_VENTA");
+  ADMIN("ADMIN"),
+  GERENTE_COMPRA("GERENTE_COMPRA"),
+  GERENTE_VENTA("GERENTE_VENTA");
 
-    String userRole;
+  String userRole;
 
-    Role(String userRole) {
-        this.userRole = userRole;
-    }
+  Role(String userRole) {
+    this.userRole = userRole;
+  }
 }

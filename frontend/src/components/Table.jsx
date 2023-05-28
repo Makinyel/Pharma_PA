@@ -9,6 +9,7 @@ const Table = ({ tableData }) => {
         MuiTableCell: {
           styleOverrides: {
             root: {
+              padding: "10px",
               backgroundColor: "white",
             },
           },

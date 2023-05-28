@@ -10,6 +10,7 @@ import com.example.pharma.infrastructure.repository.sale.SaleRepository;
 import com.example.pharma.shared.NotFoundException;
 import jakarta.transaction.Transactional;
 import java.time.LocalDate;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -51,5 +52,13 @@ public class SaleService {
     saleRepository.findById(saleDetails.getId())
         .orElseThrow(() -> new NotFoundException("Sale not found"));
     return saleRepository.save(saleDetails);
+  }
+
+  public List<Sale> findAll() {
+    return saleRepository.findAll();
+  }
+
+  public Sale findLast() {
+    return saleRepository.findTopByOrderByIdDesc();
   }
 }

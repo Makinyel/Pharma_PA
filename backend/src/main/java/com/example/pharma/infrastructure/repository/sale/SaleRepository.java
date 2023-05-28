@@ -19,4 +19,5 @@ public interface SaleRepository extends JpaRepository<Sale, Long> {
       @Param("total") double total,
       @Param("iva") double iva);
 
+  Sale findTopByOrderByIdDesc();
 }

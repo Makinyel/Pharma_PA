@@ -32,6 +32,7 @@ import {
 import { clearFormFields } from "../utils/functions/formUtils";
 
 import _ from "lodash";
+import { useNavigate } from "react-router-dom";
 import {
   setTransaction,
   setTransactionDetails,
@@ -56,6 +57,7 @@ const Transactions = () => {
   const [formInfo, setFormInfo] = useState([]);
   const [detailsFormInfo, setDetailsFormInfo] = useState([]);
   const [stepCount, setStepCount] = useState(1);
+  const navigate = useNavigate();
   const isNotAPhone = useMediaQuery("(min-width: 1000px)");
   const formRef = useRef(null);
 
@@ -159,7 +161,7 @@ const Transactions = () => {
     clearFormFields(formRef);
   };
 
-  const printReceipt = (transaction) => {};
+  const printReceipt = () => navigate("/receipt");
 
   const completeTransaction = async () => {
     //2. POST list of details
@@ -176,20 +178,23 @@ const Transactions = () => {
       toast.error(`There was an error processing the ${transactionsTab}`);
       return;
     } else {
-      toast.success(
-        `${_.upperFirst(transactionsTab)} has been completed successfully!`
-      );
+      //FACTURA;
+      if (transactionsTab === "sale") {
+        toast(`Successfully completed ${transactionsTab}`, {
+          action: {
+            label: "Print your receipt!",
+            onClick: () => printReceipt(),
+          },
+        });
+      } else {
+        toast.success(`Successfully completed ${transactionsTab}`);
+      }
       dispatch(toggleTransactionInitiated());
       dispatch(setTransactionDetails([]));
       dispatch(setTransactionDetailsProducts([]));
       setStepCount(1);
       setFormInfo(formInfoMap[transactionsTab]);
       clearFormFields(formRef);
-
-      //FACTURA
-      // toast.custom((t) => (
-      //   <button onClick={printReceipt(response)}>Print your receipt!</button>
-      // ));
     }
   };
 

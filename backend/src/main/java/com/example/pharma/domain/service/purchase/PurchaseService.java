@@ -10,6 +10,7 @@ import com.example.pharma.infrastructure.repository.compra.PurchaseRepository;
 import com.example.pharma.shared.NotFoundException;
 import jakarta.transaction.Transactional;
 import java.time.LocalDate;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -52,5 +53,13 @@ public class PurchaseService {
     purchaseRepository.findById(purchase.getId())
         .orElseThrow(() -> new NotFoundException("Purchase not found"));
     return purchaseRepository.save(purchase);
+  }
+
+  public List<Purchase> findAll() {
+    return purchaseRepository.findAll();
+  }
+
+  public Purchase findLast() {
+    return purchaseRepository.findTopByOrderByIdDesc();
   }
 }

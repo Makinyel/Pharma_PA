@@ -7,7 +7,7 @@ export const purchaseDetailsFormInfo = [
   {
     type: "select",
     title: "Destination warehouse",
-    description: "Warehouse the products will save to`.",
+    description: "Warehouse the products will save to.",
   },
   {
     type: "select",

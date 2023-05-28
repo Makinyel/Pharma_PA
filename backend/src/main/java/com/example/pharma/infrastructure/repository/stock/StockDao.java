@@ -2,7 +2,6 @@ package com.example.pharma.infrastructure.repository.stock;
 
 
 import com.example.pharma.domain.entities.stock.Stock;
-import com.example.pharma.infrastructure.repository.stock.StockRepository;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,16 +16,16 @@ public class StockDao {
 
   private final String GET_ALL_STOCKS =
       "SELECT *"
-      + "FROM stock st \n"
-      + "INNER JOIN  maestro_producto mp ON st.id_producto = mp.id\n"
-      + "where st.id_producto = :idProducto";
+          + "FROM stock st \n"
+          + "INNER JOIN  maestro_producto mp ON st.id_producto = mp.id\n"
+          + "where st.id_producto = :idProducto";
 
   private final String GET_VALUE_STOCKS_BY_IDPRODUCT_AND_IDBODEGA =
       "SELECT *\n"
-      + "FROM stock st \n"
-      + "INNER JOIN  maestro_producto mp ON st.id_producto = mp.id\n"
-      + "INNER JOIN  maestro_bodega mb ON st.id_bodega = mb.id\n"
-      + "where st.id_producto = :idProducto and st.id_bodega = :idBodega";
+          + "FROM stock st \n"
+          + "INNER JOIN  maestro_producto mp ON st.id_producto = mp.id\n"
+          + "INNER JOIN  maestro_bodega mb ON st.id_bodega = mb.id\n"
+          + "where st.id_producto = :idProducto and st.id_bodega = :idBodega";
 
   private final String UPDATE_VALUE_STOCKS_BY_IDPRODUCT_AND_IDBODEGA =
       "UPDATE st set st.cantidad\n"

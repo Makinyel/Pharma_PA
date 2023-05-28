@@ -11,9 +11,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class KeyStock implements Serializable {
 
-    private Long productId;
-    private Long warehouseId;
+  private Long productId;
+  private Long warehouseId;
 }
