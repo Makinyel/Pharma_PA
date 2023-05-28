@@ -54,6 +54,7 @@ const ThirdParty = () => {
     toast.promise(() => Promise.resolve(saved), {
       loading: "Loading...",
       success: (data) => {
+        clearFormFields(formRef);
         return `Third party has been successfully saved.`;
       },
       error: `There was an error saving the third party.`,

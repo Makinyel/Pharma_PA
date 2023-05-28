@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Container = styled.div`
-  display: flex;
+  //display: flex;
   @media (max-width: 768px) {
     display: block;
   }

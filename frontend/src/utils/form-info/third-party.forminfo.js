@@ -22,16 +22,16 @@ export const thirdPartyForminfo = [
   {
     type: "text",
     title: "Location",
-    description: "Name of the third party.",
+    description: "City address.",
   },
   {
     type: "text",
     title: "Phone",
-    description: "Name of the third party.",
+    description: "Phone number.",
   },
   {
     type: "text",
     title: "Email",
-    description: "Name of the third party.",
+    description: "Email to be contacted.",
   },
 ];
