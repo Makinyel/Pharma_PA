@@ -2,6 +2,7 @@ package com.example.pharma.domain.service.stock;
 
 import com.example.pharma.domain.entities.keys.KeyStock;
 import com.example.pharma.domain.entities.stock.Stock;
+import com.example.pharma.infrastructure.repository.stock.StockDao;
 import com.example.pharma.infrastructure.repository.stock.StockRepository;
 import com.example.pharma.shared.NotFoundException;
 import java.util.Objects;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 public class StockService {
 
   private final StockRepository stockRepository;
+  private final StockDao stockDao;
 
   public Stock create(Stock stockDetalle, int cantidad) {
 
@@ -60,9 +62,26 @@ public class StockService {
 
   public Stock restarStockMovimientos(Stock stockDetalle, int cantidad) {
 
-    stockDetalle.setCantidad(stockDetalle.getCantidad()
-        - cantidad);
+    Boolean productStock = verifyStock(stockDetalle, cantidad);
 
-    return stockRepository.save(stockDetalle);
+    if (productStock == false) {
+      throw new NotFoundException("Producto sin stock suficiente!");
+    }
+      stockDetalle.setCantidad(stockDetalle.getCantidad()
+          - cantidad);
+      return stockRepository.save(stockDetalle);
   }
+    private Boolean verifyStock (Stock stockDetalle,int quantity){
+      log.info("Verificando stock el producto...");
+
+      Integer stockActual = stockDao.getTotalStocksByidProductoIdBodega(
+          stockDetalle.getProductId(),
+          stockDetalle.getWarehouseId());
+
+      if (stockActual >= quantity){
+        return true;
+      }
+      else
+        return false;
+    }
 }

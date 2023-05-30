@@ -23,9 +23,9 @@ public class StockDao {
   private final String GET_VALUE_STOCKS_BY_IDPRODUCT_AND_IDBODEGA =
       "SELECT *\n"
           + "FROM stock st \n"
-          + "INNER JOIN  maestro_producto mp ON st.id_producto = mp.id\n"
-          + "INNER JOIN  maestro_bodega mb ON st.id_bodega = mb.id\n"
-          + "where st.id_producto = :idProducto and st.id_bodega = :idBodega";
+          + "INNER JOIN  maestro_producto mp ON st.product_id = mp.id\n"
+          + "INNER JOIN  maestro_bodega mb ON st.warehouse_id = mb.id\n"
+          + "where st.product_id = :idProducto and st.warehouse_id = :idBodega";
 
   private final String UPDATE_VALUE_STOCKS_BY_IDPRODUCT_AND_IDBODEGA =
       "UPDATE st set st.cantidad\n"
