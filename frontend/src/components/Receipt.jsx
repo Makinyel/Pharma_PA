@@ -61,7 +61,9 @@ const Receipt = () => {
                 </th>
               </tr>
               <tr>
-                <td className="border border-black px-4 py1 text-lg">ID:</td>
+                <td className="border border-black px-4 py1 text-lg">
+                  Invoice Code:
+                </td>
                 <td className="border border-black px-4 py1 text-lg">
                   {data.id}
                 </td>
@@ -70,14 +72,6 @@ const Receipt = () => {
                 <td className="border border-black px-4 py1 text-lg">Date:</td>
                 <td className="border border-black px-4 py1 text-lg">
                   {data.date}
-                </td>
-              </tr>
-              <tr>
-                <td className="border border-black px-4 py1 text-lg">
-                  Invoice Code:
-                </td>
-                <td className="border border-black px-4 py1 text-lg">
-                  {data.invoiceCode}
                 </td>
               </tr>
               <tr>
